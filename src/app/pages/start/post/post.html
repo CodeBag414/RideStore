@@ -1,0 +1,24 @@
+<div class="heading">
+  <div class="author">
+    <div class="image">
+      <img class="b-lazy" data-src="brand_logos_new/{{vm.post.fields.brandLink.fields.url}}.png" alt="{{vm.post.fields.brandLink.fields.name}}">
+    </div>
+    <h4>{{vm.post.fields.brandLink.fields.name}}</h4>
+  </div>
+  <div class="time">
+    <span class="icon icon-clock"></span> <span class="date">{{vm.post.sys.createdAt | timeAgo}}</span>
+  </div>
+</div>
+
+<div class="content">
+  <a href="#" ng-click="vm.openLink(vm.post.fields.state, vm.post.fields.stateId)">
+    <img class="b-lazy" data-src="{{ vm.post.fields.image.fields.file.url }}" alt="alt-text">
+  </a>
+</div>
+
+<div class="comment">
+  <span class="icon icon-comment"></span>
+  <span class="username bold">{{vm.post.fields.brandLink.fields.name}}</span>
+  <span class="text" ng-bind-html="vm.post.fields.text"></span>
+  <span class="hashtags"><a ng-repeat="tag in vm.post.fields.department" href="#" ui-sref="{{tag == 'Moto' ? 'motocross' : tag | lowercase}}">#{{tag | lowercase}}</a></span>
+</div>

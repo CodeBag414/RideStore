@@ -1,0 +1,29 @@
+<div class="favorite-item">
+  <a href="" ng-click="vm.removeFromFavorites()" class="button-delete">
+    <span class="icon icon-cross"></span>
+  </a>
+  <a ui-sref="product-{{vm.product['type_id']}}({id: vm.product.id, url: vm.product.url_key})"
+  href="/{{vm.product.url_key}}">
+    <!-- configurable image -->
+    <div ng-if="vm.product['type_id'] === 'configurable'" class="image placeholder">
+      <img class="b-lazy" data-src="catalog/product/{{ vm.product.image }}" alt="{{vm.product.shortname}}">
+      <div class="prod-img-padding-regular"></div>
+    </div>
+
+    <!-- style image -->
+    <div ng-if="vm.product['type_id'] === 'style'" class="image">
+      <div class="large-image placeholder">
+        <img class="b-lazy" data-src="catalog/product/{{ vm.product.image }}" alt="{{vm.product.shortname}}">
+        <div class="prod-img-padding-style"></div>
+      </div><div class="small-image">
+        <img ng-repeat="styleimage in vm.product.styleprod_images | limitTo: 3" class="b-lazy" data-src="catalog/product/{{styleimage}}" alt="{{vm.product.shortname}}">
+      </div>
+    </div>
+
+    <div class="text">
+      <h5>{{vm.product.brand}} "{{vm.product.shortname}}" {{vm.product.productype}}</h5>
+      <span class="color">{{vm.product.color}}</span>
+    </div>
+  </a>
+
+</div>

@@ -1,0 +1,59 @@
+<div ng-if="!top.settings.getState().minimal">
+  <nav class="preheader">
+    <span class="midText"> <b translate>Free shipping</b> <span translate>on all orders</span></span>
+    <div class="right-items">
+      <a class="help" ui-sref="contact" translate>Help</a>
+      <a class="orders" ui-sref="login({redirect: 'orders'})" translate>My account</a>
+      <div class="flagbox"><div class="flag {{top.locale}}" ng-click="top.showColorPicker =! top.showColorPicker"></div></div>
+      <div class="flag-picker" ng-show="top.showColorPicker">
+        <a class="flag-option" ng-repeat="(key, value) in top.stores" ng-click="top.redirect(value.id)">
+          <div class="flagbox" ng-if="top.locale != value.locale"><div class="flag {{value.locale}}"></div></div>
+        </a>
+      </div>
+    </div>
+  </nav>
+  <nav class="bar"
+  ng-class="{
+    'bar-dark bg-dark-translucent' : top.settings.getState().design == 'default',
+    'bar-dark bg-transparent' : top.settings.getState().design == 'transparent-white',
+    'bar-light bg-transparent' : top.settings.getState().design == 'transparent-dark',
+    'bar-dark bg-gray' : top.goDark == true
+  }">
+    <div class="left inline-block">
+      <a href="/" ui-sref="home" class="text logo-top" ng-if="top.settings.getState().logo == true">
+        <span class="icon icon-ridestore-full logo"></span>
+      </a>
+      <div class="navigation" ng-include="'app/components/menu/menu.html'"></div>
+
+      <a href="" ng-click="top.toggleSearchInput()">
+        <span class="icon icon-search"></span>
+      </a>
+
+      <span class="search-box" ng-class="{expanded:top.settings.getSearchStatus()}">
+        <input type="text" placeholder="{{'Search products' | translate}}" class="search-input" id="search-input"
+        ng-model="top.searchInputValue" ng-change="top.broadcastChangeOnInput()" ng-model-options="{ debounce: 200 }"/>
+        <a href="" ng-click="top.clearSearch()" ng-show="top.searchInputValue.length > 0" class="clear-input-button">
+          <span class="icon icon-cross"></span>
+        </a>
+      </span>
+
+    </div>
+    <div class="right inline-block">
+      <rs-favorite-nav-button device="top.head.getDevice()"></rs-favorite-nav-button>
+      <rs-cart-nav-button device="top.head.getDevice()"></rs-cart-nav-button>
+    </div>
+  </nav>
+</div>
+
+<div ng-if="top.settings.getState().minimal" id="minimal-header" class="minimal" ng-class="{'minimal-dark': top.goDark == true}">
+  <a class="return-shopping" ng-click="top.returnToShopping()">
+    <span class="icon icon-previous"></span>
+    <h5 class="return-to-shopping" translate>Return to shopping</h5>
+  </a><!--
+
+  --><div class="center">
+    <a href="/" ui-sref="home" class="logo">
+      <span class="icon icon-ridestore-full"></span>
+    </a>
+  </div>
+</div>

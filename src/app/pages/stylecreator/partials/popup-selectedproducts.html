@@ -1,0 +1,40 @@
+<div class="popup-container totals" id="share-popup" ng-class="{active: creator.popupOpen}">
+    <div class="popup-bg" ng-click="creator.togglePopup()"></div>
+    <div class="popup">
+            <section id="addtocart">
+                <ul class="productlist popul">
+                    <li ng-repeat="product in creator.styleData.products" class="cartproduct" on-finish-render="ngRepeatFinishedEvent">
+                        <div class="holder">
+                            <span class="icon-cross" ng-click="creator.setProduct(product)"></span>
+                            <div class="prod-img" ng-click="creator.goToProduct(product.id)">
+                                <img class="rs-image b-lazy" data-src="catalog/product/{{product.image}}" onload="this.style.opacity='1';" alt="{{p.shortname}} by {{p.brand}}">
+                            </div>
+                            <h5>{{product.shortname}}</h5>
+
+                            <span class="price" ng-if="!product.sale_price" translate  translate-params-amount="product.price">$ {{amount}}</span>
+                            <span class="price on-sale" ng-if="product.sale_price" translate  translate-params-amount="product.sale_price">$ {{amount}}</span>
+
+                            <ul class="dropdown cartproduct">
+                                <li>
+                                    <span ng-if="product.selectedSize" class="parent">{{product.selectedSize.size_value}}</span>
+                                    <span ng-if="!product.selectedSize" class="parent" ng-click="creator.getSizes(product)"><span translate>Size</span><span class="icon-arrow-down"></span></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+            <div class="selectsize" ng-class="{active: creator.activeSizeSelectionProduct}">
+                <ul>
+                    <li ng-repeat="size in creator.activeSizeSelectionProduct.sizes" ng-if="size.is_in_stock == '1'" ng-class="{active: size.selected == true}" ng-click="creator.setSize(creator.activeSizeSelectionProduct, size)">{{size.size_value}}</li>
+                </ul>
+            </div>
+            <a class="button checkout" ng-class="(creator.activeSizeSelectionProduct ? 'slideUp' : '') + ' ' + (creator.cartError ? 'error' : 'green')" href="" ng-click="creator.buyProducts()">
+                <div ng-if="!creator.cartSuccess && !creator.cartIsLoading && !creator.cartError" translate>Add to cart</div>
+                <div ng-if="creator.cartSuccess && !creator.cartIsLoading && !creator.cartError" translate>Added to cart</div>
+                <div ng-if="creator.cartError" class="warning" translate>Oops! We lost your order somewhere, try again</div>
+                <rs-spinner ng-if="creator.cartIsLoading"></rs-spinner>
+            </a>
+            <a class="button cancel" href="" ng-click="creator.togglePopup()" translate>Cancel</a>
+    </div>
+</div>

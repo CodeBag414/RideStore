@@ -1,0 +1,208 @@
+@import "src/assets/sass/mixins";
+@import "src/assets/sass/variables";
+
+#reviews {
+	#header {
+		.stars {
+			margin-bottom: 15px;
+			.active {
+				color: #FFD671;
+			}
+		}
+		h1 {
+			display: none;
+			@include breakpoint(desktop) {
+				display: block;
+			}
+		}
+		@include breakpoint(desktop) {
+			text-align: left;
+			h1 {
+				margin-top: 0;
+			}
+			h2 {
+				margin-top: 20px;
+				font-size: 22px;
+				font-weight: 200;
+				max-width: 400px;
+				line-height: 36px;
+			}
+			.content .stars {
+				display: none;
+			}
+			.button {
+				margin-top: 10px;
+			}
+			.content {
+				height: 300px;
+				position: absolute;
+				left: 0;
+				top: 0;
+				bottom: 0;
+				margin: auto;
+			}
+			.topbreaker {
+				display: none;
+			}
+		}
+	}
+	.list {
+		li {
+			display: block;
+			border-top: 1px solid $lightGray;
+			padding: 25px;
+			&:first-of-type {
+				border-top: none;
+			}
+			.image {
+				@include inline-block;
+				@include box-sizing(border-box);
+				.icon {
+					font-size: 24px;
+					width: 100%;
+					text-align: left;
+					display: block;
+					color: $darkGray;
+				}
+				width: 40%;
+				a {
+					margin-top: 10px;
+					display: block;
+					color: $darkGray;
+					font-weight: 600;
+				}
+			}
+			.text {
+				width: 58%;
+				@include inline-block;
+				@include box-sizing(border-box);
+				padding-left: $padding-01;
+				text-align: right;
+				h4 {
+					font-weight: 600;
+					text-transform: uppercase;
+				}
+				p {
+					margin-top: 10px;
+					padding-right: 2px;
+				}
+				p a {
+					color: $blue;
+				}
+				.button {
+					margin-top: $padding-01;
+				}
+				.stars {
+					text-align: right;
+					li {
+						@include inline-block;
+						border-top: none;
+						padding: 0 2px;
+					}
+				}
+			}
+		}
+		@include breakpoint(desktop) {
+			background-color: #fff;
+			position: absolute;
+			right: 0;
+			top: 0;
+			bottom: 0;
+			margin: auto;
+			width: calc(100% - 400px);
+			max-width: 400px;
+			height: 404px;
+			@include box-shadow($shadow-01);
+			padding: 0 $padding-01;
+			@include box-sizing(border-box);
+			li {
+				padding-top: 40px;
+				padding-bottom: 40px;
+				.image {
+					.icon {
+						font-size: 30px;
+					}
+				}
+			}
+		}
+	}
+	.review-area {
+		background-color: $lighterGray;
+		padding: 25px $padding-01;
+		.testimonials {
+			.icon-kishe {
+				display: block;
+				text-align: center;
+				font-size: 22px;
+				margin-bottom: 15px;
+				color: $darkGray;
+				margin-top: 20px;
+			}
+			.object {
+				@include box-sizing(border-box);
+				padding: 0 20px;
+				text-align: center;
+				p {
+					font-size: 16px;
+					line-height: 26px;
+				}
+				.user {
+					text-align: center;
+					margin-top: 15px;
+				}
+			}
+			.pagination {
+				margin-top: 25px;
+				li {
+					background-color: $lightGray;
+					&.active {
+						background-color: $blue;
+					}
+				}
+			}
+			@include breakpoint(desktop) {
+				.object {
+					p {
+						font-size: 22px;
+						font-weight: 200;
+						max-width: 400px;
+						margin: auto;
+						line-height: 36px;
+					}
+					.user {
+						margin-top: 25px;
+					}
+				}
+				.icon-kishe {
+					font-size: 28px;
+					margin-bottom: 25px;
+				}
+			}
+		}
+		.reviews {
+			margin-top: $padding-02;
+			@include breakpoint(desktop) {
+				max-width: 1140px;
+				padding-left: 15px;
+				padding-right: 15px;
+				margin-left: auto;
+				margin-right: auto;
+				.review {
+					margin-bottom: 15px;
+					@include box-shadow(0 3px 15px rgba(0,0,0,0.05));
+				}
+			}
+		}
+	}
+	form {
+		.stars {
+			li {
+				cursor: pointer;
+			}
+		}
+	}
+	.icon-user {
+		font-size: 30px;
+		margin-right: 10px;
+	}
+}

@@ -1,0 +1,47 @@
+<!-- UI OVERLAYS -->
+<div id="search" ng-controller="SearchController as search">
+  <div class="topbreaker"></div>
+  <!-- FILTERS -->
+  <div ng-if="search.filterActive" id="filter"
+    ng-include="'app/components/search/partials/search.filters.html'"
+    ng-class="search.head.getDevice() == 'desktop' ? 'inline' : 'overlay'">
+  </div><!--TODO: THIS IS A HACK, any space between this lines breaks the layout, must fix
+--><div id="main" ng-class="{'filter-open': search.filterActive}">
+    <nav class="bar bar-light bg-light-translucent">
+      <div class="left inline-block">
+        <a href="" ng-click="search.filterActive = !search.filterActive">
+          <span class="icon icon-filter"></span>
+        </a>
+      </div>
+      <div class="center">
+        <a class="text"><h3>{{search.searchVal}}</h3></a>
+      </div>
+      <div class="right inline-block">
+        <rs-grid-button using-blazy="true"></rs-grid-button>
+      </div>
+    </nav><!--TODO: THIS IS A HACK, any space between this lines breaks the layout, must fix
+  --><div id="search-scroll-container" class="grid" ng-class="{'grid-2': search.gridService.getSize() == 2, 'grid-3': search.gridService.getSize() == 3}">
+      <div class="object" ng-repeat="product in search.products track by product.id" on-finish-render="ngRepeatFinished">
+        <rs-favorite-button product-id="product.id"></rs-favorite-button>
+        <a ui-sref="product-configurable({id: product.id, url: product.url_key})" href="{{ product.url_key }}">
+          <div class="image placeholder" style="background-image: url('https://ridestore-2.imgix.net/catalog/product/{{ product.image_original }}?w=20&blur=20');">
+            <img class="b-lazy" data-src="catalog/product/{{ product.image_original }}" alt="alt-text">
+            <div class="prod-img-padding-regular"></div>
+          </div>
+          <div class="text">
+            <h5>{{ product.brand }} "{{ product.shortname}}" {{ product.productype }}</h5>
+            <span class="price">
+              <span ng-class="{'old-price' : product.price !== product.original_price}"
+                translate translate-params-amount="product.original_price">$ {{amount}}</span>
+              <span class="sale-price" ng-if="product.price !== product.original_price"
+                translate translate-params-amount="product.price">$ {{amount}}</span>
+            </span>
+          </div>
+        </a>
+      </div>
+      <div ng-show="search.products.length == 0 && !search.busy" translate>No products found</div>
+      <div ng-show='search.busy' translate>loading </div>
+    </div>
+
+  </div>
+</div>

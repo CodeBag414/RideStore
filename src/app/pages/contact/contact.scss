@@ -1,0 +1,162 @@
+@import "src/assets/sass/mixins";
+@import "src/assets/sass/variables";
+
+#contact {
+	#header {
+		.bg {
+			background-image: url('https://ridestore.imgix.net/backgrounds/forest.jpeg?auto=fm&q=60');
+		}
+		@include breakpoint(desktop) {
+			text-align: left;
+			h1 {
+				margin-top: 0;
+			}
+			h2 {
+				margin-top: 20px;
+				font-size: 22px;
+				font-weight: 200;
+				max-width: 400px;
+				line-height: 36px;
+			}
+			.button {
+				margin-top: 10px;
+			}
+			.content {
+				height: 250px;
+				position: absolute;
+				left: 0;
+				top: 0;
+				bottom: 0;
+				margin: auto;
+			}
+			.topbreaker {
+				display: none;
+			}
+		}
+	}
+	.list {
+		li {
+			display: block;
+			border-top: 1px solid $lightGray;
+			padding-top: 25px;
+			padding-bottom: 25px;
+			&:first-of-type {
+				border-top: none;
+			}
+			.image {
+				@include inline-block;
+				@include box-sizing(border-box);
+				.icon {
+					font-size: 28px;
+					width: 100%;
+					text-align: center;
+					display: block;
+				}
+				width: 20%;
+			}
+			.text {
+				width: 80%;
+				@include inline-block;
+				@include box-sizing(border-box);
+				padding-left: $padding-01;
+				h4 {
+					font-weight: 600;
+					text-transform: uppercase;
+				}
+				p {
+					margin-top: 10px;
+				}
+				p a {
+					color: $blue;
+				}
+				.button {
+					margin-top: $padding-01;
+				}
+			}
+		}
+		@include breakpoint(desktop) {
+			background-color: #fff;
+			position: absolute;
+			right: 0;
+			top: 0;
+			bottom: 0;
+			margin: auto;
+			width: calc(100% - 400px);
+			max-width: 400px;
+			height: 435px;
+			@include box-shadow($shadow-01);
+			padding: 0 $padding-01;
+			@include box-sizing(border-box);
+			li {
+				padding-top: 40px;
+				padding-bottom: 40px;
+				.image {
+					.icon {
+						font-size: 30px;
+					}
+				}
+			}
+		}
+	}
+	form {
+		background-color: $lighterGray;
+		h4 {
+			display: block;
+			text-align: center;
+			font-weight: 600;
+			text-transform: uppercase;
+			padding: 20px 0 30px 0;
+		}
+		@include breakpoint(desktop) {
+			padding-top: 60px;
+			padding-bottom: 60px;
+			h4 {
+				padding: 0 0 40px 0;
+			}
+		}
+	}
+	.wrap {
+		max-width: 1200px;
+		margin: auto;
+		.left {
+			display: block;
+		}
+		.right {
+			display: block;
+			float: none;
+		}
+		@include breakpoint(desktop) {
+			.left { width: 60%; @include inline-block; }
+			.right {
+				width: 40%; @include inline-block;
+				.faq {
+					padding-top: 60px;
+					h4 {
+						padding-top: 0;
+						padding-bottom: 40px;
+					}
+				}
+			}
+		}
+	}
+	#main {
+		@include breakpoint(desktop) {
+			background-color: $lighterGray;
+			h4 {
+				text-align: left;
+				font-size: 26px;
+			}
+			form input {
+				width: calc(50% - 8px);
+				@include inline-block;
+				margin-top: 0;
+				&:first-of-type {
+					margin-right: 16px;
+				}
+			}
+			form textarea {
+				min-height: 300px;
+			}
+		}
+	}
+}

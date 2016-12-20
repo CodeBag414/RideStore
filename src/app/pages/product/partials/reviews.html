@@ -1,0 +1,63 @@
+<div class="wrap">
+	<div class="block reviews">
+		<div class="p-1">
+			<h4 translate>Overall rating</h4>
+			<div class="content">
+				<div class="overall reviews">
+					<div class="inline-block chart">
+						<img src="https://ridestore.imgix.net/upload/nabil/circular-chart.png?w=102&dpr=2" alt="chart">
+					</div><!--
+					--><div class="inline-block info">
+						<h4 translate>Review</h4>
+						<ul>
+							<li ng-class="{active: product.data.review_score > 0 }"><span class="icon-star-filled"></span></li>
+							<li ng-class="{active: product.data.review_score > 1 }"><span class="icon-star-filled"></span></li>
+							<li ng-class="{active: product.data.review_score > 2 }"><span class="icon-star-filled"></span></li>
+							<li ng-class="{active: product.data.review_score > 3 }"><span class="icon-star-filled"></span></li>
+							<li ng-class="{active: product.data.review_score > 4 }"><span class="icon-star-filled"></span></li>
+						</ul>
+						<p translate translate-params-reviewpercent="product.data.review_percent">{{reviewpercent}}% of all recommended products.</p>
+					</div>
+				</div>
+				<div class="overall sizes">
+					<div class="inline-block chart">
+						<img src="https://ridestore.imgix.net/upload/nabil/circular-chart.png?w=102&dpr=2" alt="chart">
+					</div><!--
+					--><div class="inline-block info">
+						<h4 translate>Size</h4>
+						<ul>
+							<li class="active">{{product.data.review_size}}</li>
+						</ul>
+
+						<p translate translate-params-review-size="product.data.review_size">Most people think the size was {{reviewSize}}</p>
+					</div>
+				</div>
+			</div>
+		</div><!--
+		--><div class="p-2">
+			<h4 translate  translate-params-review-count="product.data.review_count">Reviews ( {{reviewCount}} )</h4>
+			<div class="content">
+				<div class="review" ng-repeat="review in product.data.review_details">
+					<a href=""><div class="img"><span class="icon icon-user"></span></div></a>
+					<h4><a href="">{{review.nickname}}</a></h4>
+					<p>{{review.detail}}</p>
+					<div class="bottom">
+						<h4 class="desktop" translate>Rating</h4>
+						<ul class="stars">
+							<li ng-class="{active: review.rating > 0 }"><span class="icon-star-filled"></span></li>
+							<li ng-class="{active: review.rating > 1 }"><span class="icon-star-filled"></span></li>
+							<li ng-class="{active: review.rating > 2 }"><span class="icon-star-filled"></span></li>
+							<li ng-class="{active: review.rating > 3 }"><span class="icon-star-filled"></span></li>
+							<li ng-class="{active: review.rating > 4 }"><span class="icon-star-filled"></span></li>
+						</ul>
+						<h4 class="desktop" translate>Size</h4>
+						<div class="progress-bar desktop">
+							<div class="progress" style="width: {{product.getSizeRatingPercentage(review.rating_size)}}%"></div>
+						</div>
+							<small class="right">{{product.getSizeRatingTranslate(review.rating_size)}}</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,27 @@
+<form class="dropzone"
+      method="post"
+      enctype="multipart/form-data"
+      ng-dropzone
+      dropzone="$ctrl.dropzone"
+      dropzone-config="$ctrl.dropzoneConfig"
+      event-handlers="{'sending': $ctrl.dropZoneSending, 'complete': $ctrl.dropzoneComplete}">
+
+      <div id="upload-images-button" class="button bg-gray" title="Upload Product Images">
+        <span class="icon icon-truck"></span>
+        Click or drag images here to upload
+      </div>
+</form>
+
+<div class="actions">
+  <div class="button bg-light-gray" ng-if="$ctrl.numOfUploadedFiles > 0" ng-click="$ctrl.cleanUploadFolder()" title="Empty the staged files">
+    <span class="icon icon-delete"></span>
+    Clean Staged files
+  </div>
+
+  <div class="button bg-green" ng-if="$ctrl.numOfUploadedFiles > 0" ng-click="$ctrl.uploadNewProducts()" title="Add/update products by first uploading images.">
+    <span ng-if="!$ctrl.updatingProducts" class="icon icon-arrow-up"></span>
+    <span ng-if="!$ctrl.updatingProducts">Add/Update Products </span>
+    <rs-spinner ng-if="$ctrl.updatingProducts" style="display: inline-block;"></rs-spinner>
+    <span>({{$ctrl.numOfUploadedFiles}})</span>
+  </div>
+</div>

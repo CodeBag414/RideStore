@@ -1,0 +1,12 @@
+<div class="modal-header">
+  <h3 class="modal-title" translate>Size Guide</h3>
+  <button class="close" ng-click="vm.close()">
+    <span class="icon icon-cross"></span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="sizeguide" ng-bind-html="vm.content"></div>
+</div>
+<div class="modal-footer">
+  <button class="button bg-blue" type="button" ng-click="vm.close()" translate>Close</button>
+</div>

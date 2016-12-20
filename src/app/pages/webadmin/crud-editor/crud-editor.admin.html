@@ -1,0 +1,7 @@
+<div class="topbreaker"></div>
+<div ng-if="!$ctrl.isAdmin()">You are logged out, <a ng-click="$ctrl.go('webadmin')">click here to go to dashboard and login from there</a></div>
+<div class="table-links">
+  <a class="button bg-blue" ng-click="$ctrl.pickTable(table)" ng-repeat="table in $ctrl.availableTables">{{table}}</a>
+</div>
+<div  ui-grid="$ctrl.gridOptions" ui-grid-edit class="crud-grid" ng-if="$ctrl.chosenTable !== null"></div>
+<a class="button bg-blue" ng-click="$ctrl.addRow()" ng-if="$ctrl.chosenTable !== null">Add row</a>

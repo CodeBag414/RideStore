@@ -1,0 +1,87 @@
+@import 'src/assets/sass/mixins';
+@import 'src/assets/sass/variables';
+
+ean-scanner {
+  .container {
+    box-sizing: border-box;
+    background-color: $lightGray;
+    width: 600px;
+    margin: 20px auto;
+    text-align: center;
+
+    a {
+      text-decoration: underline;
+    }
+
+    .button {
+      text-decoration: none;
+      margin: 10px 0;
+
+
+      &.delete {
+        margin-right: 20px;
+        width: 30%;
+      }
+
+      &.copy-products {
+        width: 65%
+      }
+    }
+
+    label {
+      margin-bottom: 10px;
+      width: 100%;
+      display: block;
+    }
+
+    .input-area {
+      margin-top: 10px;
+      height: 250px;
+      overflow: hidden;
+
+      input {
+        font-size: 64px;
+        background-color: $black;
+        border-width: 0;
+        color: $white;
+        letter-spacing: 5px;
+        line-height: 250px;
+        padding: 0;
+        width: 100%;
+        text-align: center;
+      }
+
+      .clear-input-button {
+        position: relative;
+        top: -150px;
+        text-decoration: none;
+        width: 35px;
+        left: 60px;
+        color: $black;
+        float: right;
+
+        .icon-cross {
+          font-size: 50px;
+        }
+
+      }
+    }
+
+    .results {
+      border: 1px solid gray;
+      padding: 20px;
+
+      .barcode {
+        margin: 20px;
+      }
+
+      .products {
+        list-style-type: decimal;
+        text-align: left;
+        font-size: 16px;
+        margin: 20px;
+
+      }
+    }
+  }
+}

@@ -1,0 +1,71 @@
+<div id="skatecamp" ng-controller="SkatecampController as skatecamp">
+	<div id="header">
+		<div class="bg" style="background-image: url('../../../assets/images/header-background.jpg'); opacity: 1"></div>
+		<div class="content">
+			<img class="img" src='../../../assets/images/sktcamp-logo.png' alt="logo"/>
+			<div class="date">- 18-24 July 2016 -</div>
+			<p>Registration for Ridestore Skatecamp</p>
+		</div>
+	</div>
+	<div class="register-header">
+		<div class="title"> ENTER YOUR DETAILS BELOW</div>
+		<div class="line"></div>
+		<div class="description">
+			<p>Included in the price: bustrip from and to the camp, food, camping & a goodiebag with a t-shirt, hat and a 300kr giftcard.
+			<br/> Also all activites during the camp is included. GL HF</p>
+		</div>
+	</div>
+
+	<div style="border-top: 1px solid #ddd; margin: 60px 0 40px;"></div>
+
+	<div class="register-body">
+		<form name="instantCheckout" ng-submit="skatecamp.sendDetails()">
+			<div class="left-side">
+				<div class="details">
+					<h3>Person details</h3>
+					<div class="blue-line"></div>
+
+					<p>SURNAME</p>
+					<input type="text" name="firstname" ng-model="skatecamp.details.firstname" placeholder="Enter your surname" required/>
+					<div class="line"></div>
+
+					<p>LASTNAME</p>
+					<input type="text" name="lastname" ng-model="skatecamp.details.lastname" placeholder="Enter your lastname" required/>
+					<div class="line"></div>
+
+					<p>E-MAIL</p>
+					<input type="email" name="email" ng-model="skatecamp.details.email" placeholder="Enter your email" required/>
+					<div class="line"></div>
+
+					<p>DATE OF BIRTH</p>
+					<input type="text" name="dateOfBirth" ng-model="skatecamp.details.dateOfBirth" placeholder="1992-06-12" required/>
+					<div class="line"></div>
+				</div>
+			</div>
+			<div class="right-side">
+				<div class="details">
+					<h3>Address details</h3>
+					<div class="blue-line"></div>
+
+					<p>PHONE</p>
+					<input type="text" name="phoneNumber" ng-model="skatecamp.details.phoneNumber" placeholder="Enter your phone" required/>
+					<div class="line"></div>
+
+					<p>STREET</p>
+					<input type="text" name="address" ng-model="skatecamp.details.address" placeholder="Enter your street" required/>
+					<div class="line"></div>
+
+					<p>CITY</p>
+					<input type="text" name="city" ng-model="skatecamp.details.city" placeholder="Enter your city" required/>
+					<div class="line"></div>
+
+					<p>ZIPCODE</p>
+					<input type="text" name="zipCode" ng-model="skatecamp.details.zipCode" placeholder="Enter your zipcode" required/>
+					<div class="line"></div>
+
+					<input type="submit" value="REGISTER & PAY ->">
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

@@ -1,0 +1,83 @@
+<!-- UI OVERLAYS -->
+<div class="overlay menu animate-slideleft" ng-show="menu.top.getMenuStatus()">
+  <div class="bg" ng-click="menu.top.setMenuStatus(false)"></div>
+
+  <div class="wrap left" ng-swipe-left="menu.top.setMenuStatus(false)">
+    <div class="block genders no-padding">
+      <a class="button button-small bg-blue" ng-class="{active: menu.activeGender == 'men'}" ng-click="menu.setActiveGender('men')" translate>Guys</a>
+      <a class="button button-small bg-blue" ng-class="{active: menu.activeGender == 'women'}" ng-click="menu.setActiveGender('women')" translate>Girls</a>
+    </div>
+
+    <div class="block no-padding">
+      <ul class="navigation">
+        <li ng-repeat="item in menu.menuJson">
+          <a href="" ng-click="menu.activeNav = item.cat;">{{ item.cat }}</a>
+        </li>
+      </ul>
+
+      <ul class="navigation">
+        <li>
+          <a href="" ui-sref="brands">Brands</a>
+        </li>
+        <li>
+          <a href="" ui-sref="stylecreator" translate>Stylecreator</a>
+        </li>
+      </ul>
+
+      <div class="user navigation">
+        <a href="" ui-sref="orders">
+          <div class="user">
+            <span class="icon-user"></span>
+            <h4 translate>My account</h4>
+          </div>
+        </a>
+      </div>
+
+      <ul class="navigation bottom">
+        <li>
+          <a href="" ui-sref="contact" translate>Contact</a>
+          <a href="" ui-sref="reviews" translate>Reviews</a>
+          <a href="" ui-sref="terms" translate>Terms and Conditions</a>
+          <a href="" ui-sref="about" translate>About</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Subnavigation -->
+  <div class="overlay sections no-padding" ng-repeat="item in menu.menuJson" ng-show="menu.activeNav == item.cat">
+
+    <div class="wrap no-padding">
+      <div class="top">
+        <a href="#" ng-click="menu.activeNav = false" class="icon icon-previous"></a>
+        <h4 ng-if="item.cat != 'Snow'">{{item.cat}}</h4>
+        <div class="menufilter" ng-if="item.cat == 'Snow'">
+          <div ng-click="menu.hideSection = 928" class="filteritem" ng-class="{'selected' : menu.hideSection == 928}" translate>Snowboard</div>
+          <div ng-click="menu.hideSection = 381" class="filteritem" ng-class="{'selected' : menu.hideSection == 381}" translate> Snowmobile</div>
+        </div>
+      </div>
+
+      <div ng-repeat="section in item.sections">
+
+        <ul ng-if="$index == 0">
+          <li ng-repeat="category in section.categories"><a ui-sref="category({id: category.id, url: category.url})" href="{{category.url}}">{{ category.name }}</a></li>
+        </ul>
+
+        <div ng-if="$index > 0 && section.id != menu.hideSection" class="grid grid-3">
+          <div class="object" ng-repeat="category in section.categories">
+            <a ng-click="menu.openCategory(category)" href="{{category.url}}">
+              <div class="image">
+                <span class="icon clothes-{{category.id}}"></span>
+              </div>
+              <div class="text">
+                <h5>{{ category.name }}</h5>
+              </div>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>

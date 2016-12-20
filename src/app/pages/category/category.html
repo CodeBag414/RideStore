@@ -1,0 +1,70 @@
+<div id="category">
+  <div ng-if="category.isBrandPage" ng-include="'app/pages/category/partials/category.brandheader.html'"></div>
+  <div class="topbreaker" ng-class="{'hide' : category.isBrandPage}"></div>
+
+  <!-- FILTERS -->
+  <div ng-if="category.head.getDevice() == 'mobile'" ng-show="category.filterActive" id="filter" class="overlay animate-slideleft" ng-include="'app/pages/category/partials/category.filters.html'"></div>
+  <div ng-if="category.head.getDevice() == 'desktop' && category.filterActive" id="filter" class="inline" ng-include="'app/pages/category/partials/category.filters.html'"></div><!--
+
+  --><div id="main" ng-class="{'filter-open': category.filterActive}">
+    <nav class="bar bar-light bg-light-translucent">
+      <div class="left inline-block">
+        <a href="" ng-click="category.toggleFilter()">
+          <span class="icon icon-filter"></span>
+        </a>
+      </div>
+      <div class="center prodtypes" ng-if="category.categoryId != 231">
+        <a ng-repeat="producttype in category.filterProducttype.values | limitTo: 15" class="text" ng-click="category.setFilter(category.filterProducttype, producttype, true)" href="{{category.isBrandPage ? category.getSeoUrlForFilter(producttype.value_name) : ''}}">
+          <h3 ng-class="producttype.selected  == true ? 'selected' : 'not'">{{producttype.value_name}}</h3>
+        </a>
+      </div>
+      <div class="center prodtypes" ng-if="category.categoryId == 231">
+        <a ng-repeat="department in category.filterDepartment.values" class="text" ng-click="category.setFilter(category.filterDepartment, department, true, true)">
+          <h3 ng-class="department.selected  == true ? 'selected' : 'not'">{{department.value_name}}</h3>
+        </a>
+      </div>
+
+      <div class="right inline-block">
+        <rs-grid-button using-blazy="true" callback="category.toggledGridSize"></rs-grid-button>
+      </div>
+    </nav><!--
+
+    --><div id="scrollcontainer" class="grid" ng-class="{'grid-2': category.gridService.getSize() == 2, 'grid-3': category.gridService.getSize() == 3}">
+
+      <div ng-if="(category.adminConfig.isSetColorMode && !category.isAdminLoaded())">You are logged out, <a ng-click="category.go('webadmin')">click here to go to dashboard and login from there</a></div>
+
+      <div ng-if="category.isAdminLoaded()" ng-include="'app/pages/category/partials/category-listing.admin.html'"></div>
+
+      <div ng-if="!category.adminConfig.isChangeOrderMode && !category.adminConfig.isSetColorMode"
+        class="object"
+        ng-repeat="product in category.data.products | limitTo:category.totalVisible:category.startIndex"
+        on-finish-render="ngRepeatFinished">
+        <rs-favorite-button product-id="product.id"></rs-favorite-button>
+        <a ui-sref="product-{{product.type_id}}({id: product.id, url: product.url_key})" href="{{ product.url_key }}">
+          <div class="image placeholder" style="background-image: url('https://ridestore-2.imgix.net/catalog/product/{{ product.image }}?w=60&q=20&blur=60&auto=format,compress&cs=strip');">
+            <img class="b-lazy" data-src="catalog/product/{{ product.image }}" alt="{{ product.brand }} {{ product.shortname}} {{ product.productype }}">
+            <div ng-class="product.image_padding == 'regular' ? 'prod-img-padding-regular' : 'prod-img-padding-style'"></div>
+          </div>
+          <div class="text">
+            <h5>{{product.sales_qty ? product.sales_qty+" -" :""}} {{ product.brand }} "{{ product.shortname}}" {{ product.productype }}</h5>
+            <span class="price" ng-if="product.type_id == 'configurable'">
+              <span ng-class="{'old-price' : product.sale_price !== null}"
+                translate translate-params-amount="product.price">$ {{amount}}</span>
+              <span class="sale-price" ng-if="product.sale_price"
+                translate translate-params-amount="product.sale_price">$ {{amount}}</span>
+            </span>
+          </div>
+        </a>
+      </div>
+
+    </div>
+
+    <!-- links for previous and next page, only displayed for eventual SEO convenience,
+     not followable unless prerender -->
+    <div class="pagination-links" ng-if="category.preventScrollBinding">
+      <a ng-if="category.prevHref" ng-href="{{category.prevHref}}" translate>Previous</a>
+      <a ng-if="category.nextHref" ng-href="{{category.nextHref}}" translate>Next</a>
+    </div>
+
+  </div>
+</div>

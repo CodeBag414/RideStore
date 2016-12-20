@@ -1,0 +1,109 @@
+<div id="giftcard" ng-controller="GiftcardController as giftcard">
+  <div id="header">
+    <div class="bg" style="background-image: url('https://ridestore.imgix.net/new/giftcard-topbg.png')"></div>
+
+    <div class="content">
+      <h1 class="title" translate>Giftcard</h1>
+      <h2 class="subtitle" translate>For someone you love</h2>
+    </div>
+
+  </div>
+
+  <form name="giftcardForm" ng-submit="giftcard.submit(giftcardForm.$valid)" novalidate>
+    <div class="giftcard-container">
+
+      <img class="giftcard-background" imageonload="giftcardReady()" ng-class="{'animate': giftcard.ready}" ng-if="giftcard.head.getDevice() === 'desktop'" src="//ridestore.imgix.net/new/giftcard.png" />
+
+      <fieldset class="card" ng-class="{'animate': giftcard.ready && giftcard.head.getDevice() === 'desktop'}">
+        <div class="amount-block">
+          <p ng-class="{'visible': giftcardForm.amount.$invalid && giftcardForm.amount.$touched}" class="help-block" translate>The minimum amount is {{giftcard.amountMin}}.</p>
+          <input class="amount" name="amount" type="number" ng-model="giftcard.card.amount" placeholder="{{'Amount' | translate}}" min="{{giftcard.amountMin}}" step="{{giftcard.amountStep}}" required/>
+          <span class="currency" translate>{{giftcard.currency}}</span>
+        </div>
+
+        <label translate>Receivers Name</label>
+        <p ng-show="giftcardForm.recipientName.$invalid && giftcardForm.recipientName.$touched" class="help-block" translate>This field is required.</p>
+        <input type="text" name="recipientName" ng-model="giftcard.card.recipientName" placeholder="{{'Recipient name' | translate}}" required/>
+
+        <label translate>Your Name</label>
+        <p ng-show="giftcardForm.senderName.$invalid && giftcardForm.senderName.$touched" class="help-block" translate>This field is required.</p>
+        <input type="text" name="senderName" ng-model="giftcard.card.senderName" placeholder="{{'Your name' | translate}}" required/>
+      </fieldset>
+
+      <div class="giftcard-pen" ng-if="giftcard.head.getDevice() === 'desktop'"></div>
+    </div>
+
+    <fieldset class="delivery-method">
+      <legend translate>How would you like your giftcard to be delivered?</legend>
+
+      <input type="radio" ng-model="giftcard.card.method" name="method" value="physical"  id="rd-post" checked>
+      <label for="rd-post"
+        class="radio-btn-label" ng-class="{true: 'selected'}[giftcard.isPhysicalSelected()]" translate>Post</label>
+
+      <input type="radio" ng-model="giftcard.card.method" name="method" value="virtual" id="rd-email">
+      <label for="rd-email"
+        class="radio-btn-label" ng-class="{true: 'selected'}[giftcard.isVirtualSelected()]" translate>E-mail</label>
+        <!-- for further explaination on the unusual ng-class syntax used here, see:
+            http://stackoverflow.com/a/18126926/1740488 -->
+    </fieldset>
+
+
+    <fieldset class="email-fieldset" ng-show="giftcard.isVirtualSelected()">
+      <label for="recipient-email" class="email-label" translate>Recipient email</label>
+      <p ng-show="giftcardForm.recipientEmail.$invalid && giftcardForm.recipientEmail.$touched" class="help-block" translate>Insert a valid email.</p>
+      <input type="email" name="recipientEmail" id="recipient-email" class="email-input" ng-model="giftcard.card.recipientEmail" placeholder="{{'Enter recipient email' | translate}}" ng-required="giftcard.isVirtualSelected()"/>
+
+      <label for="sender-email" class="email-label" translate>Your email</label>
+      <p ng-show="giftcardForm.senderEmail.$invalid && giftcardForm.senderEmail.$touched" class="help-block" translate>Insert a valid email.</p>
+      <input type="email" name="senderEmail" id="sender-email" class="email-input" ng-model="giftcard.card.senderEmail" placeholder="{{'Enter your email' | translate}}" ng-required="giftcard.isVirtualSelected()"/>
+    </fieldset>
+
+    <input type="submit" class="button button-full bg-green" style="display:none;" value="Add to cart" />
+
+    <div class="button-area">
+      <div class="messages" ng-if="giftcard.warning || giftcard.errorAddingToCart">
+        <h4 class="warning" ng-if="giftcard.warning" translate>Make sure the values inserted are correct</h4>
+        <h4 class="error" ng-if="giftcard.errorAddingToCart">{{giftcard.errorAddingToCart}}</h4>
+      </div>
+
+      <!-- if is physical giftcard, we show add to cart button -->
+      <span ng-if="giftcard.isPhysicalSelected()">
+        <a href="" class="button button-full bg-green"
+            ng-click="giftcard.submit(giftcardForm.$valid)"
+            ng-class="{'error-button': giftcard.errorAddingToCart, 'warning-button': giftcard.warning}"
+            ng-if="giftcard.showFront">
+          <rs-spinner ng-if="giftcard.cartIsLoading"></rs-spinner>
+          <span ng-if="!giftcard.cartIsLoading">
+            <span class="icon icon-cart-add"></span>
+            <span translate>Add to cart</span>
+          </span>
+        </a>
+
+        <a href="" ng-click="giftcard.top.toggleCart();" class="button button-full bg-blue"
+            ng-if="!giftcard.showFront">
+          <span class="icon icon-cart-bag"></span>
+          <span translate>Go to cart</span>
+        </a>
+      </span>
+
+      <!-- if is virtual giftcard, we show immediate checkout instead -->
+      <span ng-if="giftcard.isVirtualSelected()">
+        <a href="" class="button button-full bg-green"
+            ng-click="giftcard.submit(giftcardForm.$valid)"
+            ng-class="{'error-button': giftcard.errorAddingToCart, 'warning-button': giftcard.warning}"
+            ng-if="giftcard.showFront">
+          <rs-spinner ng-if="giftcard.cartIsLoading"></rs-spinner>
+          <span ng-if="!giftcard.cartIsLoading">
+            <span class="icon icon-cart-bag"></span>
+            <span translate>Checkout</span>
+          </span>
+        </a>
+
+      </span>
+
+    </div>
+
+
+  </form>
+
+</div>

@@ -1,0 +1,50 @@
+<div ng-controller="SharedFavoritesController as vm" class="shared-favorites">
+  <div class="topbreaker"></div>
+
+  <div id="main">
+
+    <nav class="bar bar-light bg-light-translucent">
+      <div class="center">
+
+        <a ng-repeat="producttype in vm.filterProducttype.values | limitTo: 5" class="text" ng-click="vm.setFilter(vm.filterProducttype, producttype)">
+          <h3 ng-class="producttype.selected  == true ? 'selected' : 'not'">{{producttype.value_name}}</h3>
+        </a>
+
+      </div>
+      <div class="right inline-block">
+        <rs-grid-button using-blazy="true"></rs-grid-button>
+      </div>
+    </nav><!--
+
+  --><div id="scrollcontainer" class="grid" ng-class="{'grid-2': vm.gridService.getSize() == 2, 'grid-3': vm.gridService.getSize() == 3}">
+      <div class="object" ng-repeat="product in vm.productsDetails track by product.id" on-finish-render="ngRepeatFinished">
+        <rs-favorite-button product-id="product.id"></rs-favorite-button>
+        <a ui-sref="product-{{product.type_id}}({id: product.id, url: product.url_key})" href="/{{ product.url_key }}">
+
+          <div ng-if="product.type_id == 'configurable'" class="image placeholder" style="background-image: url('https://ridestore-2.imgix.net/catalog/product/{{ product.image }}?w=20&blur=20');">
+            <img class="b-lazy" data-src="catalog/product/{{ product.image }}" alt="alt-text">
+            <div class="prod-img-padding-regular"></div>
+          </div>
+
+          <div ng-if="product.type_id == 'style'" class="image">
+            <div class="large-image">
+              <img class="b-lazy" data-src="catalog/product/{{ product.image }}" alt="alt-text">
+            </div><div class="small-image">
+              <img ng-repeat="styleimage in product.styleprod_images | limitTo: 3" alt="" ng-src="https://ridestore.imgix.net/catalog/product/{{styleimage}}?dpr=1&w=120">
+            </div>
+          </div>
+
+          <div class="text">
+            <h5>{{ product.brand }} "{{ product.shortname}}" {{ product.productype }}</h5>
+            <span class="price" ng-if="product.type_id == 'configurable'">
+              <span ng-class="{'old-price' : product.sale_price !== null}"
+                translate translate-params-amount="product.price">$ {{amount}}</span>
+              <span class="sale-price" ng-if="product.sale_price"
+                translate translate-params-amount="product.sale_price">$ {{amount}}</span>
+            </span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

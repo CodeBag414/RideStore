@@ -1,0 +1,71 @@
+<div id="jobs" ng-controller="JobsController as work">
+	<div id="header">
+		<div class="topbreaker"></div>
+		<div class="bg" style="background-image: url('https://d10g92rh9h0kij.cloudfront.net/media/wysiwyg/hq-office.jpg')"></div>
+		<div class="wrap">
+			<div class="content">
+				<h1>{{work.title}}</h1>
+				<p>{{work.subTitle}}</p>
+				<p ng-if="work.showLocation == true">Placering: Göteborg</p>
+				<a ng-if="work.externalApply == false" href="#" scroll-to="workinfo" offset="95" class="button bg-blue" ng-class="{'button-small' : work.head.getDevice() == 'mobile'}" translate>Read more</a>
+				<a ng-if="work.externalApply == true" href="{{work.applyUrl}}" class="button bg-blue" ng-class="{'button-small' : work.head.getDevice() == 'mobile'}" translate>Apply now</a>
+			</div>
+		</div>
+		<div class="bottom-tip">
+			<div class="scroll-indicator">
+				<div class="scroll-wheel">
+					<div class="wheel"></div>
+					<div class="pointer"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="wrap">
+		<div class="block" id="workinfo" ng-class="{'align-center' : jobs.head.getDevice() == 'mobile', 'align-right' : jobs.head.getDevice() == 'desktop'}">
+			<h3>{{work.title}}</h3>
+			<p>{{work.intro}}</p>
+		</div><!--
+		--><div class="block align-left special" ng-class="{'align-right' : jobs.head.getDevice() == 'mobile', 'align-left' : jobs.head.getDevice() == 'desktop'}">
+			<div class="left">
+				<ul>
+					<li ng-repeat="skill in work.skills">
+						<p>{{skill}}</p><!--
+						--><div class="number">{{$index+1}}</div>
+					</li>
+				</ul>
+			</div><!--
+			--><div class="right">
+				<h3>Skills</h3>
+			</div>
+		</div>
+	</div>
+	<div class="block align-center">
+		<h3 translate>You as a person</h3>
+		<p ng-repeat="skill in work.personProfile">{{skill}}</p>
+	</div>
+
+	<div ng-if="work.externalApply == false" class="block align-center last">
+		<h3 translate>About Ridestore</h3>
+		<a href="" ui-sref="work/tech" class="button bg-blue" ng-class="{'button-small' : work.head.getDevice() == 'mobile'}" translate>READ OUR STORY</a>
+	</div>
+
+	<div ng-if="work.showLocation == true">
+		<div class="overlay" style="background:transparent; position:relative; width:100%; height:480px; top:480px; margin-top:-480px;"></div>
+		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2131.9531609382248!2d11.952814551692063!3d57.70026558102609!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x464ff369dcea0c81%3A0x859c20a6f23e746!2sNorra+All%C3%A9gatan+4%2C+413+01+G%C3%B6teborg!5e0!3m2!1ssv!2sse!4v1459428260449&scrollwheel=false" width="100%" height="480" frameborder="0" style="border:0" allowfullscreen></iframe>
+	</div>
+
+	<div ng-if="work.externalApply == false" class="bottom bg-gray">
+		<div class="wrap bg-gray">
+			<form ng-submit="work.sendEmail()">
+				<h3 translate>Tell us about yourself</h3>
+				<input required type="email" placeholder="E-mail" ng-model="work.contact.email">
+				<textarea required placeholder="Meddelande" ng-model="work.contact.message"></textarea>
+				<div class="signature">
+					<span translate>Name:</span><!--
+					--><input required type="text" ng-model="work.contact.name">
+				</div>
+				<button class="button bg-blue" href="#">{{work.applyLabel | translate}}</a>
+			</form>
+		</div>
+	</div>
+</div>

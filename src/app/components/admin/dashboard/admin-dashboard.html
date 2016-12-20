@@ -1,0 +1,18 @@
+<div ng-if="!$ctrl.isAdmin()">You are logged out, please <a class="button bg-blue" ng-click="$ctrl.login()">login</a></div>
+
+<div ng-if="$ctrl.isAdmin()">
+  <div class="container">
+    <div class="header">
+      <img class="profile-picture" ng-src="{{$ctrl.getProfilePicture()}}">
+      <h2 class="greeting">Hi {{$ctrl.getProfileName()}}, isn't this a nice looking dashboard?!</h2>
+      <a class="button bg-gray" ng-click="$ctrl.logout()">logout</a>
+    </div>
+
+    <div class="admin-links">
+      <a class="button bg-blue" ng-click="$ctrl.go('stylecreator')">stylecreator</a>
+      <a class="button bg-blue" ng-click="$ctrl.go('webadmin/ean-scanner')">ean-scanner</a>
+      <a class="button bg-blue" ng-click="$ctrl.go('category/set-color')">set-color</a>
+      <a class="button bg-blue" ng-click="$ctrl.go('webadmin/crud-editor')">crud-editor</a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+@import 'src/assets/sass/mixins';
+@import 'src/assets/sass/variables';
+
+.brand-filter {
+  padding: 10px 0;
+
+  .search {
+    border-bottom: 1px solid $lightGray;
+    position: relative;
+
+    input {
+      box-shadow: none;
+      margin-top: 10px;
+      padding-left: 30px;
+    }
+
+    span {
+      &.icon {
+        bottom: 0;
+        font-size: 14px;
+        height: 14px;
+        left: 0;
+        margin: auto;
+        position: absolute;
+        top: 10px;
+      }
+    }
+  }
+
+  .brands-container {
+    margin: 10px -15px 0;
+    // see https://bitbucket.org/Ridestore/angular/pull-requests/99/ridang1-179-fix-styling-in-brands-filter/diff
+    //max-height: 20vh; // disabling scroll
+    //overflow-y: auto; // disabling scroll
+    padding: 0 15px;
+  }
+
+}

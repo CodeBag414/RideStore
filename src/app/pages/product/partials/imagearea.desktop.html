@@ -1,0 +1,35 @@
+<div class="block">
+  <!-- imagearea desktop -->
+  <div class="images b-lazy-slider" id="thumbnails"  ng-if="product.data.gallery_grouped.length > 1">
+    <!-- THUMBNAILS IMAGES -->
+    <div class="image-group" ng-repeat="group in product.data.gallery_grouped" ng-click="product.setGalleryPosition($index)" ng-class="{'active': $index == product.galleryGroupActive}">
+      <div class="image placeholder" ng-repeat="gallery in group" on-finish-render="ngRepeatFinished">
+        <div class="product-image-overlay"></div>
+        <img class="b-lazy" data-src="catalog/product/{{ gallery.image }}" alt="alt-text">
+        <div class="prod-img-padding-regular"></div>
+      </div>
+    </div>
+  </div><!-- MAIN IMAGES
+  --><div class="main-images b-lazy-slider" id="maingallery">
+    <div class="image-group" data-ng-repeat="group in product.data.gallery_grouped">
+      <div class="image placeholder" data-ng-repeat="gallery in group">
+        <img class="b-lazy" data-src="catalog/product/{{ gallery.image }}" alt="{{ product.data.brand }} {{ product.data.shortname}} {{ product.data.productype }}">
+        <div class="prod-img-padding-regular"></div>
+      </div>
+    </div>
+    <a class="logo" ui-sref="category({id: product.data.brand_details.category_id, url: product.data.brand_details.url_key})" href="{{product.data.brand_details.url_key}}"><img class="brand" ng-src="{{product.mediaPath}}/brand_logos_new/{{product.data.brand_logo}}" alt="{{product.data.brand}}"></a>
+    <div class="arrows" ng-if="product.data.gallery_grouped.length > 1">
+      <span ng-class="{'enabled': product.galleryGroupActive > 0}" class="icon icon-previous" ng-click="product.setGalleryPosition(product.galleryGroupActive - 1)"></span>
+      <span ng-class="{'enabled': product.galleryGroupActive < product.data.gallery_grouped.length -1}" class="icon icon-next" ng-click="product.setGalleryPosition(product.galleryGroupActive + 1)"></span>
+    </div>
+  </div>
+</div>
+
+<div class="additional" ng-if="product.data.related_style.length > 0 || product.data.more_colors.length > 0">
+  <!-- MORE COLORS -->
+  <div class="inline-block colors" ng-if="product.data.more_colors.length > 0"  ng-include="'app/pages/product/partials/colors.desktop.html'">
+  </div><!--
+  --><div class="inline-block styleproducts" ng-if="product.data.related_style.length > 0">
+    <div class="relatedstyle" ng-include="'app/pages/product/partials/relatedstyle.desktop.html'"></div>
+  </div>
+</div>

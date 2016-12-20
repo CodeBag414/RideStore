@@ -1,0 +1,14 @@
+<div class="left inline-block">
+  <span>Automatic sorting</span>
+  <input type="checkbox"
+    ng-model="$ctrl.automaticSorting"
+      ng-change="$ctrl.setAutomaticSorting()">
+
+  <div class="button edit-mode-btn" ng-class="{'on': $ctrl.isChangeOrderMode}" ng-click="$ctrl.toggleChangeOrderMode()" title="Turn {{!$ctrl.isChangeOrderMode ? 'on' : 'off'}} Product sort order mode">
+    <span class="icon icon-pencil"></span>
+    {{$ctrl.isChangeOrderMode ? 'on' : 'off'}}
+  </div>
+
+  <button ng-if="$ctrl.updatedOrder" ng-click="$ctrl.saveSortOrder()">Save order</button>
+
+</div>

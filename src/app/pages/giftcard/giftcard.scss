@@ -1,0 +1,559 @@
+@import 'src/assets/sass/mixins';
+@import 'src/assets/sass/variables';
+
+$card-background: $white;
+
+$card-width: 346px;
+$card-width-desktop: 523px;
+$card-height: 207px;
+$card-height-desktop: 343px;
+$card-border-radius: 12px;
+
+$input-background: $lighterGray;
+
+// distance that the card moves up over the header
+$distance-card-over-header: 250px;  //on mobile
+$distance-card-over-header-desktop: 210px;
+
+$distance-pen-to-card: 38px;
+
+$pen-width: 76px;
+$pen-height: 369px;
+
+#giftcard {
+  #header {
+    padding-bottom: $distance-card-over-header + 25px;
+    padding-top: 115px;
+
+    @include breakpoint(desktop) {
+      padding-top: 220px;
+    }
+
+    @include breakpoint(narrowdesktop) {
+      padding-bottom: 200px;
+      padding-top: 160px;
+    }
+
+    .title {
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      line-height: 22px;
+      max-width: inherit;
+      text-align: center;
+
+      @include breakpoint(desktop) {
+        font-size: 28px;
+        letter-spacing: 4px;
+        line-height: 28px;
+      }
+    }
+
+    .subtitle {
+      font-size: 12px;
+      font-weight: 300;
+      letter-spacing: 1px;
+      line-height: 12px;
+      margin: 20px 10px;
+
+      @include breakpoint(desktop) {
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 37px;
+      }
+    }
+
+    .bg {
+      opacity: 1;
+    }
+
+    @include breakpoint(desktop) {
+      height: inherit;
+    }
+
+  }
+
+  form { //moving the card up on the header
+    margin: -$distance-card-over-header auto 0;
+    max-width: $card-width;
+    padding-top: 0;
+    position: relative;
+    text-align: center;
+
+    @include breakpoint(desktop) {
+      margin-top: -$distance-card-over-header-desktop;
+      max-width: $card-width-desktop;
+    }
+  }
+
+  fieldset {
+    margin: 0;
+
+    @include breakpoint(desktop) {
+      margin: 20px 0;
+    }
+  }
+
+  .giftcard-container {
+    margin: 0 auto 25px;
+    max-width: $card-width;
+    min-height: $card-height;
+    position: relative;
+    width: 100%;
+
+    @include breakpoint(desktop) {
+      max-width: $card-width-desktop;
+      min-height: $card-height-desktop;
+      position: initial;
+    }
+
+    .giftcard-background {
+      border-radius: $card-border-radius;
+      height: $card-height;
+      left: -135px;
+      position: absolute;
+      right: 0;
+      top: 15px;
+      transform: scale(1);
+      width: $card-width;
+      z-index: 10;
+
+      @include breakpoint(desktop) {
+        height: $card-height-desktop;
+        width: $card-width-desktop;
+      }
+
+      &.animate {
+        animation: giftcard-fromfront 1s forwards ease-out;
+        animation-delay: 1s;
+        animation-iteration-count: 1;
+      }
+    }
+
+    .card {
+      background-color: $card-background;
+      border: 10px solid $card-background;
+      border-radius: $card-border-radius;
+      box-shadow: 0 2px 26px $transparent-50;
+      box-sizing: border-box;
+      max-width: $card-width;
+      min-height: $card-height;
+      padding: 5px;
+
+      @include breakpoint(desktop) {
+        left: 0;
+        max-width: $card-width-desktop;
+        min-height: $card-height-desktop;
+        padding: 0 65px;
+        position: absolute;
+        right: 0;
+        transform: scale(.93);
+        width: $card-width-desktop;
+        z-index: 2;
+
+      }
+
+      &.animate {
+        animation: giftcard-fromback 1s forwards ease-out;
+        animation-delay: 1s;
+        animation-iteration-count: 1;
+      }
+    }
+
+    .giftcard-pen {
+      background: url('//ridestore.imgix.net/new/giftcard-pen.png') left center no-repeat;
+      background-size: 100%;
+      height: $pen-height;
+      left: $card-width-desktop + $distance-pen-to-card;
+      margin: 0 auto;
+      position: absolute;
+      width: $pen-width;
+    }
+  }
+
+  .card {
+    label {
+      display: none;
+
+      @include breakpoint(desktop) {
+        display: inherit;
+      }
+    }
+
+    .amount-label {
+      label {
+        @include breakpoint(desktop) {
+          display: inherit;
+          visibility: hidden;
+        }
+      }
+    }
+
+    input {
+      margin-bottom: 15px;
+      margin-top: 0;
+
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  label {
+    &:not(.radio-btn-label) {
+      color: $black;
+      float: left;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.71px;
+      line-height: 28px;
+      text-align: left;
+      text-transform: uppercase;
+
+    }
+  }
+
+  input {
+    margin: 0;
+
+    @include breakpoint(desktop) {
+      font-size: 33px;
+      font-weight: 400;
+      text-align: center;
+    }
+
+    @include placeholder {
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-align: center;
+    }
+
+    &.amount {
+      @include placeholder {
+        font-size: 12px;
+        text-align: center;
+      }
+
+      margin-top: 0;
+      padding-right: 45px;
+      text-align: right;
+      width: 150px;
+    }
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+
+    &[type='radio'] {
+      display: none;
+    }
+
+    &:not([type='submit']) {
+      background-color: $input-background;
+    }
+
+    &[type='submit'] {
+      margin-top: 60px;
+      max-width: 350px;
+    }
+
+  }
+
+  .amount-block {
+    margin-bottom: 15px;
+    text-align: right;
+
+    .help-block {
+      display: none;
+      float: none;
+      text-align: right;
+
+      @include breakpoint(desktop) {
+        display: inherit;
+        visibility: hidden;
+      }
+
+      &.visible {
+        display: inherit;
+        visibility: visible;
+      }
+    }
+  }
+
+  .currency {
+    color: $darkGray;
+    float: left;
+    font-size: 12px;
+    font-weight: 400;
+    left: calc(100% - 35px);
+    padding: 21px 0;
+    position: relative;
+    text-transform: uppercase;
+    top: 1px;
+    z-index: 2;
+  }
+
+  .radio-btn-label {
+    background-color: $white;
+    border-radius: 100px;
+    color: $lightGrayForText;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    height: 24px;
+    letter-spacing: 1px;
+    line-height: 24px;
+    padding: 5px 16px;
+    text-align: center;
+    text-transform: uppercase;
+
+    &.selected {
+      background-color: $blue;
+      color: $white;
+      font-weight: 400;
+    }
+
+  }
+
+  //fastclick issue, see: https://github.com/ftlabs/fastclick/issues/60
+  label > * { pointer-events: none; }
+
+  legend,
+  .email-label {
+    color: $black;
+    font-size: 1.2em;
+    letter-spacing: 1px;
+  }
+
+  legend {
+    color: $lightGrayForText;
+    font-size: 12px;
+    font-weight: 300;
+    margin: 20px 0;
+
+    @include breakpoint(desktop) {
+      font-weight: 400;
+    }
+  }
+
+  .email-input {
+    margin: 0 0 20px;
+  }
+
+  .delivery-method {
+    display: inline-block;
+    margin: 20px 0;
+    text-align: center;
+    width: 100%;
+  }
+
+  // Validation
+
+  input {
+    &.ng-invalid {
+      &.ng-touched {
+        border: 1px solid $red;
+      }
+    }
+  }
+
+  .help-block {
+    color: $red;
+    float: right;
+    text-align: left;
+  }
+
+  .button-area {
+    display: block;
+    margin: 10px 0;
+
+    .button {
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 1px;
+      margin-top: 0;
+
+      @include breakpoint(desktop) {
+        font-size: 14px;
+        height: 70px;
+        letter-spacing: 1.17px;
+        line-height: 70px;
+        width: 330px;
+
+        .icon {
+          line-height: 70px;
+        }
+      }
+    }
+
+    .warning-button-add,
+    .warning-button-remove,
+    .error-button-add,
+    .error-button-remove {
+      transition: all ease-in-out .6s;
+    }
+
+    .error-button,
+    .error-button-add.error-button-add-active {
+      background-color: $red;
+    }
+
+    .error-button-remove.error-button-remove-active {
+      background-color: $blue;
+    }
+
+    .warning-button,
+    .warning-button-add.warning-button-add-active {
+      background-color: $orange;
+    }
+
+    .warning-button-remove.warning-button-remove-active {
+      background-color: $green;
+    }
+
+
+    .messages {
+      padding: 5px;
+      text-align: left;
+
+      .warning {
+        color: $orange;
+      }
+
+      .error {
+        color: $red;
+      }
+    }
+  }
+
+  //animations and transitions
+
+  .email-fieldset {
+    animation-delay: 0s;
+    margin-top: 0;
+    transition: all linear .5s;
+
+    @include breakpoint(desktop) {
+      margin: 20px auto;
+      width: 330px;
+    }
+
+    &.ng-hide {
+      opacity: 0;
+    }
+
+    &.ng-hide-add,
+    &.ng-hide-remove {
+      // this is required as of 1.3x to properly
+      // apply all styling in a show/hide animation
+      transition: 0s linear all;
+    }
+
+    &.ng-hide-add-active,
+    &.ng-hide-remove-active {
+      // the transition is defined in the active class
+      transition: 1s linear all;
+    }
+
+    &.ng-hide-add {
+
+      &.ng-hide-add-active {
+        animation: 1s flipOutX ease;
+      }
+    }
+
+    &.ng-hide-remove {
+
+      &.ng-hide-remove-active {
+        animation: 1s flipInX ease;
+      }
+    }
+  }
+
+  @keyframes giftcard-fromfront {
+    0% {
+      left: -135px;
+      transform: scale(1);
+      z-index: 10;
+    }
+
+    50% {
+      left: -265px;
+      transform: scale(.93);
+      z-index: 10;
+    }
+
+    51% {
+      z-index: 0;
+    }
+
+    80%,
+    100% {
+      left: -135px;
+      transform: scale(.93);
+      z-index: 0;
+    }
+  }
+
+  @keyframes giftcard-fromback {
+    0% {
+      left: -135px;
+      transform: scale(.93);
+    }
+
+    50% {
+      left: 265px;
+      transform: scale(.93);
+    }
+
+    80%,
+    100% {
+      left: 0;
+      transform: scale(1);
+    }
+  }
+
+  // animations from animate.css
+  @keyframes flipInX {
+    from {
+      animation-timing-function: ease-in;
+      opacity: 0;
+      transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+    }
+
+    40% {
+      animation-timing-function: ease-in;
+      transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+    }
+
+    60% {
+      opacity: 1;
+      transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+    }
+
+    80% {
+      transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
+    }
+
+    to {
+      transform: perspective(400px);
+    }
+  }
+
+  @keyframes flipOutX {
+    from {
+      transform: perspective(400px);
+    }
+
+    30% {
+      opacity: 1;
+      transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+    }
+
+    to {
+      opacity: 0;
+      transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+    }
+  }
+}

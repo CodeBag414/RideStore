@@ -1,0 +1,24 @@
+<div id="checkout-success">
+  <div class="topbreaker"></div>
+  <div class="delivery">
+    <div class="object">
+      <div class="text">
+        <h4>Coop Konsum</h4>
+        <p>Kallinge</p>
+        <p>Posten postpaket</p>
+      </div>
+      <a href="" ng-click="checkout.showDelivery = !checkout.showDelivery" class="button button-small bg-blue" translate>Change</a>
+    </div>
+  </div>
+  <div ng-if="checkout.showDelivery" ng-include="'app/pages/checkout/success/partials/deliveryplace.html'"></div>
+  <div class="block checkout">
+    <!-- insert checkout iframe -->
+    <div ng-if="checkout.ready && checkout.paymentMethods.length === 1 && checkout.paymentMethods[0].name === 'klarnacheckout'">
+      <div compile="checkout.paymentMethods[0].validHtml"></div>
+    </div>
+    <div class="thanks" ng-if="checkout.paymentMethods.length === 1 && checkout.paymentMethods[0].name !== 'klarnacheckout'">
+      <span translate translate-params-ordernumber="checkout.orderId">Thanks, your order number is: {{ordernumber}} </span>
+      <span translate>You will receive an email as soon as we ship your order.</span>
+    </div>
+  </div>
+</div>

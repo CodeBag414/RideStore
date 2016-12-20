@@ -1,0 +1,135 @@
+@import 'src/assets/sass/mixins';
+@import 'src/assets/sass/variables';
+
+.cart-product-list {
+  &.scroller {
+    height: calc(100% - 174px) !important; //TODO: need to revisit this
+    padding-bottom: 0 !important; //TODO: need to revisit this
+    padding-top: 0 !important; //TODO: need to revisit this
+  }
+
+  .list {
+    &.products {
+      li {
+        padding-left: 0;
+        padding-right: 0;
+
+        &.not-in-stock {
+          border: $warning-border;
+          padding: 5px;
+
+          .button-delete {
+            top: 0 !important; //overriding li:first-of-type specificity
+          }
+
+          .price {
+            right: 5px !important; //overriding .list.products li .text .price
+          }
+
+          .qtybox,
+          .dropdown2 {
+            cursor: default;
+            pointer-events: none;
+          }
+        }
+
+        .text {
+          .block {
+            padding-bottom: 0;
+          }
+
+          .name {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            width: calc(100% - 45px);
+          }
+
+          .price {
+            right: 0;
+            text-align: right;
+            width: 45px;
+          }
+
+          .product-size {
+            margin: 15px 0;
+          }
+
+          .color {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            width: calc(100% - 92px); //account for the change quantity
+          }
+
+          .qtybox {
+            float: right;
+          }
+        }
+
+        &:first-of-type {
+          padding-top: 0;
+
+          .text {
+            .price {
+              top: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  a {
+    &.no-click { //hacky way of disabling links
+      cursor: default;
+      pointer-events: none;
+    }
+  }
+
+  .error-message {
+    color: $red;
+    margin-right: 40px;
+    text-align: right;
+    text-transform: uppercase;
+  }
+
+  .product-item-container {
+    position: relative;
+  }
+
+  .stock-message {
+    color: $darkGray;
+    font-size: 12px;
+    font-style: italic;
+    font-weight: 500;
+    margin: 10px 0;
+    text-align: right;
+  }
+
+  .remove-from-cart {
+    background: rgba(246, 246, 246, .8);
+    bottom: 0;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    width: 100%;
+
+    .no-stock-message {
+      color: $darkGray;
+      font-size: 14px;
+      font-weight: 800;
+      margin-left: 95px;
+      padding: 20px 10px 0;
+      text-align: left;
+    }
+
+    .button {
+      bottom: 0;
+      margin: auto;
+      position: absolute;
+      right: 0;
+      width: 40%;
+    }
+  }
+}

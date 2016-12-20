@@ -1,0 +1,136 @@
+@import "src/assets/sass/mixins";
+@import "src/assets/sass/variables";
+
+#brands {
+	height: 100%;
+	display: block;
+	.content, .right {
+		@include inline-block;
+	}
+	.wrap {
+		background-color: #fff;
+	}
+
+  .letter {
+    @include inline-block;
+    color: transparent;
+    font-size: 0;
+
+    @include breakpoint(desktop) {
+      color: $darkGray;
+      font-size: 26px;
+      text-align: center;
+      width: 100px;
+    }
+  }
+
+  .brand-group {
+		width: 100%;
+		@include inline-block;
+		@include breakpoint(desktop) {
+			width: calc(100% - 100px);
+		}
+	}
+	.content {
+		width: 100%;
+		@include box-sizing(border-box);
+		padding-right: 30px;
+		background-color: $white;
+		position: relative;
+		z-index: 1;
+		padding-top: $padding-01;
+		@include breakpoint(desktop) {
+			padding-top: 40px;
+			padding-bottom: 40px;
+		}
+		.grid {
+			.object {
+				.image {
+					background-color: $lighterGray;
+					padding: 15px;
+				}
+				a {
+					color: $darkGray;
+				}
+			}
+		}
+	}
+
+	.right {
+		height: 100%;
+		position: fixed;
+		right: 0;
+		top: 50px;
+		@include breakpoint(desktop) {
+			top: 125px;
+		}
+		width: 30px;
+		float: none;
+		text-align: center;
+		z-index: 2;
+		.alphabet {
+			height: calc(100% - 50px);
+			@include breakpoint(desktop) {
+				height: calc(100% - 125px);
+			}
+			border-left: 1px solid $lightGray;
+			li {
+        cursor: pointer;
+				display: block;
+				position: relative;
+				&.active span {
+					border-left: 1px solid $blue;
+				}
+				span {
+					position: absolute;
+					height: 9px;
+					width: 100%;
+					top: 0;
+					bottom: 0;
+					left: -1px;
+					right: 0;
+					margin: auto;
+					font-size: 10px;
+				}
+			}
+		}
+	}
+
+		.search {
+			display: none;
+			text-align: center;
+			form {
+				width: 300px;
+				transform: scale(0.9);
+				@include transition(transform 0.3s, width 0.3s ease-in-out);
+				margin: auto;
+				margin-top: 20px;
+				min-width: 300px;
+				&.expand {
+					transform: scale(1);
+					.icon {
+						color: $black;
+					}
+				}
+				.icon {
+					position: absolute;
+					left: 15px;
+					top: 27px;
+					font-size: 30px;
+				}
+				input {
+					padding-left: 60px;
+					font-size: 22px;
+					font-weight: 300;
+					background-color: transparent;
+					color: $black;
+					&:focus {
+						box-shadow: none;
+					}
+				}
+			}
+		}
+}
+/*
+	li = 20px
+*/

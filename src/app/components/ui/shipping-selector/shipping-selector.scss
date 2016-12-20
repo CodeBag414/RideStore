@@ -1,0 +1,284 @@
+@import 'src/assets/sass/mixins';
+@import 'src/assets/sass/variables';
+
+//src: https://www.yumpu.com/en/document/view/4928841/dhl-internet-style-guide-v09-vodafone-mcast-hub
+$dhl-yellow: #ffcd00;
+$dhl-red: #c00;
+$dhl-foreground: $dhl-red;
+$dhl-background: $dhl-yellow;
+
+//src: https://www.upsbrandexchange.com/brWeShip.awsp
+$ups-brown: #351c15;
+$ups-gold: #ffb500;
+$ups-foreground: $ups-gold;
+$ups-background: $ups-brown;
+
+//src: http://www.postnord.se/Themes/PostNord-SE_2015/postnordtheme_se_2015.css?rev=635858765720000000 #Head
+$postnord-blue: #0099bb;
+$postnord-white: #fff;
+$postnord-foreground: $postnord-white;
+$postnord-background: $postnord-blue;
+
+$shipping-method-size: 35px;
+$shipping-method-margin: 1px;
+$title-font-size: #{$shipping-method-size};
+
+rs-shipping-selector {
+  // Default custom select styles
+  div.cs-select {
+    -webkit-touch-callout: none;
+    display: inline-block;
+    max-width: 500px;
+    position: relative;
+    text-align: left;
+    user-select: none;
+    vertical-align: middle;
+    width: 100%;
+    z-index: 100;
+  }
+
+  div.cs-select:focus {
+    outline: none; // For better accessibility add a style for this in your skin
+  }
+
+  .cs-select select {
+    display: none;
+  }
+
+  .cs-select span {
+    cursor: pointer;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .cs-select > span::after,
+  .cs-select .cs-selected span::after {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    position: absolute;
+    speak: none;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .cs-select.cs-active > span::after {
+    transform: translateY(-50%) rotate(180deg);
+  }
+
+  div.cs-active {
+    z-index: 200;
+  }
+
+  /* Options */
+  .cs-select .cs-options {
+    background: #fff;
+    overflow: hidden;
+    position: absolute;
+    visibility: hidden;
+    width: 100%;
+  }
+
+  .cs-select.cs-active .cs-options {
+    visibility: visible;
+  }
+
+  .cs-select ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+
+  .cs-select ul li.cs-focus span {
+    background-color: #ddd;
+  }
+
+  /* Optgroup and optgroup label */
+  .cs-select li.cs-optgroup ul {
+    padding-left: 1em;
+  }
+
+  .cs-select li.cs-optgroup > span {
+    cursor: default;
+  }
+
+  .cs-skin-elastic {
+    background: transparent;
+  }
+
+  @media screen and (max-width: 30em) {
+    .cs-skin-elastic { font-size: 1em; }
+  }
+
+  .cs-skin-elastic > span {
+    background-color: $lighterGray;
+    z-index: 100;
+  }
+
+  .cs-skin-elastic .cs-options {
+    background: transparent;
+    opacity: 1;
+    overflow: visible;
+    pointer-events: none;
+    visibility: visible;
+  }
+
+  .cs-skin-elastic.cs-active .cs-options {
+    pointer-events: auto;
+  }
+
+  .cs-skin-elastic .cs-options > ul::before {
+    background: $lighterGray;
+    content: '';
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    transform: scale3d(1, 0, 1);
+    transform-origin: 50% 0%;
+    transition: transform .3s;
+    width: 100%;
+  }
+
+  .cs-skin-elastic.cs-active .cs-options > ul::before {
+    animation: expand .6s ease-out;
+    transform: scale3d(1, 1, 1);
+    transition: none;
+  }
+
+  .cs-skin-elastic .cs-options ul li {
+    opacity: 0;
+    transform: translate3d(0, 0, 0);
+    transition: opacity .15s, transform .15s;
+  }
+
+  .cs-skin-elastic.cs-active .cs-options ul li {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    transition: none;
+  }
+
+  .cs-skin-elastic .cs-options li:hover,
+  .cs-skin-elastic .cs-options .cs-selected {
+    color: $darkGray;
+  }
+
+  .cs-skin-elastic .cs-options .cs-selected span::after {
+    content: '';
+  }
+
+  @keyframes expand {
+    0% { transform: scale3d(1, 0, 1); }
+    25% { transform: scale3d(1, 1.2, 1); }
+    50% { transform: scale3d(1, .85, 1); }
+    75% { transform: scale3d(1, 1.05, 1); }
+    100% { transform: scale3d(1, 1, 1); }
+  }
+
+  .cs-select {
+    @include breakpoint(desktop) {
+      span.shipping-method {
+        border-top: 1px solid $lightGrayForText;
+        margin-top: 20px;
+        padding-top: 15px;
+      }
+
+      &:not(.cs-active) {
+        span.shipping-method {
+          border-bottom: 1px solid $lightGrayForText;
+          border-top: 1px solid $lightGrayForText;
+          margin: 20px 0;
+          padding: 15px 0;
+        }
+      }
+    }
+  }
+
+  .shipping-method {
+    display: block;
+    font-weight: bold;
+    height: #{$shipping-method-size + 10 + 2 * $shipping-method-margin};
+    line-height: #{$shipping-method-size + 10 + 2 * $shipping-method-margin};
+    margin: 2px $shipping-method-margin;
+    vertical-align: middle;
+    width: 100%;
+
+    span {
+      display: inline-block;
+      font-size: 12px;
+      height: #{$shipping-method-size + 10 + 2 * $shipping-method-margin};
+      line-height: #{$shipping-method-size + 10 + 2 * $shipping-method-margin};
+      vertical-align: middle;
+    }
+
+    .title {
+      border-radius: 5px;
+      color: transparent;
+      display: inline-block;
+      font-size: $title-font-size;
+      height: $shipping-method-size;
+      line-height: $shipping-method-size;
+      margin: 0 5px;
+      text-align: center;
+      text-overflow: clip;
+      width: $shipping-method-size;
+
+      &.icon-shipping-ups {
+        background-color: $ups-background;
+        &::before {
+          color: $ups-foreground;
+        }
+      }
+
+      &.icon-shipping-dhl {
+        background-color: $dhl-background;
+        &::before {
+          color: $dhl-foreground;
+        }
+      }
+
+      &.icon-shipping-posten,
+      &.icon-shipping-postnord {
+        background-color: $postnord-background;
+        font-size: 7px; //postnord has a very big logo
+
+        &::before {
+          color: $postnord-foreground;
+        }
+      }
+    }
+
+    .description {
+      color: $blue;
+    }
+
+    .delivery-info {
+      color: $black;
+      font-weight: normal;
+      max-width: calc(100% - 150px); //to prevent endless info on the delivery
+    }
+
+    .shipping-fee {
+      color: $black;
+      margin-right: 5px;
+
+      & span {
+        font-size: 14px;
+
+        @include breakpoint(desktop) {
+          font-size: 12px;
+        }
+      }
+    }
+
+    .icon {
+      color: $blue;
+      font-weight: bold;
+      margin-left: 5px;
+    }
+
+
+  }
+
+}

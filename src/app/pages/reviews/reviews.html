@@ -1,0 +1,135 @@
+<div id="reviews" ng-controller="ReviewsController as reviews">
+	<div id="header">
+		<div class="topbreaker"></div>
+		<div class="bg" style="background-image: url('https://ridestore.imgix.net/backgrounds/skatersunset.jpg?auto=fm&q=60 ')"></div>
+		<div class="wrap">
+			<div class="content">
+				<ul class="stars">
+					<li class="active"><span class="icon-star-filled"></span></li>
+					<li class="active"><span class="icon-star-filled"></span></li>
+					<li class="active"><span class="icon-star-filled"></span></li>
+					<li class="active"><span class="icon-star-filled"></span></li>
+					<li class="active"><span class="icon-star-filled"></span></li>
+				</ul>
+				<h1 translate>Ridestore reviews</h1>
+				<h2 translate>People love us at Ridestore! Would you like to share your opinion?</h2>
+				<a ng-click="reviews.popup = true" href="" class="button bg-blue" ng-class="{'button-small' : reviews.head.getDevice() == 'mobile'}" translate>Write your review</a>
+			</div>
+			<ul class="list" ng-if="reviews.head.getDevice() == 'desktop'">
+					<li ng-repeat="(key, value) in reviews.data.summary.sites">
+						<div class="image">
+							<span ng-if='value.site_id==1' class="icon icon-ridestore-full"></span>
+							<span ng-if='value.site_id==3' class="icon icon-prisjakt-full"></span>
+							<span ng-if='value.site_id==2' class="icon icon-facebook-full"></span>
+							<a href="#" translate translate-params-review-count="value.count">{{reviewCount}} reviews</a>
+						</div>
+						<div class="text">
+							<ul class="stars">
+								<li ng-class="{'active': value.avg > 0.5}"><span class="icon-star-filled"></span></li>
+								<li ng-class="{'active': value.avg > 1.5}"><span class="icon-star-filled"></span></li>
+								<li ng-class="{'active': value.avg > 2.5}"><span class="icon-star-filled"></span></li>
+								<li ng-class="{'active': value.avg > 3.5}"><span class="icon-star-filled"></span></li>
+								<li ng-class="{'active': value.avg > 4.5}"><span class="icon-star-filled"></span></li>
+							</ul>
+							<p>{{value.avg}} / 5</p>
+						</div>
+					</li>
+			</ul>
+		</div>
+		<div class="bottom-tip">
+			<div class="scroll-indicator">
+				<div class="scroll-wheel">
+					<div class="wheel"></div>
+					<div class="pointer"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<ul class="list" ng-if="reviews.head.getDevice() == 'mobile'">
+		<li ng-repeat="(key, value) in reviews.data.summary.sites">
+			<div class="image">
+				<span ng-if='value.site_id==1' class="icon icon-ridestore-full"></span>
+				<span ng-if='value.site_id==3' class="icon icon-prisjakt-full"></span>
+				<span ng-if='value.site_id==2' class="icon icon-facebook-full"></span>
+				<a href="#" translate translate-params-review-count="value.count">{{reviewCount}} reviews</a>
+			</div>
+			<div class="text">
+				<ul class="stars">
+					<li ng-class="{'active': value.avg > 0.5}"><span class="icon-star-filled"></span></li>
+					<li ng-class="{'active': value.avg > 1.5}"><span class="icon-star-filled"></span></li>
+					<li ng-class="{'active': value.avg > 2.5}"><span class="icon-star-filled"></span></li>
+					<li ng-class="{'active': value.avg > 3.5}"><span class="icon-star-filled"></span></li>
+					<li ng-class="{'active': value.avg > 4.5}"><span class="icon-star-filled"></span></li>
+				</ul>
+				<p>{{value.avg}} / 5</p>
+			</div>
+		</li>
+	</ul>
+	<div class="review-area">
+		<div class="testimonials">
+			<span class="icon icon-kishe"></span>
+			<div class="object">
+				<p translate>Bra service och personligt! Man känner sig verkligen speciell när man handlar hos er! Big up!</p>
+				<div class="user">
+					<a href="" ui-sref="login">
+						<div class="image">
+							<img src="https://d10g92rh9h0kij.cloudfront.net/media/wysiwyg/reviews/1.jpg" alt="">
+						</div>
+						<h4 translate>Kund i webbutik</h4>
+					</a>
+				</div>
+			</div>
+			<ul class="pagination">
+				<li class="active"></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+		<div class="reviews">
+			<div class="review" ng-repeat="(key, value) in reviews.data.reviews">
+				<div class="user">
+						<span class="icon-user"></span>
+						<h4>{{value.reviewer}}</h4>
+				</div>
+				<div class="text">
+					<p>{{ value.text}}</p>
+				</div>
+				<div class="bottom">
+					<ul class="stars">
+						<li ng-class="{'active': value.rating > 0.5}"><span class="icon-star-filled"></span></li>
+						<li ng-class="{'active': value.rating > 1.5}"><span class="icon-star-filled"></span></li>
+						<li ng-class="{'active': value.rating > 2.5}"><span class="icon-star-filled"></span></li>
+						<li ng-class="{'active': value.rating > 3.5}"><span class="icon-star-filled"></span></li>
+						<li ng-class="{'active': value.rating > 4.5}"><span class="icon-star-filled"></span></li>
+					</ul>
+
+					<span ng-if='value.site_id==1' class="icon icon-ridestore-full sizescore"></span>
+					<span ng-if='value.site_id==3' class="icon icon-prisjakt-full sizescore"></span>
+					<span ng-if='value.site_id==2' class="icon icon-facebook-full sizescore"></span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- UI OVERLAYS -->
+	<div class="overlay animate-slideleft" ng-show="reviews.popup == true">
+		<div class="bg" ng-click="reviews.popup = false"></div>
+		<div class="wrap center popup">
+			<div class="top">
+				<h1 translate>Leave a review</h1>
+			</div>
+			<form name="reviewForm">
+					<ul class="stars">
+						<li ng-mouseover="reviews.myReview.tempRating=1" ng-mouseleave="reviews.myReview.tempRating=0" ng-click="reviews.myReview.rating=1" ng-class="{'active': reviews.myReview.tempRating===0? reviews.myReview.rating> 0.5 :reviews.myReview.tempRating > 0.5}"><span class="icon-star-filled big"></span></li>
+						<li ng-mouseover="reviews.myReview.tempRating=2" ng-mouseleave="reviews.myReview.tempRating=0" ng-click="reviews.myReview.rating=2" ng-class="{'active':  reviews.myReview.tempRating===0? reviews.myReview.rating> 1.5 :reviews.myReview.tempRating > 1.5}" ><span class="icon-star-filled big"></span></li>
+						<li ng-mouseover="reviews.myReview.tempRating=3" ng-mouseleave="reviews.myReview.tempRating=0" ng-click="reviews.myReview.rating=3" ng-class="{'active':  reviews.myReview.tempRating===0? reviews.myReview.rating> 2.5 :reviews.myReview.tempRating > 2.5}"><span class="icon-star-filled big"></span></li>
+						<li ng-mouseover="reviews.myReview.tempRating=4" ng-mouseleave="reviews.myReview.tempRating=0" ng-click="reviews.myReview.rating=4" ng-class="{'active':  reviews.myReview.tempRating===0? reviews.myReview.rating> 3.5 :reviews.myReview.tempRating > 3.5}"><span class="icon-star-filled big"></span></li>
+						<li ng-mouseover="reviews.myReview.tempRating=5" ng-mouseleave="reviews.myReview.tempRating=0" ng-click="reviews.myReview.rating=5" ng-class="{'active':  reviews.myReview.tempRating===0? reviews.myReview.rating> 4.5 :reviews.myReview.tempRating > 4.5}"><span class="icon-star-filled big"></span></li>
+					</ul>
+				<input type="text" name="email" ng-model="reviews.myReview.email" required placeholder="Email adress">
+				<textarea name="textbox" ng-model="reviews.myReview.text" required placeholder="Your review" ></textarea>
+
+				<a href="" ng-click="reviews.sendMyReview()" class="button button-full bg-green" translate>Send</a>
+		</form>
+	</div>
+
+</div>

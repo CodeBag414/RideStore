@@ -1,0 +1,47 @@
+<div class="category" ng-repeat="item in menu.menuJson" ng-mouseenter="menu.activeDropdown = item.cat" ng-mouseleave="menu.activeDropdown = 0">
+	<a ng-if="!menu.isTablet" class="maincategory" ng-class="{active: menu.top.getActiveDepartment() == item.cat}" ui-sref="{{ item.cat == 'Moto' ? 'motocross' : item.cat | lowercase }}" href="/{{ item.cat == 'Moto' ? 'motocross' : item.cat | lowercase }}">{{ item.cat }}</a>
+	<a ng-if="menu.isTablet" class="maincategory" href="#" ng-click="menu.activeDropdown = item.cat">{{ item.cat }}</a>
+	<div class="dropdown" ng-class="{'active' : menu.activeDropdown == item.cat}">
+		<div class="inner">
+			<div class="left" ng-repeat="section in item.sections" ng-if="$first">
+				<ul ng-repeat="section in item.sections" ng-if="$first">
+					<li ng-repeat="category in section.categories">
+						<a ui-sref="category({id: category.id, url: category.url})" href="{{category.url}}">{{ category.name }}</a>
+					</li>
+				</ul>
+			</div><!--
+			--><div class="wrap">
+				<div class="grid" ng-repeat="section in item.sections" ng-if="!$first">
+					<div class="padding">
+						<div class="top">
+							<h3>{{section.name}}</h3>
+							<div class="genders" ng-if="(item.cat == 'Streetwear' || item.cat == 'Snow') && $index == 1">
+								<a class="button button-small bg-blue" ng-class="{active: menu.activeGender == 'men'}" ng-click="menu.setActiveGender('men')" translate>Guys</a>
+								<a class="button button-small bg-blue" ng-class="{active: menu.activeGender == 'women'}" ng-click="menu.setActiveGender('women')" translate>Girls</a>
+							</div>
+						</div>
+						<div class="object" ng-repeat="category in section.categories">
+							<a ng-click="menu.openCategory(category)" href="{{category.url}}">
+								<div class="image">
+									<span class="icon clothes-{{category.id}}"></span>
+								</div>
+								<div class="text">
+									<h5>{{ category.name }}</h5>
+								</div>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="category separator"></div>
+<div ng-if="menu.menuJson" class="category" ng-mouseenter="menu.activeDropdown = item.cat; menu.dropdown('brands', $event)" ng-mouseleave="menu.activeDropdown = 0; menu.dropdown()">
+	<a class="maincategory" href="" ui-sref="brands">Brands</a>
+</div>
+<div ng-if="menu.menuJson" class="category" ng-mouseenter="menu.activeDropdown = item.cat; menu.dropdown('stylecreator', $event)" ng-mouseleave="menu.activeDropdown = 0; menu.dropdown()">
+	<a class="maincategory" href="" ui-sref="stylecreator" translate>Stylecreator</a>
+</div>
+<div class="category separator"></div>
+<div class="active-mark" style="left: {{menu.activeLeft + 'px'}}"></div>

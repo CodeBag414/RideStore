@@ -1,0 +1,33 @@
+<div id="brands" ng-controller="BrandsController as brands">
+	<div class="topbreaker"></div>
+	<div class="content">
+		<div class="search">
+			<form ng-class="{'expand' : brands.inputFocus}" style="width: {{ (120 + (brands.searchVal.length * 10)) + 'px'}}">
+				<span class="icon icon-search"></span>
+				<input type="text" placeholder="{{'Search for brands'|translate}}" ng-focus="brands.inputFocus = true" ng-blur="brands.inputFocus = false" ng-trim="false" ng-model="brands.brandSearch.name" ng-change="brands.isSearching = true">
+			</form>
+		</div>
+		<div class="wrap">
+			<div class="grid grid-3" ng-repeat="section in brands.brandsJson" ng-id="section.group" on-finish-render="ngRepeatFinished">
+				<a ng-show="brands.isSearching == false " id="{{section.group}}" class="letter">{{section.group}}</a><!--
+				--><div class="brand-group">
+					<div class="object brand" ng-repeat="brand in section.brands | filter:brands.brandSearch">
+						<a ui-sref="category({id: brand.id, url: brand.url_key})" href="{{brand.url_key}}">
+							<div class="image">
+								<img class="b-lazy" data-src="brand_logos_new/{{ brand.logo }}" alt="{{brand.name}}">
+							</div>
+							<div class="text">
+								{{ brand.name }}
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div><!--
+	--><div class="right">
+		<ul class="alphabet">
+			<li ng-repeat="char in brands.alphabet" scroll-to="{{char}}" offset="{{brands.head.getDevice() == 'desktop' ? 130 : 55 }}" style="height: {{brands.alphabetCharHeight}}%"><span>{{char}}</span></li>
+		</ul>
+	</div>
+</div>

@@ -1,0 +1,29 @@
+<form class="block hastitle brand-filter">
+  <h4 translate>Brands</h4>
+
+  <div class="search no-padding" ng-if="vm.showSearchBox">
+    <span class="icon icon-search"></span>
+    <input type="text" placeholder="{{ 'Search' | translate}}" ng-model="vm.filterSearchBrandValue" ng-change="vm.filterSearchBrand()">
+  </div>
+
+  <div class="brands-container filter-container">
+    <label class="checkbox" ng-repeat="brand in vm.brandsArray | limitTo: (!vm.showAllBrands || '') && vm.amountVisible | dynamicNameFilter: vm.filterSearchBrandValue:vm.brandsArrayKeyName" ng-click="!brand.selected">
+        <span class="brand-name needsclick">{{brand[vm.brandsArrayKeyName]}}</span>
+        <span ng-if="brand[vm.brandsArrayKeyAmount]"
+        class="brand-amount needsclick">({{brand[vm.brandsArrayKeyAmount]}})</span>
+        <input ng-change="vm.callback(brand)" ng-model="brand.selected"
+        type="checkbox" name="checkbox" value="value">
+        <div class="needsclick"> <!-- checkbox box - TODO make this semantically correct-->
+          <span class="needsclick"></span>
+        </div>
+    </label>
+  </div>
+
+  <label class="show-more">
+    <div class="checkbox">
+      <a ng-if="vm.showAllBrands" ng-click="vm.displayMinBrands()" href="" translate>Less</a>
+      <a ng-if="!vm.showAllBrands" ng-click="vm.displayMaxBrands()" href="" translate>More</a>
+    </div>
+  </label>
+
+</form>

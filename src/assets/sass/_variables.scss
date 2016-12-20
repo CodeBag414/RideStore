@@ -1,0 +1,51 @@
+$radius-01: 3px;
+$radius-02: 100%;
+
+$padding-01: 15px;
+$padding-02: 40px;
+
+$blue: #378ceb;
+$green: #4bbe53;
+$white: #fff;
+$red: #e03e3e;
+$black: #242528;
+$orange: #ec8a41;
+
+$transparent: rgba(0, 0, 0, 0);
+$transparent-10: rgba(0, 0, 0, .1);
+$transparent-15: rgba(0, 0, 0, .15);
+$transparent-20: rgba(0, 0, 0, .2);
+$transparent-50: rgba(0, 0, 0, .5);
+
+$white-transparent-25: rgba(255, 255, 255, .25);
+$white-transparent-50: rgba(255, 255, 255, .5);
+$white-transparent-75: rgba(255, 255, 255, .75);
+
+
+$darkGray: #414a59;
+$darkGray-01: #3a3a3a;
+$darkTranslucent: rgba(33, 35, 40, .90);
+$lightTranslucent: rgba(255, 255, 255, .9);
+$lighterGray: #f6f6f6;
+$lightGray: #eaeaea;
+$lightGrayForText: #878A90;
+$overlayColor: rgba(0, 0 , 0, .7);
+
+$fs-button: 12px;
+$fs-input: 12px;
+$fs-standard: 12px;
+
+$shadow-01: 0 3px 14px $transparent-15;
+
+$placeholder-color: #afdaff;
+
+$topmenuSize: 120px;
+
+//when deciding on changing the min-tap-target-size value see the following
+//https://developers.google.com/speed/docs/insights/SizeTapTargetsAppropriately
+//https://developer.apple.com/ios/human-interface-guidelines/visual-design/layout/
+$min-tap-target-size: 44px;
+
+$warning-background: rgba(236,138,65,0.20);
+$warning-border: 1px solid rgb(236,138,65);
+$warning-color: $lightGrayForText;

@@ -1,0 +1,4 @@
+<div ng-controller="topController as top">
+<div ng-if="top.head.getDevice() == 'mobile' && top.settings.getTopStatus()" ng-include="'app/components/top/partials/top.mobile.html'"></div>
+<div ng-if="top.head.getDevice() == 'desktop' && top.settings.getTopStatus()" ng-include="'app/components/top/partials/top.desktop.html'" ng-class="{'fixed' : top.settings.getState().fixed == true}" ng-style="{'width' : top.settings.getPopupStatus() ? top.settings.getWindowWidth() + 'px' : '100%'}"></div>
+</div>

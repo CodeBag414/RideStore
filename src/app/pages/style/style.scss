@@ -1,0 +1,225 @@
+@import "src/assets/sass/mixins";
+@import "src/assets/sass/variables";
+
+#style {
+  .maxwidth {
+    display: block;
+    margin: auto;
+    max-width: 1600px;
+  }
+  @media (min-width: 1025px) {
+    .icon {
+      font-size: 20px;
+    }
+    .icon-heart {
+      &:before {
+        content: '\e93b' !important;
+      }
+    }
+    .icon-share {
+      :before {
+        content: '\e93e' !important;
+      }
+    }
+  }
+  #image-area {
+    @include clearfix;
+    height: auto;
+    .images {
+      position: relative;
+      height: auto;
+      .image {
+        width: calc(60%);
+        height: auto;
+        &:first-of-type {
+          margin-left: 0;
+        }
+      }
+    }
+    @include breakpoint(desktop) {
+      width: 65%;
+      @include inline-block;
+      @include box-sizing(border-box);
+      padding: 30px;
+      padding-right: 0;
+      .images .image {
+        width: calc(50% - 10px);
+        margin-left: 20px;
+      }
+    }
+    .buttons {
+      position: absolute;
+      right: $padding-01;
+      top: $padding-01;
+      z-index: 2;
+    }
+  }
+  .block.actions{
+    $padding: 25px;
+    display: block;
+    text-align: center;
+    @include clearfix;
+    padding: 0;
+    text-align: left;
+    $height: 50px;
+    border-bottom: 1px solid $lightGray;
+    position: relative;
+    .name {
+      display: inline-block;
+      padding-left: $padding-01;
+      line-height: $height;
+      font-size: 14px;
+      .brand {
+        display: none;
+      }
+      @include breakpoint(desktop) {
+        line-height: 25px;
+        color: #242528;
+        font-size: 16px;
+        .brand {
+          display: block;
+          width: 100px;
+          margin-bottom: 10px;
+        }
+      }
+    }
+    .right {
+      @include clearfix;
+      .buttons {
+        @include inline-block;
+        @include breakpoint(desktop) {
+          position: absolute;
+          right: -5px;
+          top: -12px;
+        }
+      }
+      .sum {
+        display: none;
+      }
+      @include breakpoint(desktop) {
+        display: block;
+        float: none;
+        .stars {
+          text-align: left;
+          margin-top: 0;
+          @include inline-block;
+        }
+        .sum {
+          @include inline-block;
+          color: $darkGray;
+          margin-left: 5px;
+          line-height: 18px;
+        }
+        padding: 0 15px;
+        padding-bottom: 25px;
+      }
+    }
+    .stars {
+      display: inline-block;
+      margin-top: 17px;
+      @include breakpoint(desktop) {
+        display: block;
+      }
+    }
+    h4 {
+      font-size: $fs-standard;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+  }
+  .block.buttons {
+    padding: $padding-01;
+    a {
+      margin-top: $padding-01;
+      &:first-of-type {
+        margin-top: 0;
+        @include breakpoint(desktop) {
+          font-size: 16px;
+          height: 65px;
+          line-height: 65px;
+          .icon {
+            line-height: 65px;
+          }
+        }
+      }
+    }
+  }
+  .list.products {
+    $height: 45px;
+    padding: 0 $padding-01;
+    li {
+      padding-left: 0;
+      padding-right: 0;
+      .style-prod-overlay {
+        position: absolute;
+        top: 0;
+        background-color: #fff;
+        width: 100%;
+        display: block;
+        z-index: 2;
+        height: 100%;
+        opacity: 0.6;
+        cursor: pointer;
+      }
+      .soldout {
+        position: absolute;
+        bottom: 20px;
+        left: 110px;
+        z-index: 3;
+        font-size: 10px;
+        color: #000;
+        letter-spacing: 0.4px;
+        font-weight: 600;
+        text-transform: uppercase;
+      }
+    }
+    .text {
+      .block {
+        .price {
+          position: initial;
+          display: block;
+          margin-top: 10px;
+          .old-price {
+            text-decoration: line-through;
+          }
+          .sale-price {
+            color: $red;
+          }
+        }
+      }
+      .remove {
+        position: absolute;
+        top: 0;
+        right: -$padding-01;
+        width: 53px;
+        height: $height;
+        text-align: center;
+        line-height: $height;
+        color: $darkGray;
+        .icon {
+          font-size: 12px;
+        }
+      }
+    }
+  }
+  @include breakpoint(desktop) {
+    .right-area {
+      display: inline-block;
+      vertical-align: top;
+      width: 35%;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      padding: 30px;
+    }
+  }
+
+  .dropdown2 {
+    padding: 0;
+  }
+
+  .dropdown-toggle {
+    line-height: 35px;
+    padding: 9px;
+  }
+}

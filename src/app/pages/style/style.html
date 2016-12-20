@@ -1,0 +1,99 @@
+<div id="style" ng-controller="StyleController as style">
+  <div class="topbreaker"></div>
+
+  <div class="maxwidth">
+    <!-- UI IMAGEAREA -->
+    <div id="image-area">
+      <div class="images">
+        <div class="image placeholder" ng-repeat="gallery in style.data.gallery | limitTo:2" on-finish-render="ngRepeatFinished" style="background-image: url('https://ridestore-2.imgix.net/catalog/product/{{ gallery.image }}?w=60&q=20&blur=60&auto=format,compress');">
+          <img class="b-lazy" data-src="catalog/product/{{ gallery.image }}" alt="alt-text">
+          <div ng-class="style.data.productype == 'Paket' ? 'prod-img-padding-regular' : 'prod-img-padding-style'"></div>
+        </div>
+      </div>
+
+      <div class="buttons">
+        <rs-favorite-button product-id="style.data.id" ng-if="style.head.getDevice() == 'mobile'"></rs-favorite-button>
+      </div>
+    </div><!--
+
+    --><div class="right-area">
+      <div class="block actions">
+        <div class="name">
+          <img class="brand" ng-src="https://d10g92rh9h0kij.cloudfront.net/media/brand_logos_new/{{style.data.brand_logo}}" alt="">
+          <h2>{{style.data.brand}} {{style.data.department | lowercase}} {{style.data.productype | lowercase}}</h2>
+        </div>
+
+        <div class="right">
+          <div class="buttons">
+            <rs-favorite-button product-id="style.data.id" ng-if="style.head.getDevice() == 'desktop'"></rs-favorite-button>
+          </div>
+        </div>
+      </div>
+
+      <ul class="list products">
+        <li ng-repeat="product in style.data.products">
+          <div ng-if="!product.active && product.stock_status == 1" ng-click="style.toggleProduct(product)" class="style-prod-overlay"></div>
+
+          <div ng-if="product.stock_status !== 1">
+            <div class="soldout"><span class="dot bg-red"></span><span translate>Soldout</span></div>
+            <div class="style-prod-overlay"></div>
+          </div>
+
+          <a ui-sref="product-configurable({id: product.id, url: product.url})" href="{{product.url}}">
+            <div class="image placeholder">
+              <img class="b-lazy" data-src="catalog/product/{{ product.image }}" alt="alt-text">
+              <div class="prod-img-padding-regular"></div>
+            </div>
+          </a>
+
+          <div class="text">
+            <div class="block">
+              <h3>{{product.shortname}}</h3>
+              <div class="price">
+                <span ng-class="{'old-price' : product.sale_price !== null}"
+                  translate translate-params-amount="product.price">$ {{amount}}</span>
+                <span class="sale-price" ng-if="product.sale_price"
+                  translate translate-params-amount="product.sale_price">$ {{amount}}</span>
+              </div>
+            </div>
+            <div class="block">
+              <div  class="dropdown2"
+                    ng-class="{'error': style.sizeError && !product.selectedSize && product.active}"
+                    uib-dropdown keyboard-nav>
+                <a uib-dropdown-toggle ng-click="style.getSizes(product)">
+                  <translate ng-if="!product.selectedSize">Choose size</translate>
+                  <span ng-if="product.selectedSize">{{product.selectedSize.size_value}}</span>
+                  <span class="icon-arrow-down"></span>
+                </a>
+                <ul class="dropdown-menu" uib-dropdown-menu>
+                  <li ng-repeat="size in product.sizes" ng-if="size.is_in_stock == '1'" ng-click="style.setSize(product, size)" ng-class="{'active' : size.selected}"><a href="#">{{size.size_value}}</a></li>
+                </ul>
+              </div>
+            </div>
+
+            <a class="remove" href="#" ng-click="style.toggleProduct(product)"><span class="icon icon-cross"></span></a>
+          </div>
+        </li>
+      </ul>
+
+      <div class="block buttons" ng-if="style.totalPrice">
+        <rs-flip-button button-style="{height: '65px'}" callback="style.flipButtonCallback" ng-if="!product.outofstock">
+          <button-front>
+            <a href="#" ng-click="style.buyStyle();" class="button bg-green button-full">
+              <span ng-if="!style.cartIsLoading"><span class="icon icon-cart-add"></span><span translate  translate-params-amount="style.totalPrice">$ {{amount}}</span></span>
+              <rs-spinner ng-if="style.cartIsLoading"></rs-spinner>
+            </a>
+
+          </button-front>
+
+          <button-back>
+            <a href="" ng-click="style.top.toggleCart();" class="button button-full bg-blue">
+              <span class="icon icon-cart-bag"></span>
+              <span translate>Go to cart</span>
+            </a>
+          </button-back>
+        </rs-flip-button>
+      </div>
+    </div>
+  </div>
+</div>

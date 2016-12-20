@@ -1,0 +1,7 @@
+<div class="quantity-spinner">
+  <a class="qtychange" ng-class="{hidden: !vm.showSpinner}" ng-click="vm.decrease()">-</a>
+
+  <a class="qty" ng-click="vm.showSpinner =! vm.showSpinner">{{vm.quantity}}</a>
+
+  <a class="qtychange" ng-class="{hidden: !vm.showSpinner}" ng-click="vm.increase()">+</a>
+</div>

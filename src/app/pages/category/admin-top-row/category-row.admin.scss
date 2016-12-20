@@ -1,0 +1,21 @@
+@import 'src/assets/sass/mixins';
+@import 'src/assets/sass/variables';
+
+admin-category-row {
+  display: block;
+  margin-top: 20px;
+  letter-spacing: normal;
+
+  .button {
+    cursor: pointer;
+  }
+
+  .edit-mode-btn {
+    margin-top: 10px;
+    background: $blue;
+
+    &.on {
+      background: $green;
+    }
+  }
+}

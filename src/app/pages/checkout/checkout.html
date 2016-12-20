@@ -1,0 +1,86 @@
+<div id="checkout">
+  <div class="topbreaker" ng-if="vm.head.getDevice() === 'desktop'"></div>
+  <div class="checkout-container"><!--
+  --><div class="promise-cart-container">
+      <div class="block align-center promises" ng-hide="{{vm.removeGuaranteesExperiment}}">
+        <h5 class="promise-title" ng-if="vm.head.getDevice() === 'desktop'" translate>Ridestore Guarantees</h5>
+        <ul class="promise-list">
+          <li class="promise-item">
+            <span class="promise-icon icon icon-checkmark"></span>
+            <span class="promise-text">
+              <h6 translate>Free shipping</h6>
+              <p translate>Free shipping and free returns</p>
+            </span>
+          </li><!--
+          --><li class="promise-item">
+            <span class="promise-icon icon icon-checkmark"></span>
+            <span class="promise-text">
+              <h6 translate>30 day right of return</h6>
+              <p translate translate-comment="shown under the text: 30 day right of return">Return shipping is prepaid</p>
+            </span>
+          </li><!--
+          --><li class="promise-item">
+            <span class="promise-icon icon icon-checkmark"></span>
+            <span class="promise-text">
+              <h6 translate>Fast deliveries</h6>
+              <p translate>Between 1-2 days deliverytime.</p>
+            </span>
+          </li>
+        </ul>
+      </div><!--
+
+      --><div class="block cart" ng-if="vm.head.getDevice() === 'desktop'">
+        <h5 translate>My Cart</h5>
+        <rs-cart-product-list hide-remove-buttons="true"></rs-cart-product-list>
+      </div>
+      <rs-shipping-selector
+          ng-if="vm.head.getTopLevelDomain() === 'de'"
+        current-shipping-id="vm.currentShippingId" methods="vm.shippingMethods"
+        ></rs-shipping-selector>
+
+      <!-- TEMP experiment stuff -->
+      <ng-include ng-if="vm.removeGuaranteesExperiment"
+        src="'app/pages/checkout/temporary-experiment/return-notification.html'"></ng-include>
+    </div><!--
+
+    --><div class="block checkout">
+
+      <div class="payment-methods" ng-if="vm.ready && vm.allProductsInStock">
+        <ul class="tabs" ng-if="vm.paymentMethods.length > 1">
+          <div ng-repeat-start="paymentMethod in vm.paymentMethods track by paymentMethod.name"></div>
+          <input type="radio" ng-checked="vm.selectedPaymentTab === $index" name="tabs" id="tab{{$index}}">
+          <label for="tab{{$index}}" id="label{{$index}}" class="needsclick">
+            <h3 ng-if="paymentMethod.name === 'klarnacheckout'" class="needsclick">
+              Checkout
+            </h3>
+
+            <img class="needsclick" ng-if="paymentMethod.name === 'paypal'" src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/PP_logo_h_100x26.png" alt="PayPal Checkout" />
+          </label>
+          <div ng-repeat-end></div>
+          <div class="clear"></div>
+          <div ng-repeat="paymentMethod in vm.paymentMethods track by paymentMethod.name" id="tab-content{{$index}}" class="tab-content">
+            <ng-include src="'app/pages/checkout/payment-methods/payment-methods.html'"></ng-include>
+          </div>
+        </ul>
+
+        <div ng-if="vm.paymentMethods.length == 1" ng-repeat="paymentMethod in vm.paymentMethods track by paymentMethod.name">
+          <ng-include src="'app/pages/checkout/payment-methods/payment-methods.html'"></ng-include>
+        </div>
+      </div>
+
+      <div class="checkout-no-stock" ng-if="!vm.allProductsInStock">
+        <h1 translate>Your cart needs attention!</h1>
+
+        <div translate>Not all of the items in your shopping cart are in stock, please remove them in order to proceed</div>
+
+        <div class="" ng-if="vm.head.getDevice() !== 'desktop'" translate>
+          <a ng-click="vm.top.toggleCart();" class="button button-full bg-blue">
+            <span class="icon icon-cart-bag"></span>
+            <span translate>Go to cart</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

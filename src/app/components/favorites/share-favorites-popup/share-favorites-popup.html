@@ -1,0 +1,14 @@
+<div class="share-favorites-popup">
+
+  <div class="share-favorites-popup-header">
+    <h4 translate>share your favorites</h4>
+
+    <div class="share-icons">
+      <a class="share-fb" title="share your favorites on Facebook"
+      target="_blank" href="{{vm.shareFacebookUrl}}" ng-click="vm.openFacebookPopup(vm.shareFacebookUrl)" translate><span class="icon icon-facebook"></span></a>
+    </div>
+  </div>
+
+  <input type="text" ng-value="vm.shareableUrl" select-on-click />
+
+</div>

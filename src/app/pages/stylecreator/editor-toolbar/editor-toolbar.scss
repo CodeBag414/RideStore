@@ -1,0 +1,37 @@
+@import 'src/assets/sass/mixins';
+@import 'src/assets/sass/variables';
+
+editor-toolbar {
+  margin: 10px 15px;
+  position: fixed;
+  z-index: 3;
+
+  .button {
+    cursor: pointer;
+  }
+
+  .edit-mode-btn {
+    background: $blue;
+
+    &.on {
+      background: $green;
+    }
+  }
+}
+
+#stylecreator {
+  &.is-admin {
+
+    #image-area {
+      @include breakpoint(desktop) {
+        top: 185px;
+      }
+    }
+
+    .select-area-top {
+      .bottom {
+        top: 680px !important;
+      }
+    }
+  }
+}

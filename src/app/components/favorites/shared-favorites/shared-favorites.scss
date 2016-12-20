@@ -1,0 +1,74 @@
+@import "src/assets/sass/mixins";
+@import "src/assets/sass/variables";
+
+.shared-favorites {
+  @include breakpoint(desktop) {
+    #main {
+      @include box-sizing(border-box);
+      @include inline-block;
+      padding-right: 23px;
+      width: 100%;
+
+      .grid {
+        .object {
+          font-size: 12px;
+          position: relative;
+
+          .text {
+            line-height: 26px;
+            margin-bottom: 8px;
+            margin-top: 10px;
+
+            h5 {
+              max-height: 26px;
+            }
+
+            span {
+              font-size: 14px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+#main .grid .object {
+  position: relative;
+
+  .large-image {
+    @include inline-block;
+    width: 66%;
+  }
+
+  .small-image {
+    @include box-sizing(border-box);
+    @include inline-block;
+    padding-left: 10px;
+    width: 34%;
+
+    img {
+      margin-top: 12px;
+
+      &:first-of-type {
+        margin-top: 0;
+      }
+    }
+  }
+  .button-circular {
+    background-color: transparent;
+    color: $white;
+    position: absolute;
+    right: 7px;
+    top: 0;
+    z-index: 2;
+  }
+
+  .old-price {
+    text-decoration: line-through;
+  }
+
+  .sale-price {
+    color: $red;
+  }
+}

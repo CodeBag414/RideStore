@@ -1,0 +1,54 @@
+<input type="checkbox" id="menuTrigger" ng-checked="creator.filterStatus"/>
+<div class="filter-menu">
+    <div class="overlay">
+        <div class="top">
+            <div class="left nav-items">
+                <a href="#" class="ng-scope" ng-click="creator.toggleFilter($event)">
+                    <span class="icon icon-previous"></span>
+                </a>
+                <span class="currentView">Filter</span>
+            </div><!--
+			--><div class="right">
+            <div class="nav-items">
+                <a class="ng-scope reset" ng-click="creator.resetFilter();">
+                    <span class="icon icon-reset"></span><span class="text" translate>Reset</span>
+                </a>
+                <a class="ng-scope save" ng-click="creator.toggleFilter($event);">
+                    <span class="icon icon-checkmark"></span><span class="text" translate>Done</span>
+                </a>
+            </div>
+        </div>
+        </div>
+        <div class="main">
+            <div class="left">
+                <ul>
+                    <li ng-repeat="(key, value) in creator.filters" ng-class="{selected: creator.activeFilterSection == key}" ng-click="creator.setActiveFilterSection(key)">
+                        <span>{{key}}</span>
+                    </li>
+                </ul>
+            </div><!--
+			--><div class="right">
+            <ul ng-if="creator.activeFilterSection == 'brands'">
+                <li ng-repeat="filter in creator.filters.brands" ng-click="creator.setFilter('brands', filter.brand_value)" ng-class="{checked: creator.selectedFilters.brands.indexOf(filter.brand_value) > -1 }">
+                    {{filter.brand_value}}
+                    <div class="checker">
+                        <div class="icon icon-checkmark"></div>
+                    </div>
+                </li>
+            </ul>
+            <ul ng-if="creator.activeFilterSection == 'sizes'">
+                <li ng-repeat="filter in creator.filters.sizes" ng-click="creator.setFilter('sizes', filter.size)" ng-class="{checked: creator.selectedFilters.sizes.indexOf(filter.size) > -1 }">
+                    {{filter.size}}
+                    <div class="checker">
+                        <div class="icon icon-checkmark"></div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        </div>
+    </div>
+    <label for="menuTrigger" class="trigger" ng-click="creator.toggleFilter($event)" ng-class="{active: creator.filterisActive}">
+        <span class="icon-filter"></span>
+        <small>Filter</small>
+    </label>
+</div>

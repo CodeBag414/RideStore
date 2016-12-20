@@ -1,0 +1,250 @@
+@import "src/assets/sass/mixins";
+@import "src/assets/sass/variables";
+
+$footer-left-width: 700px;
+$footer-right-width: calc(100% - #{$footer-left-width});
+
+footer {
+	display: block;
+	.block {
+		.wrap {
+			padding: $padding-01;
+			@include breakpoint(desktop) {
+				padding: 0 40px;
+			}
+		}
+		&.testimonials {
+			.stars {
+				display: block;
+				text-align: center;
+				margin-bottom: 20px;
+				.icon-star-filled {
+					font-size:20px;
+				}
+			}
+			.object {
+				@include box-sizing(border-box);
+				padding: 0 20px;
+				text-align: center;
+				p {
+					font-size: 18px;
+					line-height: 26px;
+					color: #000;
+				}
+				.user {
+					text-align: center;
+					margin-top: 15px;
+				}
+			}
+			.pagination {
+				margin-top: 25px;
+				li {
+					background-color: $lightGray;
+					&.active {
+						background-color: $blue;
+					}
+				}
+			}
+			@include breakpoint(desktop) {
+				.object {
+					p {
+						font-size: 22px;
+						font-weight: 200;
+						max-width: 400px;
+						margin: auto;
+						line-height: 36px;
+					}
+					.user {
+						margin-top: 25px;
+					}
+				}
+				.icon-kishe {
+					font-size: 28px;
+					margin-bottom: 25px;
+				}
+			}
+		}
+		display: block;
+		border-top: 1px solid $lightGray;
+		text-align: center;
+		padding: 40px 0;
+		@include breakpoint(desktop) {
+			padding: 60px 0;
+		}
+		@include clearfix;
+		&.promises {
+			padding: 30px 0;
+			@include breakpoint(desktop) {
+				padding: 50px 0;
+			}
+			ul {
+				li {
+					span {
+						@include breakpoint(desktop) {
+							font-size: 40px;
+						}
+					}
+					h6 {
+						span {
+							@include breakpoint(desktop) {
+								font-size: 12px;
+								margin-top: 20px;
+							}
+						}
+					}
+				}
+			}
+		}
+		&.foot {
+			text-align: left;
+			ul.parent {
+				@include inline-block;
+				padding-right: 60px;
+				.heading {
+					text-transform: uppercase;
+					font-weight: 600;
+					color: $darkGray;
+					font-size: 12px;
+					margin-bottom: 20px;
+					display: block;
+				}
+				a {
+					color: inherit;
+				}
+				ul {
+					display: block;
+					li {
+						display: block;
+						font-size: 12px;
+						margin-bottom: 20px;
+					}
+				}
+			}
+		}
+		h1 {
+			font-size: 12px;
+			text-transform: uppercase;
+			font-weight: 600;
+			margin-bottom: 20px;
+		}
+		.left {
+			width: 100%;
+			@include inline-block;
+			ul.parent {
+				display: none;
+				&.getapp {
+					.heading {
+						display: none;
+					}
+					@include inline-block;
+					border-bottom: 1px solid $lightGray;
+					width: 100%;
+					padding-right: 0;
+					ul {
+						text-align: center;
+						li {
+							@include inline-block;
+							margin-bottom: 40px;
+							@include breakpoint(desktop) {
+								margin-bottom: 20px;
+							}
+						}
+					}
+					@include breakpoint(desktop) {
+						.heading {
+							display: block;
+						}
+						border-bottom: none;
+						width: auto;
+						padding-right: 35px;
+						ul {
+							text-align: left;
+							li {
+								display: block;
+							}
+						}
+					}
+				}
+			}
+			@include breakpoint(desktop) {
+				width: $footer-left-width;
+				ul.parent {
+					@include inline-block;
+				}
+			}
+		}
+		.right {
+			width: calc(100%);
+			text-align: right;
+			position: relative;
+			@include clearfix;
+			@include inline-block;
+			@include breakpoint(desktop) {
+				width: $footer-right-width;
+			}
+
+			small {
+				max-width: 425px;
+				line-height: 22px;
+				&.email-added{
+					float: none;
+					height:100px;
+					position: relative;
+					left: 120px;
+				}
+
+				float: right;
+				margin-bottom: 20px;
+				display: none;
+				@include breakpoint(desktop) {
+					display: block;
+				}
+			}
+			form {
+				display: none;
+				padding: 20px 0;
+				position: relative;
+				input[type="text"] {
+					border: 1px solid $lightGray;
+					max-width: 360px;
+				}
+				@include breakpoint(desktop) {
+					display: block;
+				}
+			}
+			.relative {
+				position: relative;
+				display: none;
+				@include breakpoint(desktop) {
+					display: block;
+				}
+				.button {
+					position: absolute;
+					bottom: 20px;
+					right: 0;
+					height: 55px;
+					width: 55px;
+					@include border-radius(0px);
+					.icon {
+						padding-right: 0;
+						line-height: 55px;
+					}
+				}
+			}
+			.social {
+				margin-top: 40px;
+				@include breakpoint(desktop) {
+					margin-top: 10px;
+				}
+				display: block;
+				text-align: center;
+				@include breakpoint(desktop) {
+					text-align: right;
+				}
+				a {
+					margin-left: 10px;
+				}
+			}
+		}
+	}
+}

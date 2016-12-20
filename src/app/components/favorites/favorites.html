@@ -1,0 +1,36 @@
+<div id="favorites" class="overlay animate-slideright" ng-class="{'open' : vm.top.getFavoritesStatus()}" ng-show="vm.top.getFavoritesStatus()" ng-controller="FavoritesController as vm" ng-swipe-right="vm.top.toggleFavorites()">
+  <div class="bg" ng-click="vm.top.toggleFavorites()"></div>
+  <div class="wrap right no-padding">
+    <div class="top">
+      <h3 >
+        <translate>My favorites</translate> <span class="total">/ {{vm.favoritesCount}} <translate>items</translate></span>
+      </h3>
+
+      <a uib-popover-template="'app/components/favorites/share-favorites-popup/share-favorites-popup.html'"
+        popover-placement="bottom-right" popover-trigger="'outsideClick'" popover-append-to-body="true"
+        ng-click="vm.generateFavoritesUrl()"
+        href="{{vm.shareableUrl}}"><span class="icon icon-share"></span></a>
+
+    </div>
+
+    <div class="scroller b-lazy-slider">
+      <div class="grid grid-2">
+        <!-- for each product in vm.productsDetails -->
+        <rs-favorite-item
+          ng-repeat="product in vm.productsDetails track by product.id"
+          product="product"
+          class="object" ng-class="{'style': product['type_id'] === 'style'}"></rs-favorite-item>
+      </div>
+
+      <hr ng-if="vm.productsDetails.length > 0 && vm.customStyleFavorites.length > 0"/>
+
+      <div class="grid grid-2">
+        <!-- for each customStyleProduct in vm.customStyleFavorites -->
+        <rs-custom-style-favorite-item
+          ng-repeat="customStyleProduct in vm.customStyleFavorites track by customStyleProduct.url"
+          product="customStyleProduct"
+          class="object style"></rs-custom-style-favorite-item>
+      </div>
+    </div>
+  </div>
+</div>

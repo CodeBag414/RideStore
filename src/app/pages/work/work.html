@@ -1,0 +1,55 @@
+<div id="work" ng-controller="WorkController as work">
+	<div id="header">
+		<div class="topbreaker"></div>
+		<div class="bg" style="background-image: url('{{work.content.headerimage.fields.file.url}}')"></div>
+		<div class="wrap">
+			<div class="content">
+				<h1>{{work.content.title}}</h1>
+				<h2>{{work.content.intro}}</h2>
+				<a href="" scroll-to="aboutz" offset="95" class="button bg-blue" ng-class="{'button-small' : work.head.getDevice() == 'mobile'}" tanslation>Read more</a>
+			</div>
+			<div ng-if="work.head.getDevice() == 'desktop'" ng-include="'app/pages/work/partials/positions.html'"></div>
+		</div>
+		<div class="bottom-tip">
+			<div class="scroll-indicator">
+				<div class="scroll-wheel">
+					<div class="wheel"></div>
+					<div class="pointer"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div ng-if="work.head.getDevice() == 'mobile'" ng-include="'app/pages/work/partials/joblisting.html'"></div>
+	<div id="aboutz"></div>
+
+	<div ng-repeat="section in work.content.about" class="block" ng-class-odd="'align-left'" ng-class-even="'align-right'">
+		<h3><span class="line"></span>{{section.fields.title}}</h3>
+		<p>{{section.fields.subtitle}}</p>
+	</div>
+
+		<div class="grid grid-2">
+			<div class="object" ng-repeat="image in work.content.images">
+				<div class="image">
+					<img ng-src="{{image.fields.file.url}}" alt="Ridestore">
+				</div>
+				<div class="text">
+					<h4>{{image.fields.description}}</h4>
+				</div>
+			</div>
+		</div>
+
+		<div class="block align-center">
+			<span class="thanks" translate>The team!</span>
+		</div>
+
+	<div class="grid grid-3">
+		<div class="object" ng-repeat="member in work.content.workers">
+			<div class="image">
+				<img ng-src="{{member.fields.file.url}}" alt="Ridestore">
+			</div>
+			<div class="text">
+				<h4>{{member.name}}</h4>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,10 @@
+<nav class="bar bar-dark bg-dark-translucent fixed">
+	<div class="left inline-block baritem">
+		<a href="#" ng-click="creator.appAction('back')" class="back">
+			<span class="icon icon-previous"></span>
+		</a>
+	</div>
+  <div class="right inline-block baritem" ng-class="{expanded: top.settings.getSearchStatus()}">
+    <rs-favorite-nav-button device="creator.head.getDevice()"></rs-favorite-nav-button>
+  </div>
+</nav>

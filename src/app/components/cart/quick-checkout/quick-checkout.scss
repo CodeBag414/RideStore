@@ -1,0 +1,181 @@
+@import 'src/assets/sass/mixins';
+@import 'src/assets/sass/variables';
+
+$klarna-button-color: #4bbe53;
+$klarna-input-focus-blue: #0072cc;
+
+#quick-checkout {
+  border-top: 2px solid;
+  text-align: center;
+
+  ul {
+    padding: 0;
+  }
+
+  .discount {
+    padding-left: 12px;
+    padding-right: 12px;
+    position: relative;
+
+
+    .discount-form {
+      font-size: 15px;
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto;
+
+      h4 {
+        color: #424242;
+        font-family: 'Arial', sans-serif;
+        font-weight: bold;
+        margin: 10px 5px;
+        text-align: left;
+      }
+
+      input {
+        @include inline-block;
+        @include box-sizing(border-box);
+        border: 1px solid #cbcbcb;
+        border-radius: 5px;
+        font-family: 'Arial', sans-serif;
+        font-size: 15px;
+        font-weight: 400;
+        height: 45px;
+        line-height: 19px;
+        margin-bottom: 5px;
+        padding: 0 11px;
+        width: 100%;
+
+        &:focus {
+          border: 1px solid $klarna-input-focus-blue;
+          box-shadow: 0 0 3px 1px $klarna-input-focus-blue;
+          outline: none;
+          z-index: 3;
+        }
+      }
+
+      a {
+        @include inline-block;
+        font-family: 'Arial', sans-serif;
+        font-size: 15px;
+        font-weight: bold;
+        height: 43px;
+        line-height: 40px;
+        margin-top: 5px;
+        //padding: 0 13px;
+        text-transform: initial;
+        width: 100%;
+
+        &.toggle {
+          color: #186fb6;
+          font-size: 13px;
+          font-weight: 100;
+          max-width: 640px;
+          text-align: right;
+          width: 100%;
+
+        }
+
+        &.bg-klarna {
+          background-color: #eaeaea;
+          border: 1px solid #eaeaea;
+          color: #878A90;
+        }
+      }
+
+      .message {
+        font-size: 13px;
+        font-weight: 600;
+        padding-left: 10px;
+
+        &.message-error {
+          color: $red;
+        }
+
+        &.message-success {
+          color: $klarna-button-color;
+        }
+      }
+    }
+
+    .discount-list {
+      margin: 0 auto;
+      max-width: 640px;
+      width: 100%;
+
+      .discount-item {
+        border: 1px solid #cbcbcb;
+        border-bottom: 0;
+        box-sizing: border-box;
+        color: #595959;
+        font-size: 15px;
+        font-weight: 600;
+        padding: 10px 15px;
+        text-align: left;
+        width: 100%;
+
+        &:first-child {
+          border-radius: 5px 5px 0 0;
+        }
+
+        &:last-child {
+          border: 1px solid #cbcbcb;
+          border-radius: 0 0 5px 5px;
+        }
+
+        &:only-child {
+          border: 1px solid #cbcbcb;
+          border-radius: 5px;
+        }
+
+        .discount-amount {
+          color: $klarna-button-color;
+          font-size: 18px;
+          padding-left: 10px;
+        }
+
+        .discount-remove {
+          float: right;
+          height: 20px;
+          line-height: 20px;
+          margin: 0;
+          padding: 0;
+          width: 20px;
+
+          &:link,
+          &:visited,
+          &:hover,
+          &:active {
+            color: #595959;
+          }
+
+          .icon {
+            font-size: 10px;
+          }
+        }
+      }
+    }
+  }
+
+  .order-amount {
+    font-family: Helvetica Neue, Helvetica, Roboto, Arial, sans-serif; //we set the same font as klarna
+    margin: 20px 0;
+    text-align: center;
+    width: 100%;
+
+    .order-amount-total {
+      color: #31393e;
+      font-size: 32px;
+      line-height: 1;
+      margin-bottom: 0;
+      padding-bottom: 0;
+      text-shadow: 0 1px #fff;
+    }
+
+    .order-amount-text {
+      color: #31393e;
+      font-size: 14px;
+    }
+  }
+
+}

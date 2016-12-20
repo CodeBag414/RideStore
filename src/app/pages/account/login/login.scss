@@ -1,0 +1,274 @@
+@import "src/assets/sass/mixins";
+@import "src/assets/sass/variables";
+
+#login {
+    text-align: center;
+    h2, p span {
+        color: #fff;
+        @include breakpoint(desktop) {
+          font-size: 16px;
+          font-weight: 300;
+          letter-spacing: 0.7px;
+          line-height: 22px;
+        }
+    }
+    h2 {
+        font-size: 22px;
+    }
+    p {
+        font-size: 14px;
+    }
+    .welcome-text {
+      position: relative;
+      left: -170px;
+      display: none;
+      @include breakpoint(desktop) {
+        display: block;
+      }
+    }
+    .button {
+      cursor: pointer;
+    }
+    .promises {
+      z-index: 3;
+      width: 100%;
+      padding: 30px 0;
+      position: absolute;
+      background-color: white;
+      bottom:0px;
+      display: none;
+      @include breakpoint(desktop) {
+        padding: 30px 0;
+      }
+      ul {
+        li {
+          width: 25%;
+          .icon {
+            font-size: 40px;
+
+          }
+          .text-footer {
+            display: inherit;
+            position: inherit;
+            width: 80%;
+            text-align: left;
+            margin-left: 12px;
+            h6 {
+              span {
+
+                font-size: 12px;
+                margin-top: 20px;
+                left: -100px;
+              }
+            }
+          }
+        }
+      }
+    }
+    .text {
+        @include breakpoint(desktop) {
+          display: none;
+        }
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        height: 100px;
+        width: 100%;
+        p {
+            color: #C3C3C3;
+            margin-top: 10px;
+        }
+    }
+
+    .bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1;
+        background-color: $darkGray;
+        .background-image {
+            background-image: url('http://ridestore.se/media/upload/nabil/login.jpeg');
+            @include breakpoint(desktop) {
+              background-image: url('https://d10g92rh9h0kij.cloudfront.net/media/wysiwyg/snowbg.jpg');
+            }
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            width: 100%;
+            height: 100%;
+            display: block;
+            opacity: 0.6;
+        }
+    }
+    form, .text {
+        z-index: 2;
+    }
+    form {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        @include breakpoint(desktop) {
+          top: 45%;
+        }
+        .button {
+          margin-top: 0px;
+          }
+        input {
+            text-align: center;
+            font-size: 15px;
+            @include border-radius($radius-01);
+            @include breakpoint(desktop) {
+                border-radius: 0px;
+                height: 80px;
+            }
+
+            &[type='number'] {
+              -moz-appearance: textfield;
+            }
+
+            &::-webkit-outer-spin-button,
+            &::-webkit-inner-spin-button {
+              -webkit-appearance: none;
+            }
+        }
+
+        div.section {
+            position: relative;
+            height: 65px;
+            display: block;
+            @include breakpoint(desktop) {
+              display: inline-block;
+              width: 400px;
+              top: 18px;
+              margin-right: -1px;
+            }
+            span {//the phone icon
+                position: absolute;
+                right: 15px;
+                top: 16px;
+                font-size: 20px;
+                @include breakpoint(desktop) {
+                    top: 24px;
+                    font-size: 30px;
+                }
+            }
+            .input-1 {
+                @include breakpoint(desktop) {
+                  max-width: 400px;
+                  transform: scale(1);
+                  height: 80px;
+
+                }
+                position: absolute;
+                width: 100%;
+                z-index: 10;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+                &.animate {
+                    animation: cards-fromfront 1s forwards;
+                }
+            }
+            .input-2 {
+
+                @include breakpoint(desktop) {
+                  max-width: 400px;
+                  height: 80px;
+                  transform: scale(1);
+                  top: 0px;
+                }
+                z-index: 2;
+                position: absolute;
+                width: 100%;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+                top: -16px;
+                transform: scale(0.93);
+                &.animate {
+                    animation: cards-fromback 1s forwards;
+                }
+            }
+            @keyframes cards-fromfront {
+                0% {
+                    z-index: 10;
+                    top: 0;
+                    transform: scale(1);
+                }
+                50% {
+                    top: -65px;
+                    transform: scale(0.93);
+                    z-index: 10;
+                }
+                51% {
+                    z-index: 0;
+                }
+                80%, 100% {
+                    top: -16px;
+                    transform: scale(0.93);
+                    z-index: 0;
+
+                }
+            }
+            @keyframes cards-fromback {
+                0% {
+                    top: -16px;
+                    transform: scale(0.93);
+                }
+                50% {
+                    top: -16px;
+                    transform: scale(0.93);
+                }
+                80%, 100% {
+                    top: 0;
+                    transform: scale(1);
+                }
+            }
+        }
+        /* flip button */
+        .flip {
+            perspective: 800;
+            width: 100%;
+            height: 45px;
+            position: relative;
+            margin: 0 auto;
+            @include breakpoint(desktop) {
+              display: inline-block;
+              width: 100px;
+              button {
+                border:0;
+                margin: 0;
+                border-radius:0;
+                height: 80px;
+              }
+            }
+        }
+        .flip .card.flipped {
+            transform: rotatex(-180deg);
+        }
+        .flip .card {
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: 0.6s;
+        }
+        .flip .card .face {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            backface-visibility: hidden ;
+            z-index: 2;
+        }
+        .flip .card .front {
+            position: absolute;
+            z-index: 1;
+            cursor: pointer;
+        }
+        .flip .card .back {
+            transform: rotatex(-180deg);
+            cursor: pointer;
+        }
+    }
+}

@@ -1,0 +1,35 @@
+.flip {
+  height: 45px;
+  margin: 0 auto;
+  perspective: 800;
+  position: relative;
+  width: 100%;
+
+  .card {
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: .6s;
+    width: 100%;
+
+    &.flipped {
+      transform: rotatex(-180deg);
+    }
+
+    .face {
+      backface-visibility: hidden;
+      height: 100%;
+      position: absolute;
+      width: 100%;
+      z-index: 2;
+    }
+
+    .front {
+      position: absolute;
+      z-index: 1;
+    }
+
+    .back {
+      transform: rotatex(-180deg);
+    }
+  }
+}

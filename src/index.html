@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="" ng-app="RidestoreApp" ng-controller="MainController as main" ng-strict-di>
+<head>
+    <link href="https://www.ridestore.com" rel="dns-prefetch" />
+    <link href="https://dk1reunmv92bh.cloudfront.net" rel="dns-prefetch" />
+    <link href="https://ridestore.imgix.net" rel="dns-prefetch" />
+    <link href="https://ridestore-2.imgix.net" rel="dns-prefetch" />
+    <link href="https://ridestore-contentful.imgix.net" rel="dns-prefetch" />
+    <link href="https://cdn.contentful.com" rel="dns-prefetch" />
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title ng-bind="main.head.getTitle()">Ridestore</title>
+    <meta name="description" content="{{main.head.getDescription()}}">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="fragment" content="!">
+    <base href="/">
+    <meta ng-if="main.state.current.name == 404" name="prerender-status-code" content="404">
+    <meta ng-if="main.response.code == 301" name="prerender-status-code" content="301">
+    <meta ng-if="main.response.code == 301" name="prerender-header" content="Location: {{main.response.url}}">
+
+    <meta property="fb:app_id" content="314760318607150"/>
+
+    <meta property="og:image" content="{{main.head.getImage()}}" />
+
+    <meta property="al:ios:app_store_id" content="823566208" />
+    <meta property="al:ios:app_name" content="Ridestore" />
+    <meta property="al:android:package" content="se.ridestore.ridestore" />
+    <meta property="al:android:app_name" content="Ridestore" />
+    <meta property="og:title" content="{{main.head.getTitle()}}" />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#36383d">
+
+    <meta property="al:ios:url" content="ridestore://{{main.head.getAppRoute()}}" />
+    <meta property="al:android:url" content="ridestore://{{main.head.getAppRoute()}}" />
+    <meta name="apple-itunes-app" content="app-id=823566208, app-argument=ridestore://{{main.head.getAppRoute()}}"/>
+    <link rel="alternate" href="ios-app://823566208/ridestore/{{main.head.getAppRoute()}}" />
+    <link rel="alternate" href="android-app://se.ridestore.ridestore/ridestore/{{main.head.getAppRoute()}}" />
+
+    <link rel="amphtml" ng-if="main.head.hasAMP()" href="{{main.head.getAMPURL()}}">
+
+    <!-- build:css(.) styles.css -->
+    <!-- bower:css -->
+    <!-- endbower -->
+
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- endbuild -->
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600" rel="stylesheet" type="text/css">
+
+    <jsonld data-json="main.head.getMainSchema()"></jsonld>
+    <jsonld ng-if="main.head.getProductSchema()" data-json="main.head.getProductSchema()"></jsonld>
+
+    <!-- Google Tag Manager: Ridestore Immediate Invocation-->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-MPJM8X');</script>
+    <!-- End Google Tag Manager -->
+
+    <script type="text/javascript">
+      var geoip2path = '//js.maxmind.com/js/apis/geoip2/v2.1/geoip2.js';
+      var geoipRedirectFilepath = 'assets/patches/geoip-redirect.js' //we should use our CDN for this
+
+      function getTLD() {
+        var tld = location.hostname.split('.');
+        return tld[tld.length - 1].toLowerCase();
+      }
+
+      function appendScript(filePath) {
+        var fileref = document.createElement('script');
+        fileref.setAttribute('type', 'text/javascript');
+        fileref.setAttribute('src', filePath);
+        document.getElementsByTagName('head')[0].appendChild(fileref);
+      }
+
+      if(getTLD() === 'com') { //only redirects from .com
+        appendScript(geoip2path);
+        appendScript(geoipRedirectFilepath);
+      }
+    </script>
+
+</head>
+<body id="app" class="{{'state-' + main.activeState}}" ng-class="{'mobileApp' : main.mobileApp.getStatus(), 'noscroll' : main.top.getPopupStatus(), 'noscroll-fixed' : !main.top.getState().scroll}" ng-style="{'width' : main.top.getPopupStatus() ? main.top.getWindowWidth() + 'px' : '100%'}">
+
+    <!--[if lt IE 8]>
+    <p class="browserupgrade">
+        You are using an <strong>outdated</strong>
+        browser. Please
+        <a href="http://browsehappy.com/">upgrade your browser</a>
+        to improve your experience.
+    </p>
+
+    <![endif]-->
+
+    <!--[if lt IE 9]> <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script> <![endif]-->
+
+    <div ng-include="'app/components/top/top.html'"></div>
+
+    <div ng-include="'app/components/cart/cart.html'"></div>
+    <div ng-include="'app/components/favorites/favorites.html'"></div>
+
+    <div class="content-wrapper">
+      <div style="min-height: 100%;" class="group" ui-view></div>
+      <div ng-include="'app/components/footer/footer.html'"></div>
+    </div>
+
+    <!-- prerender detection -->
+    <script type="text/javascript">
+    <?php
+      if (isset($_SERVER['HTTP_X_PRERENDER'])) {
+        echo 'window.prerenderVar = ' . $_SERVER['HTTP_X_PRERENDER'] . ';';
+      }
+    ?>
+    </script>
+    <!-- end:prerender detection -->
+
+    <!-- performance information -->
+    <script src="assets/patches/performance-info.js"></script>
+
+    <!-- build:js(.) vendor.js -->
+    <!-- bower:js -->
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- sentry configuration -->
+    <script src="assets/patches/raven-config.js"></script>
+    <!-- end:sentry configuration -->
+
+    <!-- build:js(src) ridestore.js -->
+    <!-- inject:js -->
+    <!-- endinject -->
+    <!-- endbuild -->
+
+    <script src="templates.js"></script>
+
+    <!-- prerender.io flag, this should be turned to true when page is fully loaded -->
+    <script> window.prerenderReady = false; </script>
+
+</body>
+</html>

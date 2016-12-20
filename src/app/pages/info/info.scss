@@ -1,0 +1,64 @@
+@import "src/assets/sass/mixins";
+@import "src/assets/sass/variables";
+
+#info {
+	padding-bottom: 30px;
+	#header {
+		padding-top: 100px;
+		padding-bottom: 100px;
+		.content {
+			.icon {
+				font-size: 38px;
+				color: $white;
+			}
+		}
+	}
+	.block {
+		padding: 10px 25px 10px 80px;
+		position: relative;
+		&.align-left {
+			text-align: left;
+			.line {
+				margin-left: 10px;
+			}
+		}
+		&.align-right {
+			text-align: right;
+			.line {
+				margin-right: 10px;
+			}
+		}
+		&.align-center {
+			text-align: center;
+		}
+		h3 {
+			font-size: 14px;
+			color: $darkGray;
+			font-weight: 600;
+			text-transform: uppercase;
+			padding: 25px 0;
+			.line {
+				height: 1px;
+				width: 60px;
+				background-color: $blue;
+				@include inline-block;
+				margin-top: 7px;
+			}
+		}
+		h4 {
+			font-size: 14px;
+			color: #B3B5BD;
+			padding: 25px 0;
+			text-transform: uppercase;
+			font-weight: 600;
+		}
+		.paragraph {
+			position: absolute;
+			font-size: 14px;
+			font-weight: 600;
+			color: $darkGray;
+			top: 35px;
+			left: 25px;
+		}
+	}
+}

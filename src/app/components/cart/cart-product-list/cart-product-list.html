@@ -1,0 +1,60 @@
+<div class="scroller b-lazy-slider cart-product-list">
+  <ul class="list products">
+    <li ng-repeat="product in $ctrl.cart.products" on-finish-render="ngRepeatFinished"
+        ng-class="{'not-in-stock': product.quantity_in_stock < 1 && !$ctrl.hideRemoveButtons}">
+      <div class="product-item-container">
+        <a href="" ng-if="!$ctrl.hideRemoveButtons" ng-click="$ctrl.removeFromCart(product)" class="button-delete"><span class="icon icon-cross"></span></a>
+
+        <a ui-sref="product-configurable({id: product.config_id, url: product.weblink})"
+          href="/{{ product.weblink }}"
+          ng-class="{'no-click': $ctrl.isCartProductAGiftcard(product)}">
+          <div class="image placeholder">
+            <img ng-if="!$ctrl.isFirefox()" class="b-lazy" data-src="catalog/product/{{ product.image }}" alt="alt-text">
+            <img ng-if="$ctrl.isFirefox()" ng-src="https://ridestore.imgix.net/catalog/product/{{ product.image }}?fm=jpg&fit=max&q=70&usm=15&chromasub=444&dpr=1&w=90" alt="alt-text">
+            <div class="prod-img-padding-regular"></div>
+          </div>
+        </a>
+
+        <div class="text">
+          <div class="block">
+            <h3 class="name">{{product.shortname}}</h3>
+            <span class="price" ng-class="{'sale' : product.sale_price}" translate translate-params-amount="product.sale_price || product.price">$ {{amount}}</span>
+          </div>
+
+          <div class="block" ng-if="!$ctrl.isCartProductAGiftcard(product)">
+            <div class="product-size">{{product.size_value}}</div>
+            <div class="block">
+              <span class="color">{{product.color}}</span>
+              <rs-quantity-spinner
+              class="qtybox" show-spinner="$ctrl.changingQuantity"
+              quantity="product.quantity" model="product"
+              change-callback="$ctrl.changeQuantityCallback"></rs-quantity-spinner>
+            </div>
+          </div>
+          <div ng-if="$ctrl.hideRemoveButtons && product.quantity_in_stock < 1" class="remove-from-cart">
+            <div class="no-stock-message" translate>Unfortunately, this item just went out of stock.</div>
+            <a class="remove-from-cart-button button bg-orange" ng-click="$ctrl.removeFromCart(product)">
+              <span class="icon icon-delete"></span><translate>Remove</translate>
+            </a>
+          </div>
+          <div ng-if="product.quantity > product.quantity_in_stock &&
+                      product.quantity_in_stock > 0"
+            class="remove-from-cart">
+            <div class="no-stock-message"
+                ng-if="product.quantity_in_stock > 0 && product.quantity > product.quantity_in_stock"
+                translate>Unfortunately the number of items available is no longer enough to fulfill your order</div>
+            <a class="remove-from-cart-button button bg-orange" ng-click="$ctrl.setNewQuantity(product, product.quantity_in_stock)">
+              <translate translate-params-amount="product.quantity_in_stock">Set quantity to {{amount}}</translate>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="stock-message" ng-if="product.quantity_in_stock < 3 && product.quantity_in_stock > 0"
+        translate translate-n="product.quantity_in_stock"
+        translate-plural="Only {{$count}} items left in stock. Order before it's too late…"
+        >Only one item left in stock. Order before it's too late…</div>
+    </li>
+  </ul>
+
+  <div class="error-message" ng-if="$ctrl.showErrorMessage" translate>Sorry! Quantity for that item is at the limit</div>
+</div>

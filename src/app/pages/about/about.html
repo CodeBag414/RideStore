@@ -1,0 +1,44 @@
+<div id="about" ng-controller="AboutController as about">
+	<div id="header">
+		<div class="bg" style="background-image: url('https://d10g92rh9h0kij.cloudfront.net/media/wysiwyg/hq1.jpg')"></div>
+		<div class="content special">
+			<span ng-if="about.head.getDevice() == 'mobile'" class="icon icon-ridestore-full"></span>
+			<div class="img" ng-if="about.head.getDevice() == 'desktop'" style="
+				background-image: url('https://ridestore.imgix.net/upload/nabil/about-header-img.png?dpr=1&w=750');
+			"></div>
+		</div>
+		<div class="bottom-tip">
+			<div class="scroll-indicator">
+				<div class="scroll-wheel">
+					<div class="wheel"></div>
+					<div class="pointer"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="block align-left">
+		<h3 ><translate>Our story begins</translate> <span class="line"></span></h3>
+		<p>Ridestore är en nätbutik med actionsportsrelaterade varumärken. Vi har utrustning för actionsporter som motocross, snowboard, skateboard, snöskoter & olika cykelsporter. Vi är i dagsläget 30 medarbetare. Det hela började dock i en källare några kilometer bort. 2006 var Ridestore två bröder, en bil och ett intresse för motocross. De första affärerna gjordes ur bakluckan på bilen, oftast vid någon crossbana eller grusgrop där folk åkte.</p>
+	</div>
+		<div class="block align-right">
+			<h3><span class="line"></span> <translate> Interest grew</translate></h3>
+			<p>Ganska snart blev intresset större för produkterna som såldes samtidigt som bröderna tyckte det var roligt att hjälpa folk med att hitta rätt kläder och produkter. När bilen inte räckte till som lager skaffades en källarlokal på hela 25m2 i föräldrarnas hus.</p>
+		</div>
+		<div class="block align-left">
+			<h3><translate>We expanded</translate> <span class="line"></span></h3>
+			<p>Att våra nya lokaler nästan är 100 gånger större än föräldrarnas källare berättar lite om hur fort resan har gått. Samtidigt känns det som Ridestore precis startat. Vi kommer alla att fortsätta utvecklas och göra det vi älskar. Vår resa är omöjlig utan våra kunder.</p>
+		</div>
+		<div class="block align-center">
+			<span class="thanks" translate>We thank you!</span>
+		</div>
+	<div class="grid grid-3">
+		<div class="object" ng-repeat="member in about.crew">
+			<div class="image">
+				<img ng-src="{{about.image_path}}{{member.image}}" alt="Image of {{member.name}}, {{member.role}} at Ridestore">
+			</div>
+			<div class="text">
+				<h4>{{member.name}}</h4>
+			</div>
+		</div>
+	</div>
+</div>

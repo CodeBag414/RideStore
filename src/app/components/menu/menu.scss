@@ -1,0 +1,145 @@
+@import 'src/assets/sass/mixins';
+@import 'src/assets/sass/variables';
+
+.overlay.menu {
+  .block .button {
+    padding: 0 12px;
+  }
+
+  div.navigation:first-of-type {
+    border-top: 1px solid $lightGray;
+  }
+
+  .wrap .navigation.bottom li a {
+    color: #7A818D;
+  }
+
+  .user {
+    h4 {
+      color: #7A818D;
+    }
+
+    .icon-user {
+      color: #7A818D;
+      font-size: 20px;
+      line-height: 30px;
+      margin-right: 10px;
+    }
+  }
+}
+
+.genders {
+  .button.bg-blue {
+    @include transition(all 0.3s ease-in-out);
+    background-color: transparent;
+    border: 1px solid $lightGray;
+    color: $darkGray;
+    vertical-align: top;
+
+    &.active {
+      @include box-sizing(border-box);
+      background-color: $blue;
+      border: 1px solid $blue;
+      color: $white;
+    }
+  }
+}
+
+.overlay.sections {
+  @include transition(transform 0.4s ease-in-out);
+  transform: translateX(0%);
+  width: 100%;
+
+  &.ng-hide {
+    transform: translateX(100%);
+  }
+
+  .wrap {
+    @include overflow(y);
+    padding: 15px 0 !important;
+    width: 100%;
+  }
+  .top {
+    $height: 50px;
+    display: block;
+    height: $height;
+    line-height: $height;
+    margin-left: $padding-02;
+    margin-right: $padding-02;
+    position: relative;
+    text-align: center;
+    text-transform: uppercase;
+
+    a {
+      height: $height;
+      left: -15px;
+      line-height: $height;
+      position: absolute;
+      top: 0;
+      width: $height;
+    }
+
+    .menufilter {
+      display: block;
+      margin: auto;
+      text-align: center;
+
+      .filteritem {
+        display: inline-block;
+        margin-left: 20px;
+      }
+    }
+  }
+
+  ul {
+    @include overflow(x);
+    border-bottom: 1px solid $lightGray;
+    border-top: 1px solid $lightGray;
+    display: block;
+    margin-left: $padding-02;
+    margin-right: $padding-02;
+    white-space: nowrap;
+
+    li {
+      color: $darkGray;
+      display: inline-block;
+
+      a {
+        display: block;
+        padding: 20px 15px;
+      }
+    }
+  }
+
+  a {
+    color: inherit;
+  }
+
+  .grid {
+    border-bottom: 1px solid $lightGray;
+    padding: 0 30px;
+    text-align: left;
+
+    .object {
+      padding-top: $padding-01;
+      text-align: center;
+      white-space: normal;
+
+      .text {
+        h5 {
+          font-size: 11px;
+          line-height: 20px;
+          max-height: 100px;
+          word-break: break-word;
+        }
+      }
+    }
+  }
+}
+.grid {
+  .object {
+    a {
+      display: block;
+    }
+  }
+}

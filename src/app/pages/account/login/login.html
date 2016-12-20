@@ -1,0 +1,73 @@
+<div id="login" ng-controller="LoginController as login">
+	<div class="bg">
+		<div class="background-image"></div>
+	</div>
+	<div class="topbreaker"></div>
+	<div class="text">
+		<h2 translate>Welcome to Ridestore</h2>
+		<p translate>Use your phone to access your account</p>
+	</div>
+	<form>
+		<p class="welcome-text" translate>Welcome to Ridestore</p>
+		<div class="section">
+			<div class="input-1" ng-class="{animate: login.showPinInput}">
+				<input type="tel" pattern="\d*" placeholder="{{'Enter your phone number' | translate}}" rs-enter="login.validatePhone(login.phonenumber)" ng-model="login.phonenumber">
+				<span class="icon icon-phone"></span>
+			</div>
+			<div class="input-2" ng-class="{animate: login.showPinInput}">
+				<input id="pin" type="number" pattern="\d*" placeholder="{{'Enter PIN from SMS' | translate}}" rs-enter="login.validatePin(login.code)" ng-model="login.code" focus-on="{{login.showPinInput}}" ng-disabled="!login.showPinInput">
+				<span class="icon icon-locker"></span>
+			</div>
+		</div><!-- buttons
+		--><div class="flip">
+			<div class="card" ng-class="{flipped: login.showPinInput}">
+				<div class="face front">
+					<button type="submit" class="button bg-blue button-full"  ng-click="login.validatePhone(login.phonenumber)"><span translate>Login</span></button>
+				</div>
+				<div class="face back">
+					<button type="submit" class="button bg-green button-full"  ng-click="login.validatePin(login.code)" ><span translate>Validate</span></button>
+				</div>
+			</div>
+		</div>
+		<div class="errormsg" ng-if="login.error.phonenumber"
+      translate>Wrong format on the phonenumber.</div>
+		<div class="errormsg" ng-if="login.error.pincode"
+      translate>Wrong pincode.</div>
+    <div class="errormsg" ng-if="login.error.sendPinError"
+      translate>Could not connect to our server, is your network working?</div>
+	</form>
+	<div class="block promises">
+		<div class="wrap">
+			<ul>
+				<li>
+					<span class="icon icon-truck"></span>
+					<div class="text-footer">
+						<h6 translate>Manage orders.</h6>
+						<div translate>Return, keep track & edit.</div>
+					</div>
+				</li>
+				<li>
+				<span class="icon icon-heart"></span>
+				<div class="text-footer">
+					<h6 translate>Favorites stay forever.</h6>
+					<div translate>Across your devices and location</div>
+				</div>
+				</li>
+				<li>
+				<span class="icon icon-filter"></span>
+				<div class="text-footer">
+					<h6 translate>Customized feed.</h6>
+					<div translate>Filter by content you'd like to see</div>
+				</div>
+				</li>
+				<li>
+				<span class="icon icon-user"></span>
+				<div class="text-footer">
+					<h6 translate>Personal.</h6>
+					<div translate>Everything gets more personal</div>
+				</div>
+			</li>-
+			</ul>
+		</div>
+	</div>
+</div>

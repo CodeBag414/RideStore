@@ -1,0 +1,12 @@
+<ul class="list">
+	<li ng-repeat="position in work.content.positions">
+		<div class="image">
+			<a href="#">{{position.fields.title}}</a>
+			<p>{{position.fields.subtitle}}</p>
+		</div><!--
+		--><div class="text">
+			<a ng-if="position.fields.url" href="#" ui-sref="workentry({work: position.fields.url})" class="button button-small bg-blue" translate>Application</a>
+			<a ng-if="position.fields.externalurl" href="{{position.fields.externalurl}}" target="_blank" class="button button-small bg-blue" translate>Apply</a>
+		</div>
+	</li>
+</ul>

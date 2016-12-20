@@ -1,0 +1,11 @@
+<div class="flip" ng-style="vm.buttonStyle">
+  <div class="card" ng-class="{flipped: vm.isFlipped}" ng-click="vm.flipButton()">
+    <div class="face front" ng-transclude="button-front">
+       <a href="" ng-click="" class="button button-full bg-green">FRONT</a>
+    </div>
+
+    <div class="face back" ng-transclude="button-back">
+      <a href="" ng-click="" class="button button-full bg-red">BACK</a>
+    </div>
+  </div>
+</div>

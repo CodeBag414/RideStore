@@ -1,0 +1,130 @@
+@import "src/assets/sass/mixins";
+@import "src/assets/sass/variables";
+
+#about {
+	#header {
+		padding-top: 100px;
+		padding-bottom: 100px;
+		.content {
+			.icon {
+				font-size: 38px;
+				color: $white;
+			}
+		}
+		@include breakpoint(desktop) {
+			.content.special {
+				height: 100%;
+				width: 100%;
+				.img {
+					position: absolute;
+					top: 40px;
+					left: 0;
+					right: 0;
+					bottom: 0;
+					margin: auto;
+					width: 750px;
+					height: 450px;
+					background-size: 100%;
+					background-repeat: no-repeat;
+				}
+			}
+		}
+	}
+	.block {
+		max-width: 1200px;
+		margin: auto;
+		padding: 10px 25px;
+		position: relative;
+		@include breakpoint(desktop) {
+			margin: 80px auto;
+		}
+		&.align-left {
+			text-align: left;
+			.line {
+				margin-left: 10px;
+			}
+			@include breakpoint(desktop) {
+				p {
+					padding-left: calc(50% + 60px);
+				}
+				h3 {
+					left: calc(50% - 310px);
+					text-align: right;
+				}
+			}
+		}
+		&.align-right {
+			text-align: right;
+			.line {
+				margin-right: 10px;
+			}
+			@include breakpoint(desktop) {
+				p {
+					padding-right: calc(50% + 60px);
+				}
+				h3 {
+					right: calc(50% - 310px);
+					text-align: left;
+				}
+			}
+		}
+		&.align-center {
+			text-align: center;
+		}
+		h3 {
+			font-size: 14px;
+			color: $darkGray;
+			font-weight: 600;
+			text-transform: uppercase;
+			padding: 25px 0;
+			.line {
+				height: 1px;
+				width: 60px;
+				background-color: $blue;
+				@include inline-block;
+				margin-top: 7px;
+			}
+		}
+		@include breakpoint(desktop) {
+			h3 {
+				position: absolute;
+				top: 8px;
+				font-size: 38px;
+				width: 250px;
+				padding: 0 0;
+				line-height: 60px;
+				.line {
+					display: none;
+				}
+			}
+			p {
+				font-size: 16px;
+				line-height: 38px;
+			}
+		}
+		.thanks {
+			font-family: 'notera';
+			font-size: 38px;
+			color: $darkGray;
+			padding-top: 15px;
+			display: block;
+			padding-bottom: 30px;
+		}
+		@include breakpoint(desktop) {
+			.thanks {
+				font-size: 78px;
+				padding-top: 45px;
+				padding-bottom: 50px;
+			}
+		}
+	}
+	.grid {
+		padding: 0;
+		.object {
+			padding: 0;
+			h4 {
+				margin-bottom: 15px;
+			}
+		}
+	}
+}

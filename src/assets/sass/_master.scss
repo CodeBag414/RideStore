@@ -1,0 +1,147 @@
+/* COLORS */
+	// elements
+	$breakerColor: #E0E0E0;
+	$darkBreakerColor: #3A3A40;
+	$overlayColor: rgba(0,0,0,0.7);
+
+	// typo
+	$typoHeadingColor: #444A59;
+	$typoDefaultColor: #898B91;
+	$typoInactiveColor: #AFAFAF;
+	$typoWhiteColor: #FFFFFF;
+
+	$greenColor: #4BBE53;
+	$blueColor: #3E8BE1;
+	$lightGrayColor: #F8F8F8;
+	$darkGrayColor: #212328;
+	$navColor: #2A2A2E;
+	$whiteColor: #ffffff;
+
+/* SIZES */
+	// typo
+	$typoIconSize: 16px;
+	$textDefaultSize: 12px;
+
+/* paddings */
+$defaultPadding: 15px;
+$navblockPadding: calc(100% - 50px);
+$navPadding: 40px;
+$buttonSmallPadding: 9px 10px 8px 10px;
+$overflowListPadding: 0 0 0 25px;
+
+/* z-index */
+$topbarIndex: 9;
+$overlayIndex: 10;
+$navIndex: 11;
+
+/* border-radius */
+$defaultRadius: 3px;
+$roundedRadius: 100%;
+
+$avatarMetrics: 30px;
+
+$topbarHeight: 50px;
+
+.container {
+	padding: 0 $defaultPadding;
+}
+.right {
+	float: right;
+}
+.left {
+	float: left;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+.breaker {
+	height: 1px;
+	display: block;
+	background-color: $darkBreakerColor;
+}
+
+@mixin radius($radius) {
+ -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+     -ms-border-radius: $radius;
+         border-radius: $radius;
+}
+
+.scroll-y {
+	overflow-y: auto;
+	-webkit-overflow-scrolling: touch;
+}
+.scroll-x {
+	overflow-x: auto;
+	-webkit-overflow-scrolling: touch;
+}
+
+body {
+	padding-top: 50px;
+}
+
+.color-black { background-color: #000000; }
+.color-gray { background-color: #9E9E9E; }
+.color-white { background-color: #fff; }
+.color-orange { background-color: #FF9802; }
+.color-red { background-color: #F44336; }
+
+.button {
+	@include radius($defaultRadius);
+	display: block;
+	width: 100%;
+	height: 45px;
+	line-height: 45px;
+	color: $whiteColor;
+	text-align: center;
+	text-transform: uppercase;
+	span {
+		font-size: 16px;
+		display: inline-block;
+		vertical-align: top;
+		line-height: 45px;
+		padding-right: 5px;
+		margin-left: -10px;
+	}
+}
+p {
+	line-height: 22px;
+}
+
+
+
+/* media queries */
+$tablet-width: 768px;
+$desktop-width: 1024px;
+$iphone5-width: 320px;
+$iphone6-width: 375px;
+$iphone6plus-width: 414px;
+@mixin tablet {
+  @media (min-width: #{$tablet-width}) and (max-width: #{$desktop-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$desktop-width}) {
+    @content;
+  }
+}
+@mixin iphone5 {
+  @media (max-width: #{$desktop-width}) {
+    @content;
+  }
+}
+@mixin iphone6 {
+  @media (max-width: #{$desktop-width}) {
+    @content;
+  }
+}
+@mixin iphone6plus {
+  @media (max-width: #{$desktop-width}) {
+    @content;
+  }
+}

@@ -1,0 +1,31 @@
+<ul dnd-list="$ctrl.products" id="scrollcontainer" class="grid grid-4">
+  <li
+    class="object"
+    ng-repeat="product in $ctrl.products | limitTo:$ctrl.totalVisible:$ctrl.startIndex"
+    on-finish-render="ngRepeatFinished"
+    dnd-draggable="product"
+    dnd-moved="$ctrl.onDndMoved($index)"
+    dnd-effect-allowed="move"
+    dnd-selected="$ctrl..selected = product"
+    ng-class="{'selected': $ctrl.selected === item}">
+
+    <rs-favorite-button product-id="product.id"></rs-favorite-button>
+
+    <a ui-sref="product-{{product.type_id}}({id: product.id, url: product.url_key})" href="{{ product.url_key }}">
+
+      <div class="image placeholder" style="background-image: url('https://ridestore-2.imgix.net/catalog/product/{{ product.image }}?w=60&q=20&blur=60&auto=format,compress&cs=strip');">
+        <img class="b-lazy" data-src="catalog/product/{{ product.image }}" alt="{{ product.brand }} {{ product.shortname}} {{ product.productype }}">
+        <div ng-class="product.image_padding == 'regular' ? 'prod-img-padding-regular' : 'prod-img-padding-style'"></div>
+      </div>
+      <div class="text">
+        <h5>{{ product.brand }} "{{ product.shortname}}" {{ product.productype }}</h5>
+        <span class="price" ng-if="product.type_id == 'configurable'">
+          <span ng-class="{'old-price' : product.sale_price !== null}"
+            translate translate-params-amount="product.price">$ {{amount}}</span>
+          <span class="sale-price" ng-if="product.sale_price"
+            translate translate-params-amount="product.sale_price">$ {{amount}}</span>
+        </span>
+      </div>
+    </a>
+  </li>
+</ul>

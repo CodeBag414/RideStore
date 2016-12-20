@@ -1,0 +1,24 @@
+<!-- imagearea mobile -->
+<div class="images b-lazy-slider" id="maingallery">
+	<!-- GALLERY IMAGES -->
+	<div class="image placeholder" ng-repeat="gallery in product.data.gallery" on-finish-render="ngRepeatFinished" style="background-image: url('https://ridestore-2.imgix.net/catalog/product/{{ gallery.image }}?w=60&q=20&blur=60&auto=format,compress&cs=strip');">
+		<img class="b-lazy" data-src="catalog/product/{{ gallery.image }}" alt="{{ product.data.brand }} {{ product.data.shortname}} {{ product.data.productype }}">
+	</div><!-- RELATED STYLE
+	--><div ng-if="product.data.related_style.length > 0" class="image">
+		<div class="style-large-image">
+			<img class="relative b-lazy" data-src="catalog/product/{{ product.data.related_style[0].image }}" alt="alt-text" />
+		</div>
+		<div class="style-small-image">
+			<a ng-repeat="style_product in product.data.related_style[0].products" ui-sref="product-configurable({id: style_product.id, url: style_product.url})" on-finish-render="ngRepeatFinished">
+				<img class="relative b-lazy" data-src="catalog/product/{{ style_product.image }}" alt="alt-text" />
+			</a>
+		</div>
+	</div>
+</div>
+<div class="buttons">
+	<a ng-if="product.data.more_colors.length > 0 && product.showColorsButton" ng-click="product.openColorsModal()" class="button button-circular bg-white colorpicker" style="background-image: url('https://ridestore.imgix.net/upload/nabil/color-gradient.png?w=21&dpr={{product.dpr}}')"></a>
+</div>
+<ul class="pagination">
+<li ng-class="{'active': $index == product.galleryGroupActive}" ng-repeat="gallery in product.galleryLength"></li>
+</ul>
+<div class="prod-img-padding-regular"></div>

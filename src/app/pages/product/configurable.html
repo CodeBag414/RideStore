@@ -1,0 +1,236 @@
+<div id="product" ng-controller="ProductController as product">
+  <div class="topbreaker"></div>
+
+  <div class="maxwidth">
+    <div id="image-area" class="placeholder" ng-if="product.head.getDevice() == 'mobile'" ng-include="'app/pages/product/partials/imagearea.mobile.html'"></div><!--
+ --><div id="image-area" class="placeholder" ng-if="product.head.getDevice() == 'desktop'" ng-include="'app/pages/product/partials/imagearea.desktop.html'"></div><!--
+
+ --><div class="content right-area">
+      <div class="block actions">
+        <div class="name">
+          <a class="logo" ui-sref="category({id: product.data.brand_details.category_id, url: product.data.brand_details.url_key})" href="{{product.data.brand_details.url_key}}"><img class="brand" ng-src="{{product.mediaPath}}/brand_logos_new/{{product.data.brand_logo}}" alt="{{product.data.brand}}"></a>
+          <h1>{{product.data.shortname}} {{product.data.productype}}</h1>
+          <div class="colorname">{{product.data.color}}</div>
+          <div class="buttons">
+            <rs-favorite-button product-id="product.data.id"></rs-favorite-button>
+          </div>
+        </div>
+
+        <div ng-if="product.isProductOutOfStock()" class="price-when-sold-out">
+          <span ng-class="{'old-price' : product.data.sale_price}"
+            translate translate-params-amount="product.data.price">$ {{amount}}</span>
+          <span class="sale-price" ng-if="product.data.sale_price"
+            translate translate-params-amount="product.data.sale_price">$ {{amount}}</span>
+        </div>
+
+        <div ng-if="product.data.review_count" class="review-summary" scroll-to="reviews" offset="80">
+          <ul class="stars">
+            <li ng-class="{active: product.data.review_score > 0 }"><span class="icon-star-filled"></span></li>
+            <li ng-class="{active: product.data.review_score > 1 }"><span class="icon-star-filled"></span></li>
+            <li ng-class="{active: product.data.review_score > 2 }"><span class="icon-star-filled"></span></li>
+            <li ng-class="{active: product.data.review_score > 3 }"><span class="icon-star-filled"></span></li>
+            <li ng-class="{active: product.data.review_score > 4 }"><span class="icon-star-filled"></span></li>
+          </ul>
+          <span class="sum" translate translate-n="product.data.review_count" translate-plural="{{count}} reviews"  translate-params-count="product.data.review_count">One review</span>
+        </div>
+
+        <div class="container">
+          <div class="select-sizing-unit" ng-if="product.canShowSizesInEur">
+            <span translate>Show sizes in:</span>
+            <a class="button button-small"
+            ng-class="{'active': product.shoeSizeConverterService.displayShoeSizesInEur()}"
+            ng-click="product.shoeSizeConverterService.displayShoeSizesInEur(true)">EUR</a>
+            <a class="button button-small"
+              ng-class="{'active': !product.shoeSizeConverterService.displayShoeSizesInEur()}"
+              ng-click="product.shoeSizeConverterService.displayShoeSizesInEur(false)">
+              {{product.getSizingDefaultUnit() === 'uk' ? 'UK' : 'US'}}</a>
+          </div>
+          <ul class="sizes" ng-if="!product.isProductOutOfStock()">
+            <li ng-if="!product.isOneSize()"
+              ng-repeat="size in product.data.sizes"
+              ng-class="{
+                inactive: size.is_in_stock == 0,
+                active: size.id == product.chosenSize,
+                longvalue: size.size_value.length > 3,
+                'us-value': product.canShowSizesInEur && product.shoeSizeConverterService.displayShoeSizesInEur() && !size.sizeInEur
+              }" ng-click="product.toggleSize(size)">
+              {{product.canShowSizesInEur &&
+                product.shoeSizeConverterService.displayShoeSizesInEur() &&
+                size.sizeInEur ?
+                  size.sizeInEur : size.size_value}}</li>
+            <h4 ng-if="product.isOneSize()"
+            translate>One Size</h4>
+          </ul>
+
+          <div class="out-of-stock" ng-if="product.outofstock == true || product.isProductOutOfStock()">
+            <h4 ng-if="product.outofstock == true && !product.isProductOutOfStock()" translate>Size out of stock</h4>
+            <h4 ng-if="product.isProductOutOfStock()" translate>Product out of stock</h4>
+            <p translate>But don’t worry, we will tell you when they’re back!</p>
+            <ul ng-if="product.isProductOutOfStock()" class="sizes sold-out">
+              <li ng-if="!product.isOneSize()"
+                ng-repeat="size in product.data.sizes"
+                ng-class="{inactive: size.is_in_stock == 0, active: size.id == product.chosenSize, longvalue: size.size_value.length > 3}" ng-click="product.toggleSize(size)">{{size.size_value}}</li>
+              <h4 ng-if="product.isOneSize()"
+              translate>One Size</h4>
+            </ul>
+            <form name="email" ng-submit="">
+              <input type="email" ng-model="product.email" placeholder="{{'Your E-mail address'| translate}}">
+            </form>
+          </div>
+
+          <div class="button-area">
+            <div class="messages" ng-if="product.noSizeAdded || product.errorAddingToCart || product.errorInEmail">
+              <h4 class="warning" ng-if="product.noSizeAdded" translate>You need to choose a size first.</h4>
+              <h4 class="error" ng-if="product.errorAddingToCart" translate>Something happened when adding to cart, try again.</h4>
+              <h4 class="error" ng-if="product.errorInEmail" translate>Write correct email.</h4>
+            </div>
+
+            <!-- if iOS we don't go for flip button -->
+            <span ng-if="!product.outofstock && product.head.isSafari() && !product.isProductOutOfStock()">
+              <a href="" class="button button-full bg-green"
+                  ng-click="product.addToCart(product.data.id, product.chosenSize)"
+                  ng-class="{'error-button': product.errorAddingToCart, 'warning-button': product.noSizeAdded}"
+                  ng-if="product.showFront">
+                <rs-spinner ng-if="product.cartIsLoading"></rs-spinner>
+                <span ng-if="!product.cartIsLoading">
+                  <span class="icon icon-cart-add"></span>
+                  <span ng-class="{'old-price' : product.data.sale_price}"
+                    translate translate-params-amount="product.data.price">$ {{amount}}</span>
+                  <span class="sale-price" ng-if="product.data.sale_price"
+                    translate translate-params-amount="product.data.sale_price">$ {{amount}}</span>
+                </span>
+              </a>
+
+              <a href="" ng-click="product.top.toggleCart();" class="button button-full bg-blue"
+                  ng-if="!product.showFront">
+                <span class="icon icon-cart-bag"></span>
+                <span translate>Go to cart</span>
+              </a>
+            </span>
+
+            <rs-flip-button button-style="{height: '65px'}" callback="product.flipButtonCallback" ng-if="!product.outofstock && !product.head.isSafari() && !product.isProductOutOfStock()">
+              <button-front>
+                <a href="" class="button button-full bg-green"
+                    ng-click="product.addToCart(product.data.id, product.chosenSize)"
+                    ng-class="{'error-button': product.errorAddingToCart, 'warning-button': product.noSizeAdded}">
+                  <rs-spinner ng-if="product.cartIsLoading"></rs-spinner>
+                  <span ng-if="!product.cartIsLoading">
+                    <span class="icon icon-cart-add"></span>
+                    <span ng-class="{'old-price' : product.data.sale_price}"
+                      translate translate-params-amount="product.data.price">$ {{amount}}</span>
+                    <span class="sale-price" ng-if="product.data.sale_price"
+                      translate translate-params-amount="product.data.sale_price">$ {{amount}}</span>
+                  </span>
+                </a>
+              </button-front>
+
+              <button-back>
+                <a href="" ng-click="product.top.toggleCart();" class="button button-full bg-blue">
+                  <span class="icon icon-cart-bag"></span>
+                  <span translate>Go to cart</span>
+                </a>
+              </button-back>
+            </rs-flip-button>
+
+            <rs-flip-button flip-once="true" button-style="{height: '65px'}" ng-if="product.outofstock || product.isProductOutOfStock()" callback="product.flipButtonOutOfStockCallback">
+              <button-front>
+                <a class="button bg-blue button-full"
+                  ng-class="{'warning-button': product.noSizeAdded, 'error-button': product.errorInEmail}"
+                  ng-click="product.outofstockNotice(product.data.id, product.chosenSize, product.email)" translate>Notify me</a>
+              </button-front>
+
+              <button-back>
+                <span class="button bg-blue button-full" ng-click="" translate>thanks!</span>
+              </button-back>
+            </rs-flip-button>
+
+          </div>
+          <admin-product-info ng-if="product.isAdminLoaded()" data="product.data"></admin-product-info>
+        </div>
+      </div>
+
+      <div class="block promises">
+        <div class="container">
+          <ul>
+            <li>
+              <span class="icon icon-reload"></span>
+              <h6 translate>Free shipping</h6>
+            </li><!--
+         --><li>
+              <span class="icon icon-checkmark"></span>
+              <h6 translate>30 day right of return</h6>
+            </li><!--
+         --><li>
+           <span class="icon icon-flash"></span>
+           <h6 translate>Fast deliveries</h6>
+         </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="block sizeguide pointer" ng-if="product.data.sizeguide.content || product.modelinfo" ng-class="{'collapsed' : product.openTab !== 'sizeguide'}" ng-click="product.toggleTab('sizeguide')">
+        <h4><translate>Sizeguide</translate> <span class="icon icon-arrow-down"></span></h4>
+        <div class="content">
+          <p>{{product.modelinfo}}</p>
+          <a ng-if="product.data.sizeguide.content" href="#" ng-click="product.openSizeGuide()" class="button button-full bg-blue" translate>Show guide</a>
+        </div>
+      </div>
+
+      <div class="block description pointer" ng-if="product.data.desc || product.data.desc_attributes.length > 0" ng-class="{'collapsed' : product.openTab !== 'description'}" ng-click="product.toggleTab('description')">
+        <h4><translate>Description</translate> <span class="icon icon-arrow-down"></span></h4>
+        <div class="content">
+          <p ng-bind-html="product.data.desc"></p>
+          <p ng-repeat="info in product.data.desc_attributes">{{info.label}} : {{info.value}}</p>
+        </div>
+      </div>
+
+      <div ng-if="product.data.review_count && product.head.getDevice() == 'mobile'" ng-include="'app/pages/product/partials/reviews.html'"></div>
+      <div ng-if="product.data.review_count && product.head.getDevice() == 'mobile'" class="block reviews" ng-class="{'collapsed' : product.openTab !== 'reviews'}" ng-click="product.toggleTab('reviews')">
+        <h4><translate>Reviews</translate> <span class="icon icon-arrow-down"></span></h4>
+        <p translate>There are no reviews for this product.</p>
+      </div>
+      <div class="block reviews pointer" scroll-to="reviews" offset="80" ng-if="product.data.review_count && product.head.getDevice() == 'desktop'" ng-class="{'collapsed' : product.openTab !== 'reviews'}" ng-click="product.toggleTab('reviews')">
+        <h4 ><translate>Reviews</translate> ({{product.data.review_count}}) <span class="icon icon-arrow-down"></span></h4>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="content">
+    <div id="reviews" class="block reviews" ng-if="product.data.review_details.length > 0 && product.head.getDevice() == 'desktop'" ng-include="'app/pages/product/partials/reviews.html'"></div>
+  </div>
+
+
+  <div class="maxwidth">
+    <div class="content">
+      <div class="block related" ng-if="(product.data.related_products).length > 0">
+        <h4 translate>Related products</h4>
+        <!-- GRID 2 SCROLL -->
+        <div class="grid grid-2 grid-scroll b-lazy-slider">
+          <div class="object" ng-repeat="related_product in product.data.related_products" on-finish-render="ngRepeatFinished">
+            <a ui-sref="product-configurable({id: related_product.id, url: related_product.url_key})" href="{{ related_product.url_key }}">
+              <div class="image placeholder">
+                <img class="b-lazy" data-src="catalog/product/{{ related_product.image }}" alt="alt-text">
+                <div class="prod-img-padding-regular"></div>
+              </div>
+              <div class="text">
+                <h5>{{ related_product.brand }} "{{ related_product.shortname}}" {{ related_product.productype }}</h5>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="block bottom">
+        <a class="left" ui-sref="category({id: product.data.main_category.id, url: product.data.main_category.url_path})" href="{{ product.data.main_category.url_path }}">
+          <span class="icon-previous"></span>
+          <translate>More </translate>{{product.data.main_category.name}}
+        </a>
+        <a class="right" ui-sref="category({id: product.data.brand_details.category_id, url: product.data.brand_details.url_key})" href="{{product.data.brand_details.url_key}}">
+          {{ product.data.brand }}
+          <span class="icon-next"></span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+</div>

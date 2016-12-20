@@ -1,0 +1,97 @@
+<div ng-if="category.head.getDevice() == 'mobile'" class="bg" ng-click="category.toggleFilter()"></div>
+<div class="wrap left" ng-swipe-left="category.toggleFilter()">
+  <div class="heading" ng-if="category.head.getDevice() == 'desktop'">
+    <h3>{{category.data.category_info.name}}</h3>
+    <h3 ng-if="category.isAdminLoaded()" title="Id: {{category.categoryId}}">{{category.data.products.length}}st</h3>
+    <div class="header-line"><div class="blue-line"></div></div>
+  </div>
+
+  <div class="sortorder dropdown2">
+    <a ng-click="category.showSortOrderDropdown = !category.showSortOrderDropdown">
+      <span ng-if="category.sortOrderActive.id == 1" translate>Sorting</span>
+      <span ng-if="category.sortOrderActive.id != 1">{{category.sortOrderActive.name | translate}}</span>
+      <span class="icon-arrow-down"></span>
+    </a>
+    <ul ng-class="{'active' : category.showSortOrderDropdown}">
+      <li ng-repeat="sortOrder in category.sortOrders" ng-click="category.setSortOrder(sortOrder.mode, true)" ng-class="{'active' : sortOrder.active}"><a href="#">{{sortOrder.name | translate}}</a></li>
+    </ul>
+    <admin-category-row ng-if="category.isAdminLoaded() && !category.adminConfig.isSetColorMode"
+        sort-order="category.data['category_info']['sort_order']"
+        category="category.categoryId"
+        products="category.data.products"
+        is-change-order-mode="category.adminConfig.isChangeOrderMode"></admin-category-row>
+  </div>
+
+  <div ng-repeat="filter in category.data.filters" ng-switch="filter.filter_code">
+
+    <!-- BRAND FILTER -->
+    <form ng-switch-when="brand" class="block hastitle no-padding brand-filter">
+      <h4 translate>Brands</h4>
+
+      <div class="search no-padding">
+        <span class="icon icon-search"></span>
+        <input type="text" placeholder="{{ 'Search' | translate}}" ng-model="category.search.value_name" ng-change="category.filterSearchBrand()">
+      </div>
+
+      <div class="brands-container filter-container">
+        <label ng-repeat="filtervalue in filter.values | limitTo: category.filterBrandsVisible | filter: category.search" ng-click="category.setFilter(filter, filtervalue)" class="checkbox">
+            <span class="brand-name">{{filtervalue.value_name}}</span>
+            <input type="checkbox" name="checkbox" value="{{filtervalue.value_name}}" ng-checked="filtervalue.selected">
+            <div>
+              <span></span>
+            </div>
+        </label>
+      </div>
+
+      <label class="show-more">
+        <div class="checkbox">
+          <a ng-if="category.showAllBrands" ng-click="category.displayMinBrands()" href="" translate>Less</a>
+          <a ng-if="!category.showAllBrands" ng-click="category.displayMaxBrands()" href="" translate>More</a>
+        </div>
+      </label>
+    </form>
+
+    <!-- COLOR FILTER -->
+    <form ng-switch-when="tshirt_colour" class="block colors hastitle">
+      <h4>{{filter.filter_name}}</h4>
+
+      <div class="filter-container">
+        <label ng-repeat="filtervalue in filter.values">
+          <div class="checkbox" ng-class="'color-' + filtervalue.value_id" ng-click="category.setFilter(filter, filtervalue)">
+            <input type="checkbox" name="checkbox" value="value" ng-checked="filtervalue.selected  == true">
+            <span class="icon icon-checkmark"></span>
+          </div>
+        </label>
+      </div>
+    </form>
+
+    <!-- SIZE FILTER -->
+    <form ng-switch-when="size" class="block sizes hastitle" ng-class="filter.filter_code">
+      <h4>{{filter.filter_name}}</h4>
+
+      <div class="filter-container">
+        <label ng-repeat="filtervalue in filter.values" ng-class="{'longvalue': filtervalue.value_name.length > 3}">
+          <input type="checkbox" name="checkbox" value="value" ng-checked="filtervalue.selected  == true">
+          <div class="checkbox" ng-click="category.setFilter(filter, filtervalue)">{{filtervalue.value_name}}</div>
+        </label>
+      </div>
+    </form>
+
+    <!-- OTHER FILTER -->
+    <form ng-switch-default class="block no-padding hastitle" ng-if="filter.filter_code != 'department' && (filter.filter_code != 'producttype' || category.categoryId == 231)">
+      <h4>{{filter.filter_name}}</h4>
+
+      <div class="filter-container">
+        <label ng-repeat="filtervalue in filter.values" class="checkbox" ng-click="category.setFilter(filter, filtervalue)">
+          <span class="filter-name">{{filtervalue.value_name}}</span>
+          <input type="checkbox" name="checkbox" value="value" ng-checked="filtervalue.selected  == true">
+          <div>
+            <span></span>
+          </div>
+        </label>
+      </div>
+    </form>
+
+  </div>
+
+</div>

@@ -1,0 +1,225 @@
+@import "src/assets/sass/mixins";
+@import "src/assets/sass/variables";
+
+#jobs {
+	#header {
+		.stars {
+			margin-bottom: 15px;
+			.active {
+				color: #FFD671;
+			}
+		}
+		p {
+			max-width: 400px;
+			line-height: 28px;
+			color: $white;
+			margin: 10px auto 20px auto;
+			font-size: 16px;
+		}
+		@include breakpoint(desktop) {
+			text-align: left;
+			h1 {
+				margin-top: 0;
+				text-align: center;
+				max-width: 100%;
+			}
+			p {
+				font-size: 22px;
+				font-weight: 200;
+				max-width: 400px;
+				line-height: 36px;
+				margin: 20px auto 0 auto;
+			}
+			.content .stars {
+				display: none;
+			}
+			.button {
+				margin-top: 30px;
+			}
+			.content {
+				height: 230px;
+				position: absolute;
+				left: 0;
+				top: 0;
+				bottom: 0;
+				right: 0;
+				margin: auto;
+				text-align: center;
+			}
+			.topbreaker {
+				display: none;
+			}
+		}
+	}
+	.bottom {
+		&.bg-gray {
+			background-color: $lighterGray;
+		}
+	}
+	.wrap {
+		max-width: 1200px;
+		margin: auto;
+		@include breakpoint(desktop) {
+			.block {
+				width: 50%;
+				@include inline-block;
+				@include box-sizing(border-box);
+				&.align-right {
+					border-right: 1px solid $lightGray;
+					margin-top: 35px;
+					padding-right: 50px;
+				}
+				&.special {
+					width: calc(50% - 20px);
+					margin-left: 20px;
+				}
+			}
+		}
+	}
+	.block {
+		@include breakpoint(desktop) {
+			&.last {
+				padding-top: 60px;
+				padding-bottom: 60px;
+			}
+		}
+		padding: 40px 25px 40px 25px;
+		border-top: 1px solid $lightGray;
+		&.align-left {
+			text-align: left;
+			.line {
+				margin-left: 10px;
+			}
+		}
+		&.align-right {
+			text-align: right;
+			.line {
+				margin-right: 10px;
+			}
+		}
+		&.align-center {
+			text-align: center;
+		}
+		&.special {
+			@include clearfix;
+			position: relative;
+			padding-top: 35px;
+			.left, .right {
+				@include inline-block;
+				@include box-sizing(border-box);
+			}
+			.left {
+				width: calc(100% - 60px);
+				border-right: 1px solid $lightGray;
+				padding-right: 20px;
+				float: left;
+				ul {
+					li {
+						display: block;
+						margin: 15px 0;
+						p {
+							@include inline-block;
+							width: calc(100% - 30px);
+							@include box-sizing(border-box);
+							padding-right: 10px;
+						}
+						.number {
+							@include inline-block;
+							width: 30px;
+							text-align: center;
+							font-weight: 600;
+							line-height: 22px;
+							color: $blue;
+						}
+					}
+				}
+			}
+			.right {
+				position: absolute;
+				width: 60px;
+				height: 100%;
+				right: 0;
+				top: 0;
+				h3 {
+					transform: translateX(-50%) translateY(-50%) rotate(90deg);
+					display: block;
+					width: 125px;
+					position: absolute;
+					top: 50%;
+					text-align: center;
+					left: 10px;
+				}
+			}
+		}
+		&:first-of-type {
+			border-top: none;
+		}
+		h3 {
+			font-size: 14px;
+			@include breakpoint(desktop) {
+				font-size: 26px;
+			}
+			color: $darkGray;
+			font-weight: 600;
+			text-transform: uppercase;
+			padding: 0 0 25px;
+		}
+		p {
+			margin-top: 15px;
+			&:first-of-type {
+				margin-top: 0;
+			}
+			@include breakpoint(desktop) {
+				font-size: 16px;
+				max-width: 800px;
+				margin-left: auto;
+				margin-right: auto;
+				line-height: 32px;
+			}
+		}
+	}
+	form {
+		background-color: $lighterGray;
+		position: relative;
+		@include breakpoint(desktop) {
+			padding: 60px 30px;
+		}
+		h3 {
+			display: block;
+			text-align: center;
+			padding: 25px 0 33px 0;
+			text-transform: uppercase;
+			font-size: 14px;
+			font-weight: 600;
+			@include breakpoint(desktop) {
+				font-size: 26px;
+				padding-top: 0;
+			}
+		}
+		textarea {
+			padding-bottom: 58px;
+		}
+		.signature {
+			margin-top: 15px;
+			span {
+				@include inline-block;
+				width: 30%;
+				text-align: right;
+				color: $darkGray;
+				text-transform: uppercase;
+				font-weight: 600;
+				line-height: 56px;
+			}
+			input[type="text"] {
+				@include inline-block;
+				font-family: 'notera';
+				font-size: 32px;
+				color: $blue;
+				box-shadow: none;
+				background: transparent;
+				width: 70%;
+				border-bottom: 1px solid $lightGray;
+			}
+		}
+	}
+}

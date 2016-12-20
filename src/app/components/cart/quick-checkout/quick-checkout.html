@@ -1,0 +1,14 @@
+<div id="quick-checkout" ng-controller="CheckoutController as vm">
+  <div ng-include="'app/pages/checkout/discount/discount.html'"></div>
+
+  <div class="order-amount">
+    <p class="order-amount-total" translate translate-params-amount="vm.checkoutService.getCartTotals()">$ {{amount}}</p>
+    <p class="order-amount-text" translate>Total amount includes tax</p>
+  </div>
+
+  <div class="checkout-button">
+    <a ng-if="vm.paymentMethods[0].validRedirectUrl" ng-href="{{vm.paymentMethods[0].validRedirectUrl}}">
+      <img src="https://www.paypalobjects.com/webstatic/en_US/i/btn/png/silver-rect-paypalcheckout-34px.png" alt="PayPal Checkout">
+    </a>
+  </div>
+</div>

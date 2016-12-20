@@ -1,0 +1,75 @@
+@mixin product-colors {
+  //red
+  &.color-1033 {
+      background-color: #F44336;
+  }
+  //orange
+  &.color-1029 {
+      background-color: #f48636;
+  }
+  //blue
+  &.color-1031 {
+      background-color: #4c9fe6;
+  }
+  //brown
+  &.color-1026 {
+      background-color: #b7814e;
+  }
+  //green
+  &.color-1032 {
+      background-color: #4dd67d;
+  }
+  //yellow
+  &.color-1030 {
+      background-color: #dee044;
+  }
+  //purple
+  &.color-1028 {
+      background-color: #cb53dd;
+  }
+  //multi
+  &.color-1034 {
+      background: linear-gradient(135deg, red, blue, yellow);
+  }
+  //pink
+  &.color-1027 {
+      background-color: #f1b3b7;
+  }
+  //white
+  &.color-1024 {
+      background-color: #fff;
+      border: 1px solid $lightGray;
+      span {
+          color: $darkGray;
+      }
+  }
+  //gray
+  &.color-1023 {
+      background-color: $lightGray;
+      border: 1px solid $lightGray;
+      span {
+          color: $darkGray;
+      }
+  }
+  //black
+  &.color-1025 {
+      background-color: #000;
+  }
+  //navy
+  &.color-1984 {
+      background-color: #3d4564;
+  }
+  //burgundy
+  &.color-1982 {
+      background-color: #8c3238;
+  }
+  //army green
+  &.color-1983 {
+      background-color: #8c9966;
+  }
+  //camo
+  &.color-1985 {
+      background-image: url('https://ridestore.imgix.net/wysiwyg/camo2.png');
+      background-size: 25px 25px;
+  }
+}

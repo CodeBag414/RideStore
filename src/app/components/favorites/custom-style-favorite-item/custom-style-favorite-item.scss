@@ -1,0 +1,9 @@
+@import 'src/assets/sass/mixins';
+@import 'src/assets/sass/variables';
+
+.custom-style-favorite-item {
+  h5 {
+    font-style: italic;
+    text-transform: uppercase;
+  }
+}

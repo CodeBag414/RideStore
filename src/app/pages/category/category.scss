@@ -1,0 +1,313 @@
+@import "src/assets/sass/mixins";
+@import "src/assets/sass/variables";
+@import "src/assets/sass/product-colors";
+
+.img-small {
+  filter: blur(50px);
+}
+.prodtypes {
+  width: 70%;
+  overflow-x: auto;
+  @include breakpoint(desktop) {
+    overflow-x: hidden;
+  }
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+#header .brandtext {
+  color: #fff;
+  display: block;
+  opacity: 0.6;
+  max-width: 1200px;
+  margin: auto;
+  max-height: 66px;
+  overflow: hidden;
+  margin-top: 20px;
+  a {
+    color: inherit;
+  }
+}
+#header.brand {
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    min-height: 152px;
+    .topbreaker {
+      height: 20px;
+      @include breakpoint(desktop) {
+        height: 80px;
+      }
+    }
+    .logo {
+      width: 100px;
+      height: 40px;
+      filter: invert(100%);
+    }
+    @include breakpoint(desktop) {
+      height: 380px;
+      &.small {
+        height: 280px;
+      }
+      padding-top: 50px;
+    }
+    .bar .grid {
+      text-align: center;
+      .object {
+        a {
+          opacity: 0.9;
+        }
+        &.active {
+          a {
+            opacity: 1;
+            font-weight: 600;
+            border-bottom: 2px solid;
+          }
+        }
+      }
+    }
+    p {
+      color: #fff;
+      opacity: 0.8;
+    }
+}
+.department-filters {
+  @include breakpoint(desktop) {
+    margin-top: 40px;
+  }
+    text-align: center;
+    .filter {
+        display: inline-block;
+        h3 {
+            color: #fff;
+            text-transform: uppercase;
+            margin-right: 40px;
+        }
+    }
+}
+#category {
+    @include breakpoint(desktop) {
+        #filter {
+            width: 240px;
+            @include inline-block;
+            @include box-sizing(border-box);
+            padding: 37px;
+        }
+        #main {
+            width: 100%;
+            @include inline-block;
+            @include box-sizing(border-box);
+            &.filter-open {
+              float: right;
+              width: calc(100% - 240px);
+              padding-right: 23px;
+            }
+            .grid {
+                .object {
+                    font-size: 12px;
+                    position: relative;
+                    .text {
+                        margin-top: 10px;
+                        margin-bottom: 8px;
+                        line-height: 26px;
+                        h5 {
+                            max-height: 26px;
+                        }
+                        span {
+                            font-size: 14px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    @include breakpoint(xlargedesktop) {
+        #filter {
+            width: 300px;
+        }
+        #main {
+          &.filter-open {
+              width: calc(100% - 300px);
+            }
+        }
+    }
+}
+#main .grid .object {
+    position: relative;
+    .button-circular {
+        position: absolute;
+        top: 0;
+        right: 7px;
+        z-index: 2;
+        background-color: transparent;
+        color: #fff;
+    }
+    .old-price {
+      text-decoration: line-through;
+    }
+    .sale-price {
+      color: red;
+    }
+}
+#category #filter {
+  .sortorder {
+    width: 100%;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #414A59;
+    border-bottom: 1px solid #eaeaea;
+    padding: 0;
+    padding-bottom: 30px;
+    font-size: 11px;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    background-color: #fff;
+    span {
+      font-size: 11px;
+    }
+    ul {
+      width: 100%;
+      li {
+        text-transform: none;
+        font-weight: 400;
+      }
+    }
+  }
+  .show-more {
+    margin-top: 15px;
+  }
+  .heading {
+    margin-bottom: 30px;
+    h3 {
+      @include breakpoint(desktop) {
+        font-size: 16px;
+        letter-spacing: 2px;
+        height: 16px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        padding-bottom: 20px;
+      }
+    }
+  }
+    .block {
+      padding: 10px 0;
+
+      @include breakpoint(desktop) {
+        padding: 10px 0 30px;
+      }
+    }
+
+    form {
+      border-radius: 0;
+      margin-bottom: 10px;
+      border-bottom: 1px solid $lightGray;
+    }
+
+    .filter-container {
+      margin: 10px -15px 0;
+      // see https://bitbucket.org/Ridestore/angular/pull-requests/99/ridang1-179-fix-styling-in-brands-filter/diff
+      //max-height: 20vh; // disabling scroll
+      //overflow-y: auto; // disabling scroll
+      padding: 0 15px;
+    }
+
+    .search {
+        position: relative;
+        border-bottom: 1px solid $lightGray;
+        margin-top: 10px;
+        @include breakpoint(desktop) {
+          border: 1px solid $lightGray;
+          margin-top: 0;
+        }
+        height: 40px;
+
+        input {
+            padding-left: 35px;
+            margin-top: 0px;
+            box-shadow: none;
+            height: 40px;
+            color: #A0A0A0;
+            font-size: 12px;
+            letter-spacing: 1.5px;
+            font-weight: 200;
+        }
+        span.icon {
+            position: absolute;
+            height: 40px;
+            line-height: 40px;
+            top: 0;
+            left: 10px;
+            font-size: 14px;
+            color: #A0A0A0;
+        }
+    }
+    label a {
+      color: $darkGray;
+      font-size: 11px;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+    form.colors, form.sizes {
+        label {
+            @include inline-block;
+            margin-left: 10px;
+            text-align: center;
+            margin-bottom: 10px;
+            div {
+                width: 35px;
+                height: 35px;
+                @include box-sizing(border-box);
+                text-align: center;
+                line-height: 38px;
+                @include border-radius($radius-02);
+                @include product-colors;
+                span {
+                    opacity: 0;
+                    color: #fff;
+                    font-size: 14px;
+                    font-weight: 600;
+                }
+                input:checked + span {
+                    opacity: 1;
+                }
+            }
+            &.longvalue .checkbox {
+              border-radius: 100px;
+              padding: 0 10px;
+              width: auto;
+            }
+        }
+        &.sizes {
+          margin-right: -8px;
+          label {
+                margin-right: 8px;
+                margin-left: 0;
+            }
+            label div {
+                line-height: 33px;
+                border: 1px solid $lightGray;
+                font-size: 11px;
+            }
+            input:checked + div {
+                line-height: 35px;
+                background-color: $blue;
+                color: $white;
+                border: none;
+            }
+        }
+        &.colors {
+          margin-right: -10px;
+            label {
+                margin-right: 10px;
+                margin-bottom: 10px;
+                margin-left: 0;
+                div {
+                    width: 25px;
+                    height: 25px;
+                    line-height: 30px;
+                }
+            }
+        }
+    }
+}

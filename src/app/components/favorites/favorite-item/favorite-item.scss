@@ -1,0 +1,40 @@
+@import 'src/assets/sass/mixins';
+@import 'src/assets/sass/variables';
+
+$item-width: 158;
+$item-height: 185.9;
+$button-height-width: 30px;
+
+.favorite-item {
+  transition: all .3s ease-in-out;
+  position: relative;
+
+  .button-delete {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    left: -15px;
+    top: -47px;
+    bottom: 0;
+    margin: auto;
+    -webkit-border-radius: 100%;
+    background-clip: padding-box;
+    border-radius: 100%;
+    background-color: #378ceb;
+    box-shadow: 0 3px 14px rgba(0, 0, 0, 0.15);
+    z-index: 2;
+    &:hover {
+      transform: rotate(5deg) scale(1.1);
+    }
+
+    span {
+      color: $white;
+      display: block;
+      font-size: 10px;
+      font-weight: bold;
+      line-height: $button-height-width;
+      text-align: center;
+
+    }
+  }
+}

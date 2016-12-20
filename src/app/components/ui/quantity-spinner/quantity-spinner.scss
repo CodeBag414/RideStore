@@ -1,0 +1,43 @@
+@import 'src/assets/sass/mixins';
+@import 'src/assets/sass/variables';
+
+.quantity-spinner {
+  $min-target-size: 35px; //TODO: update on merging of #126
+
+  a {
+    min-height: $min-target-size;
+    min-width: $min-target-size;
+  }
+
+  .qty {
+    @include border-radius($radius-02);
+    @include transition(right 0.3s ease-in-out);
+    background-color: $lighterGray;
+    display: inline-block;
+    height: $min-target-size;
+    line-height: $min-target-size;
+    margin-top: -14px;
+    position: relative;
+    right: 0;
+    text-align: center;
+    width: $min-target-size;
+  }
+
+  .qtychange {
+    @include transition(visibility 0s);
+    cursor: pointer;
+    font-weight: bold;
+    padding: 10px;
+    transition-delay: .2s;
+    visibility: visible;
+
+    &.hidden {
+      transition-delay: 0s;
+      visibility: hidden;
+
+      & + .qty {
+        right: -30px;
+      }
+    }
+  }
+}

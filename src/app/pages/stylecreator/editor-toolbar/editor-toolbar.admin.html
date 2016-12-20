@@ -1,0 +1,14 @@
+<div class="button edit-mode-btn" ng-class="{'on': $ctrl.isEditMode()}" ng-click="$ctrl.toggleEditMode()" title="Turn {{!$ctrl.isEditMode() ? 'on' : 'off'}} Product Editing mode">
+  <span class="icon icon-pencil"></span>
+  {{$ctrl.isEditMode() ? 'on' : 'off'}}
+</div>
+
+<div class="button bg-gray" ng-click="$ctrl.openFullResImages()" title="Open front and back images in new tabs (might need browser permission for multiple popups)">
+  <span class="icon icon-download"></span>
+  Full resolution
+</div>
+
+<div class="button bg-gray" ng-click="$ctrl.downloadCropStyleImage()" title="Download the cropped image">
+  <span class="icon icon-download"></span>
+  Crop Image
+</div>

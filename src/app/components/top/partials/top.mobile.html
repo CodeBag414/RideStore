@@ -1,0 +1,52 @@
+<nav class="bar"
+ng-class="{
+	'bar-dark bg-dark-translucent' : top.settings.getState().design == 'default',
+	'bar-dark bg-transparent' : top.settings.getState().design == 'transparent-white',
+	'bar-light bg-transparent' : top.settings.getState().design == 'transparent-dark',
+	'fixed' : top.settings.getState().fixed == true,
+	'bar-dark bg-gray' : top.goDark == true
+	 }">
+	<!-- ng-show="top.settings.getState() == 'default'" -->
+	<div class="left inline-block" ng-class="{collapsed: top.settings.getSearchStatus()}">
+		<a href="" ng-click="top.settings.setMenuStatus(true)" ng-if="!top.settings.getState().backbutton && !top.settings.getState().minimal">
+			<span class="icon icon-menu"></span>
+		</a>
+		<a href="#" ng-click="top.back()" class="back" ng-if="top.settings.getState().backbutton" >
+			<span class="icon icon-previous"></span>
+		</a>
+    <a href="#" ng-click="top.returnToShopping()" class="back" ng-if="top.settings.getState().minimal" >
+      <span class="icon icon-previous"></span>
+    </a>
+		<a href="/" ui-sref="home" class="text" ng-if="top.settings.getState().logo == true">
+			<span class="icon icon-ridestore-full logo"></span>
+		</a>
+		<a href="" class="text" ng-if="top.settings.getState().dropdown == true">
+			<h2>Title <span class="icon icon-arrow-down"></span></h2>
+		</a>
+	</div>
+	<div class="right inline-block" ng-class="{expanded: top.settings.getSearchStatus()}">
+
+    <a href="" class="search-button"
+        ng-click="top.toggleSearchInput()"
+        ng-if="!top.settings.getState().minimal">
+      <span class="icon icon-search"></span>
+    </a>
+
+    <span class="search-box expanded" ng-if="top.settings.getSearchStatus()">
+      <form ng-submit="top.submitSearch()">
+        <input type="search" placeholder="{{'Search for products' | translate}}" class="search-input" id="search-input"
+        ng-model="top.searchInputValue" ng-change="top.broadcastChangeOnInput()" ng-model-options="{ debounce: 200 }"/>
+        <a href="" class="clear-input-button"
+            ng-click="top.clearSearch()"
+            ng-if="top.searchInputValue.length > 0 && top.settings.getSearchStatus()">
+          <span class="icon icon-cross"></span>
+        </a>
+      </form>
+    </span>
+
+    <rs-cart-nav-button device="top.head.getDevice()"></rs-cart-nav-button>
+    <rs-favorite-nav-button device="top.head.getDevice()" ng-if="!top.settings.getState().minimal"></rs-favorite-nav-button>
+	</div>
+</nav>
+
+<div ng-include="'app/components/menu/menu.html'"></div>

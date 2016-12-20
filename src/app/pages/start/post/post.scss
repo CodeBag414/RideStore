@@ -1,0 +1,124 @@
+@import 'src/assets/sass/mixins';
+@import 'src/assets/sass/variables';
+
+.post {
+  border-top: 1px solid $lightGray;
+  display: block;
+  margin-bottom: $padding-01;
+  padding-top: 10px;
+  position: relative;
+
+  @include breakpoint(desktop) {
+    border-top: 0;
+    box-sizing: border-box;
+    display: inline-block;
+    margin-bottom: 30px;
+    padding-left: 15px;
+    padding-right: 15px;
+    vertical-align: top;
+    width: 25%;
+  }
+
+  .bold {
+    color: $darkGray;
+    font-weight: 600;
+  }
+
+  .author {
+    display: inline-block;
+
+    .image {
+      display: inline-block;
+      height: 30px;
+      line-height: 35px;
+      margin-right: 10px;
+      width: 45px;
+
+      img {
+        width: 40px;
+      }
+    }
+
+    h4 {
+      display: inline-block;
+      font-size: 12px;
+      line-height: 30px;
+      text-transform: uppercase;
+      vertical-align: top;
+
+      @include breakpoint(desktop) {
+        display: none;
+      }
+    }
+  }
+
+  .heading {
+    height: 30px;
+    line-height: 30px;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    vertical-align: middle;
+  }
+
+  .time {
+    float: right;
+  }
+
+  .date {
+    color: #8f9296;
+    text-transform: uppercase;
+  }
+
+  .icon {
+    @include inline-block;
+    color: $darkGray;
+    font-size: 18px;
+    line-height: 29px;
+    margin-right: 7px;
+  }
+
+  .content {
+    background-color: #8f9296;
+    padding-bottom: 100%;
+    position: relative;
+
+    img {
+      cursor: pointer;
+      position: absolute;
+      width: 100%;
+    }
+  }
+
+  .comment {
+    padding: 10px;
+
+    span {
+      line-height: 22px;
+      @include breakpoint(desktop) {
+        display: block;
+
+        &.icon {
+          @include inline-block;
+          margin-left: 5px;
+
+          @include breakpoint(desktop) {
+            display: none;
+          }
+        }
+
+      }
+    }
+  }
+
+  .text {
+    line-height: 20px;
+  }
+
+  .hashtags {
+    a {
+      color: $blue;
+      margin-right: 5px;
+    }
+  }
+}

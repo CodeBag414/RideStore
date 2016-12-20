@@ -1,0 +1,30 @@
+<div class="discount">
+  <div class="discount-form" ng-if="vm.discounts.length > 0">
+    <h4 translate>Applied Discounts</h4>
+    <ul class="discount-list">
+      <li ng-repeat="discount in vm.discounts track by discount.code" class="discount-item">
+        <span class="discount-code" title="{{discount.type}}"><span ng-if="discount.type == 'Store credit'" translate>Store credit</span><span ng-if="discount.type !== 'Store credit'">{{discount.label}} <span ng-if="!discount.label">{{discount.code}}</span></span><span class="discount-amount">-{{discount.amount}}{{vm.currency}}</span></span>
+        <a href="" ng-click="vm.removeDiscount(discount.code)" class="discount-remove"><span class="icon icon-cross"></span></a>
+      </li>
+    </ul>
+  </div>
+
+  <span class="discount-form" ng-if="vm.ready">
+    <a href="" class="toggle" ng-click="vm.toggleDiscountForm()" translate>Do you have discount code or voucher?</a>
+  </span>
+
+  <div ng-if="vm.noItems" translate>You have no items in the cart!</div>
+
+  <div class="discount-form" ng-if="vm.showDiscountForm">
+    <h4>{{'Discount code' | translate}}<span ng-show="vm.discountMessage.length > 0" class="message" ng-class="vm.discountError ? 'message-error' : 'message-success'">{{vm.discountMessage}}</span></h4>
+    <span ng-if="!vm.showPinValidation">
+      <input type="text" placeholder="{{'Enter your discount code or voucher' | translate}}" ng-model="vm.discountCode"><!--
+      --><a href="" class="button bg-klarna" ng-click="vm.addDiscount()" translate>Add</a>
+    </span>
+    <span ng-if="vm.showPinValidation">
+      <input type="text" placeholder="{{'Enter the code you have received on your phone' | translate}}" rs-enter="vm.validateDiscount()" ng-model="vm.discountPin"><!--
+      --><a href="" class="button bg-klarna" ng-click="vm.validateDiscount()" translate>Validate</a>
+    </span>
+  </div>
+
+</div>

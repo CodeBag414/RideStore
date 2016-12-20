@@ -1,0 +1,86 @@
+<div ng-controller="StylecreatorCtrl as creator" id="stylecreator" ng-class="{
+	'isapp' : creator.mobileApp, 'ios' : creator.isIOS, 'is-admin': creator.isAdminLoaded()}">
+  <div class="topbreaker"></div>
+  <!-- mobile app header -->
+  <div ng-if="creator.mobileApp" ng-include="'app/pages/stylecreator/partials/mobileapp-header.html'"></div>
+  <!-- style image-->
+
+  <editor-toolbar products="creator.selectedProducts" department="creator.department" ng-if="creator.isAdminLoaded()"></editor-toolbar>
+
+  <div id="image-area" ng-click="openPopup('checkout')" ng-include="'app/pages/stylecreator/partials/styleimage.html'"></div><!--
+--><div id="select-area">
+    <div class="select-area-top ipad-fixed" ng-class="{fixed: creator.imageInvis}">
+
+      <!-- buttons under the style, total sum and save-->
+      <div class="bottom" ng-show="creator.styleData.totalPrice > 0 && !creator.isFavorite">
+
+        <a class="totalPrice button" ng-click="creator.togglePopup()">
+          <translate>Selected:</translate>
+          <span translate translate-params-amount="creator.styleData.totalPrice">$ {{amount}}</span>
+        </a>
+
+        <a class="button" ng-if="creator.isChanged && !creator.isAdminLoaded()" ng-click="creator.save()">
+          <span ng-class="creator.isFavorite ? 'icon-heart-filled' : 'icon-heart'" class="icon"></span>
+          <span ng-if="!creator.isFavorite" translate>Save</span>
+          <span ng-if="creator.isFavorite" translate>Saved</span>
+        </a>
+
+        <a class="button" ng-if="creator.isAdminLoaded()" ng-click="creator.saveStyleAsAdmin()">
+          <rs-spinner ng-if="creator.savingStyleAsAdmin"></rs-spinner>
+          <span ng-if="!creator.savingStyleAsAdmin">
+            <span translate>Save Style</span>
+            <span class="icon icon-heart"></span>
+          </span>
+        </a>
+      </div>
+
+      <admin-upload-box department="creator.department" class="upload-box" ng-if="creator.isAdminLoaded()">
+      </admin-upload-box>
+
+      <!-- department selector -->
+      <div class="select" ng-if="creator.isAdminLoaded()" >
+        <span class="current" ng-click="toggleStatusDropDown = !toggleStatusDropDown"><translate>Status</translate>
+          <span class="icon-arrow-down"></span>
+        </span>
+        <ul class="dropdown" ng-show="toggleStatusDropDown" ng-click="toggleStatusDropDown = !toggleStatusDropDown">
+          <li ng-click="creator.setFilterStatus(creator.style.ACCEPTED)">{{creator.style.ACCEPTED}}</li>
+          <li ng-click="creator.setFilterStatus(creator.style.PENDING)">{{creator.style.PENDING}}</li>
+          <li ng-click="creator.setFilterStatus(creator.style.REJECTED)">{{creator.style.REJECTED}}</li>
+        </ul>
+      </div>
+
+      <div class="select">
+        <span class="current" ng-click="toggle = !toggle"><translate>Category</translate>
+          <span class="icon-arrow-down"></span>
+        </span>
+        <ul class="dropdown" ng-show="toggle">
+          <li>
+            <div class="block genders no-padding">
+              <a class="button button-small bg-blue" ng-class="{active: creator.activeGender == 'men'}" ng-click="creator.setActiveGender('men')" translate>Guys</a>
+              <a class="button button-small bg-blue" ng-class="{active: creator.activeGender == 'women'}" ng-click="creator.setActiveGender('women')" translate>Girls</a>
+            </div>
+          </li>
+          <li ng-if="creator.activeGender == 'men' && department[0].gender == 'men'" ng-repeat="department in creator.departments" ng-click="creator.changeDepartment(department);">{{department[0].frontName}}</li>
+          <li ng-if="creator.activeGender == 'women' && department[0].gender == 'women'" ng-repeat="department in creator.departments" ng-click="creator.changeDepartment(department);">{{department[0].frontName}}</li>
+        </ul>
+      </div>
+
+      <!-- category selector -->
+      <ul class="grid-nav" ng-class="{'admin': creator.isAdminLoaded()}">
+        <li ng-repeat="category in creator.styleProducts" class="category" ng-click="creator.setCategory(category);" ng-class="{selected: creator.activeCategoryIndex==category.sort_order + 1}" data-catid="{{category.id}}">{{category.name}}</li>
+      </ul>
+    </div>
+
+    <!-- small style image showing when the user has scrolled down -->
+    <div ng-include="'app/pages/stylecreator/partials/styleimage-thumb.html'"></div>
+
+    <!-- listing of products -->
+    <div ng-include="'app/pages/stylecreator/partials/productlisting.html'"></div>
+
+  </div>
+
+  <div ng-include="'app/pages/stylecreator/partials/popup-filter.html'"></div>
+
+  <div ng-include="'app/pages/stylecreator/partials/popup-selectedproducts.html'" ng-if="creator.popupOpen"></div>
+
+</div>

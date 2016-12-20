@@ -1,0 +1,28 @@
+<div class="cs-select cs-skin-elastic" ng-class="{'cs-active': $ctrl.shippingSelectorOpen}" ng-click="$ctrl.toggleSelect()">
+  <span class="shipping-method" ng-if="$ctrl.selectedMethod">
+    <span ng-class="'icon-shipping-' + $ctrl.selectedMethod.shortName"
+    class="title" title="{{$ctrl.selectedMethod.carrier}}"></span>
+    <span class="description">{{$ctrl.selectedMethod.method}}</span>
+    <span class="delivery-info" title="{{$ctrl.selectedMethod.infoText}}">({{$ctrl.selectedMethod.infoText}})</span>
+    <span class="icon" ng-if="$ctrl.methods.length > 1"
+      ng-class="$ctrl.shippingSelectorOpen ? 'icon-arrow-up' : 'icon-arrow-down'"></span>
+    <span class="shipping-fee right" translate translate-params-amount="$ctrl.selectedMethod.fee">$ {{amount}}</span>
+  </span>
+  <div class="cs-options">
+    <ul>
+      <li class="shipping-method"
+          ng-repeat="method in $ctrl.methods track by method.shippingId"
+          data-option data-value="{{method.shortName}}"
+          ng-click="$ctrl.selectMethod($index)"
+          ng-hide="$ctrl.selectedMethod.shippingId === method.shippingId">
+        <span class="title" ng-class="'icon-shipping-' + method.shortName" title="{{method.carrier}}"></span>
+        <span class="description">{{method.method}}</span>
+        <span class="delivery-info" title="{{method.infoText}}">({{method.infoText}})</span>
+        <span class="shipping-fee right" translate translate-params-amount="method.fee">$ {{amount}}</span>
+      </li>
+    </ul>
+  </div>
+  <select class="cs-select">
+    <option ng-repeat="method in $ctrl.methods track by method.shippingId" ng-value="method.shortName" ng-selected="method.active">{{method.shortName}}</option>
+  </select>
+</div>

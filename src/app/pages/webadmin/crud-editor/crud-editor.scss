@@ -1,0 +1,26 @@
+@import 'src/assets/sass/mixins';
+@import 'src/assets/sass/variables';
+
+crud-editor {
+  .crud-grid {
+    $grid-margin: 32px;
+    $grid-border: 2px;
+    $grid-something: 14px;
+    $grid-width: calc(100% - #{$grid-margin} - #{2 * $grid-border} - #{$grid-something});
+    width: $grid-width;
+  }
+  a {
+    margin: 20px;
+  }
+
+  .table-links {
+    background: $lightGray;
+  }
+  .ui-grid, .ui-grid-viewport {
+    height: auto !important;
+    overflow:hidden !important;
+  }
+  .crud-grid.ui-grid {
+    margin-left: 32px;
+  }
+}

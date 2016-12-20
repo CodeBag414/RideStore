@@ -1,0 +1,25 @@
+@import 'src/assets/sass/mixins';
+@import 'src/assets/sass/variables';
+
+admin-upload-box {
+  .dropzone {
+    border: 5px dashed gray;
+    border-radius: 10px;
+    margin: 5px;
+    max-height: calc(100vh - 400px);
+    min-height: 130px;
+    overflow: hidden;
+    width: 535px;
+  }
+
+  .actions {
+    padding: 10px;
+    text-align: center;
+
+    .button {
+      cursor: pointer;
+      margin: 0 4px;
+      width: 45%;
+    }
+  }
+}

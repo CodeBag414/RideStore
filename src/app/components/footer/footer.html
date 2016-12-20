@@ -1,0 +1,127 @@
+<footer ng-controller="FooterController as footer">
+	<div ng-if="footer.settings.getVisibility()">
+		<div class="block testimonials">
+			<div class="wrap">
+				<a href="#" ui-sref="reviews">
+					<ul class="stars">
+						<li class="active"><span class="icon-star-filled"></span></li>
+						<li class="active"><span class="icon-star-filled"></span></li>
+						<li class="active"><span class="icon-star-filled"></span></li>
+						<li class="active"><span class="icon-star-filled"></span></li>
+						<li class="active"><span class="icon-star-filled"></span></li>
+					</ul>
+				</a>
+				<div class="object">
+					<p translate>Very good and personal service! You really feel special when you shop at Ridestore. Big up!</p>
+					<div class="user">
+							<div class="image">
+								<img class="b-lazy" data-src="wysiwyg/reviews/1.jpg" alt="customer">
+							</div>
+							<h4 translate>Customer in webstore</h4>
+					</div>
+				</div>
+				<ul class="pagination">
+					<li class="active"></li>
+					<li></li>
+					<li></li>
+				</ul>
+			</div>
+		</div>
+		<div class="block promises">
+			<div class="wrap">
+				<ul>
+					<li>
+						<span class="icon icon-flash"></span>
+						<h6 translate>Fast deliveries</h6>
+					</li><!--
+					--><li>
+						<span class="icon icon-reload"></span>
+						<h6 translate>Free shipping</h6>
+					</li><!--
+					--><li>
+						<span class="icon icon-checkmark"></span>
+						<h6 translate>30 day right of return</h6>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="block seo" ng-if="footer.settings.getSeoText()">
+			<div class="wrap" ng-bind-html="footer.settings.getSeoText()">
+			</div>
+		</div>
+		<div class="block foot">
+			<div class="wrap">
+				<div class="left">
+					<ul class="parent">
+						<li>
+							<span class="heading" translate>Customer service</span>
+							<ul>
+								<li><a ui-sref="contact" translate>Contact us</a></li>
+							</ul>
+						</li>
+					</ul>
+					<ul class="parent">
+						<li>
+							<span class="heading" translate>Information</span>
+							<ul>
+								<li><a ui-sref="contact">Faq</a></li>
+								<li><a ui-sref="info({name: 'returns'})" translate>Returns</a></li>
+								<li><a ui-sref="info({name: 'terms'})" translate>Terms and Conditions</a></li>
+								<li ng-if="footer.locale === 'de_DE'"><a ui-sref="info({name: 'versand-und-zahlung'})">Versand und Zahlung</a></li>
+								<li ng-if="footer.locale === 'de_DE'"><a ui-sref="info({name: 'impressum'})">Impressum</a></li>
+								<li ng-if="footer.locale === 'de_DE'"><a ui-sref="info({name: 'datenschutz'})">Datenschutz</a></li>
+							</ul>
+						</li>
+					</ul>
+					<ul class="parent">
+						<li>
+							<span class="heading" translate>About Ridestore</span>
+							<ul>
+								<li><a ui-sref="reviews" translate>Reviews</a></li>
+								<li ng-if="footer.locale === 'sv_SE'"><a ui-sref="about" translate>About us</a></li>
+								<li ng-if="footer.locale === 'sv_SE'"><a ui-sref="work({department: 'Customerteam'})" translate>Work - marketing</a></li>
+								<li ng-if="footer.locale === 'sv_SE'"><a ui-sref="work({department: 'Tech'})" translate>Work - tech</a></li>
+							</ul>
+							<a ng-if="footer.locale === 'de_DE'" href="https://www.trustedshops.de/bewertung/info_XD92CB8B25451DBF859791C86D1080515.html">
+							  <img class="b-lazy" width="100px" data-src="new/ts-trustmark.png" alt="trusted shops">
+							</a>
+						</li>
+					</ul>
+					<ul class="parent getapp">
+						<li>
+							<span class="heading" translate>Get app</span>
+							<ul>
+								<li>
+									<a href="http://app.ridestore.com/a/key_live_bkbrK39c7IaRij268AeOadpbzFnwLMcQ?channel=onsite&feature=footerlink">
+										<img class="b-lazy" width="120px" data-src="new/app-store-badge.png" alt="app store">
+									</a>
+								</li>
+								<li>
+									<a href="http://app.ridestore.com/a/key_live_bkbrK39c7IaRij268AeOadpbzFnwLMcQ?channel=onsite&feature=footerlink">
+										<img class="b-lazy" width="120px" data-src="new/google-play-badge.png" alt="app store">
+									</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div><!--
+				--><div class="right">
+					<small ng-if="!footer.emailAdded"><translate>Subscribe for our newsletter and get news and updates</translate><br /> <translate>No spam, we promise! :)</translate></small>
+					<small ng-if="footer.emailAdded" class="email-added" translate>Thanks you for subscribing! We will keep you updated.</small>
+
+					<div class="relative" ng-if="!footer.emailAdded">
+						<form>
+							<input type="text" rs-enter="footer.addEmail(footer.email)" placeholder="{{'Your email-address' | translate }}" ng-model="footer.email"></form>
+						</form>
+						<a class="button bg-blue" ng-click="footer.addEmail(footer.email)"><span class="icon icon-arrow-right"></span></a>
+					</div>
+					<div class="social">
+						<a href="https://www.instagram.com/ridestore" class="button button-circular bg-blue"><span class="icon icon-instagram"></span></a>
+						<a href="https://www.facebook.com/ridestore.se" class="button button-circular bg-blue"><span class="icon icon-facebook"></span></a>
+						<a href="https://snapchat.com/add/ridestorecom" class="button button-circular bg-blue"><span class="icon icon-snapchat"></span></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>

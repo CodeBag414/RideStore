@@ -1,0 +1,21 @@
+<div class="notification" ng-if="creator.showNote" ng-class="{fixed: imageInvis}">
+  <h5><span translate>Tip:</span><span translate>To use goggles you must select a helmet</span></h5>
+</div>
+
+<div class="notification" ng-if="creator.showBlockedNote" ng-class="{fixed: imageInvis}">
+  <h5><span translate>Tip:</span><span translate>You can't use pants with a full suit</span></h5>
+</div>
+
+<div class="category grid" ng-class="{padtop: creator.showNote}">
+    <div class="object" ng-repeat="product in creator.styleProducts[creator.activeCategoryIndex - 1].products | limitTo:creator.totalVisible track by product.id" on-finish-render="ngRepeatFinishedEvent" ng-click="creator.setProduct(product, creator.styleProducts[creator.activeCategoryIndex - 1].id)">
+        <div class="prod-img">
+            <div class="active-state" ng-show="creator.selectedProducts.indexOf(product.id) >= 0"><div class="expander"></div><span class="icon-checkmark"></span></div>
+            <img class="rs-image b-lazy" data-src="catalog/product/{{product.small_image}}" onload="this.style.opacity='1';" alt="{{product.shortname}} by {{product.brand}}">
+            <admin-product-row class="editor-product-toolbox" department="creator.department" product="product" ng-if="creator.isAdminLoaded() && creator.isEditMode()" >
+            </admin-product-row>
+        </div>
+        <h5>{{product.shortname}}</h5>
+        <span class="price" ng-if="!product.sale_price" translate translate-params-amount="product.price">$ {{amount}}</span>
+        <span class="price on-sale" ng-if="product.sale_price" translate translate-params-amount="product.sale_price">$ {{amount}}</span>
+    </div>
+</div>

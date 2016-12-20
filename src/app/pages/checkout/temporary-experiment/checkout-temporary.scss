@@ -1,0 +1,24 @@
+@import 'src/assets/sass/mixins';
+@import 'src/assets/sass/variables';
+
+//Temporary Experiment stuff
+.return-notice {
+  background: $lighterGray;
+  bottom: 0;
+  color: $black;
+  display: block;
+  height: 35px;
+  line-height: 40px;
+  position: fixed;
+  text-align: center;
+  vertical-align: middle;
+  width: 100%;
+  z-index: 5;
+
+  @include breakpoint(desktop) {
+    bottom: auto;
+    color: $lightGrayForText;
+    position: inherit;
+    text-align: left;
+  }
+}

@@ -1,0 +1,44 @@
+
+<div id="latest" ng-controller="latestController as latest">
+    <div class="topbreaker"></div>
+
+    <div class="posts">
+        <div class="post" ng-repeat="item in latest.data">
+            <div class="heading">
+                <div class="user">
+                    <a href="#">
+                        <div class="image">
+                            <img src="https://ridestore.imgix.net/brand_logos_new/{{item.logo}}?w=30&bg=fff&mask=ellipse&h=30&crop=faces&fit=fill&border=1%2C000" alt="">
+                        </div>
+                        <h4>{{item.brand}}</h4>
+                    </a>
+                </div>
+                <div class="time">
+                    <span class="icon icon-clock"></span> <span class="date">{{item.launchdate}}</span>
+                </div>
+            </div>
+            <div class="content">
+                <div class="grid grid-2 grid-scroll">
+                  <div class="object" ng-repeat="product in item.products">
+                    <a ui-sref="product-configurable({id: product.id, url: product.url_key})" href="/{{ product.url_key }}">
+                      <div class="image">
+                        <img src="https://ridestore.imgix.net/catalog/product/{{ product.image }}?fm=jpg&q=70&usm=15&chromasub=444&dpr=1&w=600" alt="alt-text">
+                      </div>
+                      <div class="text">
+                        <h5>{{ product.shortname}}" {{ product.producttype }}</h5>
+                        <span class="price" translate  translate-params-amount="product.price">$ {{amount}}</span>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+            </div>
+            <div class="comment">
+                <span class="icon icon-comment"></span>
+                <span class="username bold">{{item.brand}}</span>
+                <span class="text">{{item.department}} {{item.collection}} news</span>
+                <span class="hashtags">#{{item.brand}} #{{item.collection}}</span>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,11 @@
+<div class="top">
+  <h3 translate>Other colors</h3>
+</div>
+<div class="grid grid-small">
+  <a ng-repeat="color in product.data.more_colors | limitTo : 4" class="object" ui-sref="product-configurable({id: color.id, url: color.url_key})" href="/{{  color.url_key }}" on-finish-render="ngRepeatFinished">
+    <div class="image placeholder">
+      <img class="b-lazy" data-src="catalog/product/{{ color.image }}" alt="alt-text">
+      <div class="prod-img-padding-regular"></div>
+    </div>
+  </a>
+</div>

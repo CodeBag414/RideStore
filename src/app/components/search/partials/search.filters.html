@@ -1,0 +1,44 @@
+<div class="wrap left filters-container" ng-swipe-left="search.filterActive = false">
+  <!-- BRAND FILTER -->
+  <rs-brand-filter
+    brands-array-key-name="name" brands-array-key-amount="amount"
+    brands-array="search.filters[search.FACET_BRAND]"
+    callback="search.brandFilterCallback"
+    class="no-padding"></rs-brand-filter>
+
+  <!-- PRODUCT TYPE FILTER -->
+  <form class="block hastitle no-padding product-types ">
+    <h4 translate>Category</h4>
+
+    <div class="filter-container">
+      <label class="checkbox" ng-repeat="productType in search.filters[search.FACET_PRODUCT_TYPE] | limitTo: (!search.showAllCategories || '') && search.filterItemsMinAmountVisible" ng-click="!productType.selected">
+          <span class="filter-name needsclick">{{productType.name}}</span>
+          <span class="filter-amount needsclick">({{productType.amount}})</span>
+          <input type="checkbox" name="checkbox" value="value" ng-change="search.searchWithFilter()" ng-model="productType.selected" >
+          <div class="needsclick"> <!-- checkbox box - TODO make this semantically correct-->
+            <span class="needsclick"></span>
+          </div>
+      </label>
+    </div>
+
+    <label class="show-more">
+      <div class="checkbox">
+        <a ng-if="search.showAllCategories" ng-click="search.displayMinCategories()" href="" translate>Less</a>
+        <a ng-if="!search.showAllCategories" ng-click="search.displayMaxCategories()" href="" translate>More</a>
+      </div>
+    </label>
+  </form>
+
+  <!-- SIZE FILTER -->
+  <form class="block hastitle sizes" ng-class="filter.filter_code">
+    <h4 translate>Size</h4>
+
+    <div class="filter-container">
+      <label ng-repeat="size in search.filters[search.FACET_SIZE]" ng-class="{'longvalue': size.name.length > 3}">
+        <input type="checkbox" name="checkbox" value="value" ng-change="search.searchWithFilter()" ng-model="size.selected" class="needsclick">
+        <div class="checkbox needsclick">{{size.name}}</div>
+      </label>
+    </div>
+  </form>
+
+</div>

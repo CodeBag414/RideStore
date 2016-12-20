@@ -1,0 +1,17 @@
+<div class="toolbox-container">
+  <button class="update-cache" ng-if="$ctrl.advancedEditorMode" ng-click="$ctrl.incrementCaching($event)">update cache</button>
+
+  <div class="upper-right button small-button" ng-class="{'bg-green': $ctrl.product.status === $ctrl.style.ACCEPTED }" ng-click="$ctrl.changeStatus($ctrl.style.ACCEPTED, $event)" title="Accept">
+    <span class="icon icon-checkmark"></span>
+  </div>
+
+  <div class="upper-left button small-button" ng-class="{'bg-red': $ctrl.product.status === $ctrl.style.REJECTED}" ng-click="$ctrl.changeStatus($ctrl.style.REJECTED, $event)" title="Reject">
+    <span class="icon icon-cross"></span>
+  </div>
+
+  <div class="lower-right">
+    <div class="button small-button bg-gray" ng-click="$ctrl.downloadProductAssets($event)" title="click to download assets">
+      <span class="icon icon-download"></span>
+    </div>
+  </div>
+</div>

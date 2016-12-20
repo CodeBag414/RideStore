@@ -1,0 +1,4 @@
+<div ng-controller="MenuController as menu">
+<div ng-if="menu.head.getDevice() == 'desktop'" ng-include="'app/components/menu/partials/menu.desktop.html'"></div>
+<div ng-if="menu.head.getDevice() == 'mobile'" ng-include="'app/components/menu/partials/menu.mobile.html'"></div>
+</div>

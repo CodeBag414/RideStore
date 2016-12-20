@@ -1,0 +1,41 @@
+<div class="topbreaker"></div>
+<div class="container" oc-lazy-load="['https://cdn.jsdelivr.net/jsbarcode/3.5.1/JsBarcode.all.min.js']">
+  <div ng-if="!$ctrl.isAdmin()">You are logged out, <a ng-click="$ctrl.go('webadmin')">click here to go to dashboard and login from there</a></div>
+
+  <div ng-if="$ctrl.isAdmin()">
+    <span class="input-area">
+      <input type="text" name="ean" ng-model="$ctrl.ean"
+        rs-enter="$ctrl.addProductByEAN()"
+        placeholder="Insert EAN"
+        title="select the input box, insert the ean and press enter, or simply scan the ean"/>
+    </span>
+
+    <div class="toolbar">
+      <a class="button bg-gray delete"
+      title="click to cleanup the products list"
+      ng-show="$ctrl.products.length > 0"
+      ng-click="$ctrl.clearProducts()">
+      <span class="icon icon-delete"></span>
+      Clean products</a>
+
+      <a class="button bg-green copy-products"
+      title="click to trigger popups to copy each sku"
+      ng-show="$ctrl.products.length > 0"
+      ng-click="$ctrl.triggerCopyToClipboard()">
+      <span class="icon icon-share"></span>
+      Copy Products SKU</a>
+
+    </div>
+
+    <div class="results">
+      <div>
+        <img class="barcode" id="barcode"/>
+      </div>
+
+      <ol ng-show="$ctrl.products.length > 0" class="products">
+        <li ng-repeat="product in $ctrl.products track by product.configurableSku" class="product">{{product.configurableSku}}</li>
+      </ol>
+    </div>
+
+  </div>
+</div>

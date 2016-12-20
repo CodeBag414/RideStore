@@ -1,0 +1,43 @@
+<div id="colors" ng-controller="ColorsController as colors">
+	<div class="overlay open" ng-show="colors.isActive">
+		<div class="bg"></div>
+		<div id="colorchooser">
+			<div id="carousel">
+			  <div class="top">
+				<h2 translate>Choose color</h2>
+				<a href="" ui-sref="product"><span class="icon icon-cross"></span></a>
+			  </div>
+			  <div class="circle">
+			  </div>
+			  <ul class="images">
+			    <li data-color="blue">
+			      <img src="http://cdnx1.ridestore.com/media/catalog/product/cache/1/image/504x593/9df78eab33525d08d6e5fb8d27136e95/C/8/C8704_1.jpg">
+			    </li>
+			    <li data-color="orange">
+			      <img src="http://cdnx1.ridestore.com/media/catalog/product/cache/1/image/504x593/9df78eab33525d08d6e5fb8d27136e95/C/8/C8704_1.jpg">
+			    </li>
+			    <li data-color="green">
+			      <img src="http://cdnx1.ridestore.com/media/catalog/product/cache/1/image/504x593/9df78eab33525d08d6e5fb8d27136e95/C/8/C8704_1.jpg">
+			    </li>
+			    <li data-color="black">
+			      <img src="http://cdnx1.ridestore.com/media/catalog/product/cache/1/image/504x593/9df78eab33525d08d6e5fb8d27136e95/C/8/C8704_1.jpg">
+			    </li>
+			    <li data-color="red">
+			      <img src="http://cdnx1.ridestore.com/media/catalog/product/cache/1/image/504x593/9df78eab33525d08d6e5fb8d27136e95/C/8/C8704_1.jpg">
+			    </li>
+			  </ul>
+			</div>
+			<div class="bottom">
+				<div class="active"></div>
+				<ul>
+					<li><a href=""><span class="bg-blue" translate></span> Blue</a></li><!--
+					--><li><a href=""><span class="bg-orange" translate></span> Orange</a></li><!--
+					--><li><a href=""><span class="bg-green" translate></span> Green</a></li><!--
+					--><li><a href=""><span class="bg-black" translate></span> Black</a></li><!--
+					--><li><a href=""><span class="bg-red" translate></span> Red</a></li>
+				</ul>
+			</div>
+			<a href="" class="button button-circular bg-green"><span class="icon icon-checkmark"></span></a>
+		</div>
+	</div>
+</div>

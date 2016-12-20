@@ -1,0 +1,18 @@
+<a ng-if="vm.device === 'mobile'"
+    href="" class="favorite-nav-button nav-button"
+    ng-click="vm.top.toggleFavorites()">
+  <!-- mobile -->
+  <span class="icon icon-heart"></span>
+  <div class="count">{{vm.favoritesCount}}</div>
+</a>
+
+<a ng-if="vm.device === 'desktop'"
+    href="" class="favorite-nav-button nav-button"
+    ng-class="{'open': vm.top.getFavoritesStatus() == true }"
+    ng-click="vm.top.toggleFavorites()"
+    animate-on-change="vm.favoritesCount">
+  <!-- desktop -->
+  <div class="ripple"></div>
+  <span class="icon icon-heart"></span>
+  <div class="count">{{vm.favoritesCount}}</div>
+</a>

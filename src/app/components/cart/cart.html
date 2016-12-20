@@ -1,0 +1,37 @@
+<!-- UI OVERLAYS -->
+<div id="cart" class="overlay animate-slideright" ng-class="{'open' : cart.top.getCartStatus()}" ng-show="cart.top.getCartStatus()" ng-controller="CartController as cart" ng-swipe-right="cart.top.toggleCart()">
+  <div class="bg" ng-click="cart.top.toggleCart()"></div>
+  <div class="wrap right no-padding">
+    <div class="top">
+      <h3><translate>My cart</translate> /
+        <span class="total" translate translate-params-count="cart.cart.items" translate-n="cart.cart.items" translate-plural="{{count}} products">1 product</span>
+      </h3>
+    </div>
+
+    <rs-cart-product-list></rs-cart-product-list>
+
+    <div class="foot">
+      <a ng-if="cart.cart.items > 0 && cart.head.getTopLevelDomain() !== 'com' &&
+          cart.allProductsInStock"
+          ng-click="cart.goToCheckout();" class="button button-full bg-green">
+        <translate>Order</translate> -
+        <translate translate-params-amount="cart.cart.totalSum">$ {{amount}}</translate>
+      </a>
+
+      <div ng-if="cart.top.getCartStatus() && cart.cart.items > 0 && cart.allProductsInStock &&
+          cart.head.getTopLevelDomain() === 'com' && cart.checkoutService.canShip()">
+        <ng-include src="'app/components/cart/quick-checkout/quick-checkout.html'"></ng-include>
+      </div>
+
+      <div ng-if="!cart.checkoutService.canShip()">
+        <translate>Sorry, we only ship within the European Union</translate>
+      </div>
+
+      <div ng-if="!cart.allProductsInStock" class="warning-note">
+        <span class="icon icon-info"></span>
+        <translate>The highlighted products are not in stock. Remove them to proceed to checkout</translate>
+      </div>
+
+    </div>
+  </div>
+</div>

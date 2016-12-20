@@ -1,0 +1,74 @@
+@import "src/assets/sass/mixins";
+@import "src/assets/sass/variables";
+
+#delivery {
+	background-color: $lighterGray;
+	.overlay {
+		padding: $padding-01;
+	}
+	.delivery {
+		@include box-sizing(border-box);
+		padding: $padding-01;
+		background-color: $lighterGray;
+		@include border-radius($radius-01);
+		height: 100%;
+		.intro {
+			text-align: center;
+			@include box-sizing(border-box);
+			padding: 0 $padding-02 10px $padding-02;
+			h2 {
+				font-weight: 600;
+				text-transform: uppercase;
+				padding: $padding-01 0;
+			}
+		}
+		.scroller {
+			height: calc(100% - 140px);
+			display: block;
+			@include overflow(y);
+			@include box-sizing(border-box);
+			padding-bottom: $padding-01;
+		}
+		.object {
+			display: block;
+			background-color: $white;
+			box-shadow: $shadow-01;
+			@include border-radius($radius-01);
+			position: relative;
+			padding: $padding-01;
+			margin-top: $padding-01;
+			&:first-of-type {
+				margin-top: 0;
+			}
+			.text {
+				h4 {
+					text-transform: uppercase;
+					font-weight: 600;
+					line-height: 22px;
+				}
+			}
+			.button {
+				position: absolute;
+				top: 0;
+				right: $padding-01;
+				bottom: 0;
+				margin: auto;
+				width: 40px;
+				height: 40px;
+				@include border-radius($radius-02);
+				padding: 0;
+				img {
+					width: 30px;
+					margin-top: 5px;
+				}
+			}
+		}
+		.bottom {
+			position: fixed;
+			bottom: 30px;
+			left: 30px;
+			right: 30px;
+			background-color: $lighterGray;
+		}
+	}
+}

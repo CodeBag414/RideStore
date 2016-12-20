@@ -1,0 +1,18 @@
+<a ng-if="vm.device === 'mobile'"
+    href="" class="cart-nav-button nav-button"
+    ng-click="vm.top.toggleCart()">
+  <!-- mobile-->
+  <span class="icon icon-cart"></span>
+  <div class="count">{{vm.cartItemsCount}}</div>
+</a>
+
+<a ng-if="vm.device === 'desktop'"
+    href="" class="cart-nav-button nav-button"
+    ng-class="{'open': vm.top.getCartStatus()}"
+    ng-click="vm.top.toggleCart()"
+    animate-on-change="vm.cartItemsCount">
+    <!-- desktop -->
+    <div class="ripple"></div>
+    <span class="icon icon-cart"></span>
+    <div class="count">{{vm.cartItemsCount}}</div>
+</a>

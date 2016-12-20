@@ -1,0 +1,58 @@
+@import 'src/assets/sass/mixins';
+@import 'src/assets/sass/variables';
+
+#cart {
+  .top {
+    display: block;
+    padding: $padding-02 0 $padding-01 0;
+    position: relative;
+    text-transform: uppercase;
+    @include clearfix;
+
+    h3 {
+      @include inline-block;
+    }
+
+    a {
+      color: $darkGray;
+      float: right;
+    }
+  }
+
+  &.overlay .wrap {
+    overflow-x: auto;
+    .scroller {
+      overflow-x: auto;
+    }
+  }
+
+  .foot {
+    margin: 15px 0;
+    padding-top: $padding-01;
+    z-index: 3;
+
+    .button {
+      @include breakpoint(desktop) {
+        margin-bottom: 15px;
+      }
+    }
+
+    .warning-note {
+      color: $warning-color;
+      display: inline-flex;
+      font-size: 14px;
+      height: initial;
+      line-height: 25px;
+      margin-bottom: 25px;
+      text-transform: initial;
+
+      .icon {
+        vertical-align: middle;
+        position: relative;
+        top: 5px;
+        margin: 10px;
+        font-size: 20px;
+      }
+    }
+  }
+}

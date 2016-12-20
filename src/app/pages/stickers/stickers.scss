@@ -1,0 +1,150 @@
+@import "src/assets/sass/mixins";
+@import "src/assets/sass/variables";
+
+#stickers {
+    height: 100%;
+    width: 100%;
+    #header {
+        display: block;
+        background-color: $darkTranslucent;
+        text-align: center;
+        padding-top: 140px;
+        position: relative;
+        padding-left: 0;
+        padding-right: 0;
+        padding-bottom: 0;
+
+        .relative {
+            position: relative;
+            z-index: 2;
+        }
+
+        h2 {
+            font-size: 28px;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: $white;
+            letter-spacing: 0.1em;
+            margin-bottom: 16px;
+        }
+        p {
+            font-size: 14px;
+            color: #9B9FA4;
+        }
+        .hand {
+            background-image: url('https://ridestore.imgix.net/upload/nabil/stickers_hande.png?w=900&q=70');
+            background-position: center center;
+            background-size: auto 100%;
+            background-repeat: no-repeat;
+            width: 100%;
+            max-width: 1252px;
+            height: 390px;
+            margin: 40px auto 0 auto;
+            margin-bottom: 0;
+            position: relative;
+            z-index: 1;
+        }
+    }
+    #content {
+        max-width: 800px;
+        margin: auto;
+        padding: 100px 0;
+        .image {
+            width: 50%;
+            @include inline-block;
+            @include box-sizing(border-box);
+            padding: 30px;
+            background-color: $lightGray;
+            img {
+                width: 100%;
+                display: block;
+            }
+        }
+        .info {
+            width: 50%;
+            @include box-sizing(border-box);
+            padding-left: $padding-02;
+            @include inline-block;
+            h3 {
+                font-size: 14px;
+                text-transform: uppercase;
+                margin-bottom: 20px;
+                font-weight: 600;
+            }
+            ul {
+                display: block;
+                li {
+                    font-size: 12px;
+                    margin-bottom: 20px;
+                }
+            }
+        }
+    }
+    @media all and (max-width: 414px) {
+        #header {
+            height: calc(100% - 145px);
+            overflow: hidden;
+            @include box-sizing(border-box);
+            h2 {
+                font-size: 22px;
+            }
+            .hand {
+                    height: 300px;
+                    position: absolute;
+                    bottom: 0;
+            }
+        }
+        #content {
+            padding: 0;
+            .container {
+                padding: 0;
+            }
+            .image {
+                width: 100%;
+                display: none;
+            }
+            .info h3, .info ul {
+                display: none;
+            }
+            .info {
+                width: 100%;
+                padding: $padding-01;
+            }
+        }
+    }
+    @media all and (max-width: 375px) {
+        #header {
+            padding-top: 90px;
+        }
+        #header .hand {
+            height: 250px;
+        }
+    }
+    @media all and (max-width: 320px) {
+        #header {
+            padding-top: 70px;
+        }
+        #header .hand {
+            height: 220px;
+        }
+    }
+    .overlay {
+        .wrap {
+            background-color: $lighterGray;
+            padding: 30px $padding-01;
+            height: auto;
+            margin-top: $padding-02;
+            @include border-radius($radius-01);
+            .top {
+                padding: 0 $padding-01;
+                text-align: center;
+                h2 {
+                    font-size: 14px;
+                    font-weight: bold;
+                    text-transform: uppercase;
+                    margin-bottom: 8px;
+                }
+            }
+        }
+    }
+}

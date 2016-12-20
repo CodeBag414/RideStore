@@ -1,0 +1,178 @@
+@import "src/assets/sass/mixins";
+@import "src/assets/sass/variables";
+
+#colors {
+    .overlay {
+        padding: $padding-01;
+    }
+    #colorchooser {
+        background-color: #fff;
+        width: 100%;
+        height: 100%;
+        display: block;
+        max-width: 600px;
+        margin: auto;
+        position: relative;
+        .bottom {
+            padding: 0 $padding-02 $padding-02 $padding-02;
+            position: relative;
+            .active {
+                position: absolute;
+                top: 10px;
+                height: 34px;
+                width: calc(50% - 40px);
+                background-color: $lightGray;
+                border-radius: 3px;
+                left: 40px;
+                @include transition(all 0.4s ease-in-out);
+            }
+            ul {
+                display: block;
+                position: relative;
+                z-index: 1;
+                li {
+                    display: inline-block;
+                    width: 50%;
+                    @include box-sizing(border-box);
+                    @include border-radius($radius-01);
+                    margin-top: 10px;
+
+                    &.active {
+                        background-color: $lightGray;
+                    }
+                    a {
+                        display: block;
+                        width: 100%;
+                        height: 34px;
+                        line-height: 34px;
+                        padding: 0 15px;
+                        color: $darkGray;
+                        @include box-sizing(border-box);
+                        span {
+                            width: 16px;
+                            height: 16px;
+                            @include inline-block;
+                            @include border-radius($radius-02);
+                            margin-top: 9px;
+                            margin-right: 10px;
+                            pointer-events: none
+                        }
+                    }
+                }
+            }
+        }
+        .button {
+            position: absolute;
+            bottom: $padding-02;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+    }
+    #carousel {
+      display: block;
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+      padding-top: 80px;
+      transition: background-color 0.6s ease-in-out;
+      &.bg-white .top h2, &.bg-white .top span {
+        color: $darkGray;
+      }
+      .top {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        text-align: center;
+        color: #fff;
+        h2 {
+            margin-top: 22px;
+            color: #fff;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+        span {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            color: #fff;
+        }
+      }
+      .circle {
+        position: absolute;
+        height: 100px;
+        width: 100%;
+        background-color: $white;
+        -webkit-border-radius: 100%;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        margin: auto;
+        /* border-top-left-radius: 100px;
+        -webkit-border-top-left-radius: 100px; */
+      }
+      .images {
+        white-space: nowrap;
+        text-align: center;
+        position: relative;
+        width: 100%;
+        li {
+          width: 40%;
+          display: inline-block;
+          position: absolute;
+          opacity: 0.6;
+          transition: all 0.6s ease-in-out;
+          transform-origin: bottom;
+          left: 0;
+          right: 0;
+          top: 0;
+          margin: auto;
+          &.active {
+            opacity: 1;
+          }
+          &.rotate-p {
+            transform: rotate(20deg);
+            top: 15px;
+            @include breakpoint(desktop) {
+              top: 35px;
+            }
+          }
+          &.rotate-p1 {
+            transform: rotate(40deg);
+            top: 80px;
+            @include breakpoint(desktop) {
+              top: 135px;
+            }
+          }
+          &.rotate-m {
+            transform: rotate(-20deg);
+            top: 15px;
+            @include breakpoint(desktop) {
+              top: 35px;
+            }
+          }
+          &.rotate-m1 {
+            transform: rotate(-40deg);
+            top: 80px;
+            @include breakpoint(desktop) {
+              top: 135px;
+            }
+          }
+          img {
+            display: block;
+            width: 100%;
+            border-radius: $radius-01;
+          }
+        }
+      }
+    }
+    .buttons {
+      position: fixed;
+      bottom: 20px;
+      left: 0;
+      right: 0;
+      text-align: center;
+    }
+}

@@ -1,0 +1,19 @@
+<div id="header" class="brand">
+	<div class="topbreaker"></div>
+	<div class="bg" style="background-image: url('{{category.mediaPath}}/catalog/category/{{category.data.category_info.header_image}}')"></div>
+	<div class="content">
+		<img class="logo" ng-src="{{category.mediaPath}}/brand_logos_new/{{category.data.category_info.brand_logo}}" alt="{{category.data.category_info.name}}"/>
+		<span ng-if="category.head.getDevice() == 'desktop'" class="brandtext" ng-bind-html="category.data.category_info.description"></span>
+
+		<div ng-if="category.filterDepartment" class="department-filters">
+			<nav class="bar bar-dark scrollable bg-transparent">
+				<div class="grid">
+					<div class="object" ng-class="department.selected  == true ? 'active' : 'not'" ng-repeat="department in category.filterDepartment.values">
+						<a href="{{category.getSeoUrlForFilter(department.value_name)}}" ng-click="category.setFilter(category.filterDepartment, department, true, true)">{{department.value_name}}</a>
+					</div>
+				</div>
+			</nav>
+		</div>
+
+	</div>
+</div>

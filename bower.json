@@ -1,0 +1,55 @@
+{
+  "name": "ridestore-angular",
+  "version": "1.0.0",
+  "description": "Ridestore",
+  "devDependencies": {
+    "angular-mocks": "~1.5.9",
+    "sinon": "http://sinonjs.org/releases/sinon-1.17.3.js",
+    "bardjs": "^0.1.8"
+  },
+  "dependencies": {
+    "fastclick": "^1.0.6",
+    "angular": "~1.5.9",
+    "angular-sanitize": "~1.5.9",
+    "angular-ui-router": "^0.2.18",
+    "angular-touch": "~1.5.9",
+    "angular-animate": "~1.5.9",
+    "ngstorage": "^0.3.10",
+    "angular-local-storage": "^0.2.7",
+    "ng-lodash": "^0.5.0",
+    "angular-contentful": "^2.0.0",
+    "angular-segment-analytics": "^1.1.11",
+    "angular-marked": "^1.2.0",
+    "ngSmoothScroll": "^2.0.0",
+    "angular-gettext": "^2.3.0",
+    "angular-load": "^0.4.1",
+    "angular-timeago": "^0.4.3",
+    "ngprogress": "^1.1.3",
+    "angular-bootstrap": "^2.0.1",
+    "angular-toastr": "^2.0.0",
+    "angular-cookies": "~1.5.9",
+    "oclazyload": "^1.0.9",
+    "auth0-lock": "^10.2.2",
+    "angular-dropzone": "^0.1.2",
+    "raven-js": "^3.8.0",
+    "angular-drag-and-drop-lists": "^1.4.0",
+    "angular-ui-grid": "^3.2.9"
+  },
+  "resolutions": {
+    "angular": "~1.5.9"
+  },
+  "overrides": {
+    "raven-js": {
+      "main": [
+        "dist/raven.js",
+        "dist/plugins/angular.js"
+      ]
+    },
+    "angular-ui-grid": {
+      "main": [
+        "ui-grid.min.js",
+        "ui-grid.css"
+      ]
+    }
+  }
+}

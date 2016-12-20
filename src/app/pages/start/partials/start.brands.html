@@ -1,0 +1,7 @@
+<div class="brands">
+  <div class="brandcontainer">
+    <a ng-repeat="brand in start.department.brands" class="brand" href="/{{brand.fields.url}}" ui-sref="category({id: brand.fields.id, url: brand.fields.url})">
+      <img class="b-lazy" data-src="brand_logos_new/{{brand.fields.url}}.png" alt="{{brand.fields.name}}">
+    </a>
+  </div>
+</div>

@@ -1,0 +1,295 @@
+@import 'src/assets/sass/mixins';
+@import 'src/assets/sass/variables';
+
+#search {
+  &.overlay {
+    display: flex;
+    position: static;
+  }
+  @include box-sizing(border-box);
+  height: 100%;
+  overflow: hidden;
+  width: 100%;
+
+  .block {
+    @include box-sizing(border-box);
+    @include border-radius($radius-01);
+    background-color: $white;
+    display: block;
+    padding: $padding-01 0;
+
+    .grid {
+      padding: 5px 7px 0 7px;
+
+      .object {
+        padding-bottom: 0;
+
+        .image {
+          background-color: transparent;
+          padding: 10px 0;
+
+          span {
+            color: $darkGray;
+            display: block;
+            font-size: 30px;
+            text-align: center;
+          }
+        }
+
+        h5 {
+          text-align: center;
+        }
+      }
+    }
+
+    &.products .grid .object {
+      padding-bottom: 14px;
+
+      .image {
+        padding: 0;
+      }
+    }
+  }
+
+  .blocks {
+    @include overflow(y);
+    @include transition(top .8s ease-in);
+    @include box-sizing(border-box);
+    padding-bottom: $padding-01;
+    top: 100%;
+    width: 100%;
+
+    &.show {
+      @include transition(top .5s ease-in);
+      top: 50px;
+    }
+  }
+}
+
+[ng-controller="SearchController as search"] {
+  @include breakpoint(desktop) {
+
+    #filter {
+      @include box-sizing(border-box);
+      @include inline-block;
+      padding: 37px;
+      width: 240px;
+    }
+
+    #main {
+      @include inline-block;
+      @include box-sizing(border-box);
+      width: 100%;
+      &.filter-open {
+        width: calc(100% - 240px);
+        padding-right: 23px;
+      }
+      .grid {
+        .object {
+          font-size: 12px;
+          position: relative;
+
+          .text {
+            line-height: 26px;
+            margin-bottom: 8px;
+            margin-top: 10px;
+
+            h5 {
+              max-height: 26px;
+            }
+            span {
+              font-size: 14px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+#main .grid .object {
+  position: relative;
+
+  .button-circular {
+    background-color: $transparent;
+    color: $white;
+    position: absolute;
+    right: 7px;
+    top: 0;
+    z-index: 2;
+  }
+
+  .old-price {
+    text-decoration: line-through;
+  }
+
+  .sale-price {
+    color: $red;
+  }
+}
+
+#search #filter {
+  h3 {
+    margin-bottom: 30px;
+    text-transform: uppercase;
+  }
+  .show-more {
+    margin-top: 15px;
+  }
+
+  .block {
+    padding: 10px 0;
+
+    @include breakpoint(desktop) {
+      padding: 10px 0 30px;
+    }
+  }
+
+  form {
+    border-radius: 0;
+    margin-bottom: 10px;
+
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+
+  .filter-container {
+    margin: 10px -15px 0;
+    //see https://bitbucket.org/Ridestore/angular/pull-requests/99/ridang1-179-fix-styling-in-brands-filter/diff
+    //max-height: 20vh; // disabling scroll
+    //overflow-y: auto; // disabling scroll
+    padding: 0 15px;
+  }
+
+  label a {
+    color: $darkGray;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  form.colors, form.sizes {
+    label {
+      @include inline-block;
+      margin-bottom: 10px;
+      margin-left: 10px;
+      text-align: center;
+      div {
+        @include border-radius($radius-02);
+        @include box-sizing(border-box);
+        height: 35px;
+        line-height: 38px;
+        text-align: center;
+        width: 35px;
+        //red
+        &.color-1033 {
+          background-color: #F44336;
+        }
+        //blue
+        &.color-1031 {
+          background-color: #4c9fe6;
+        }
+        //brown
+        &.color-1026 {
+          background-color: #b7814e;
+        }
+        //green
+        &.color-1032 {
+          background-color: #4dd67d;
+        }
+        //yellow
+        &.color-1030 {
+          background-color: #dee044;
+        }
+        //purple
+        &.color-1028 {
+          background-color: #cb53dd;
+        }
+        //multi
+        &.color-1034 {
+          background-color: #1e5799;
+        }
+        //pink
+        &.color-1027 {
+          background-color: #eb559b;
+        }
+        //white
+        &.color-1024 {
+          background-color: #fff;
+          border: 1px solid $lightGray;
+          span {
+            color: $darkGray;
+          }
+        }
+        //gray
+        &.color-1023 {
+          background-color: $lightGray;
+          border: 1px solid $lightGray;
+          span {
+            color: $darkGray;
+          }
+        }
+        //black
+        &.color-1025 {
+          background-color: #000;
+        }
+        span {
+          color: #fff;
+          font-size: 14px;
+          font-weight: 600;
+          opacity: 0;
+        }
+        input:checked + span {
+          opacity: 1;
+        }
+      }
+      &.longvalue .checkbox {
+        border-radius: 100px;
+        padding: 0 10px;
+        width: auto;
+      }
+    }
+    &.sizes {
+      label {
+        margin-left: 0;
+        margin-right: 8px;
+      }
+      @include breakpoint(desktop) {
+        label:nth-of-type(4n+4) {
+          margin-right: 0;
+        }
+      }
+
+      label div {
+        border: 1px solid $lightGray;
+        font-size: 11px;
+        line-height: 33px;
+      }
+
+      input:checked + div {
+        background-color: $blue;
+        border: 0;
+        color: $white;
+        line-height: 35px;
+      }
+    }
+    &.colors {
+      label {
+        margin-bottom: 10px;
+        margin-left: 0;
+        margin-right: 10px;
+        div {
+          height: 25px;
+          line-height: 30px;
+          width: 25px;
+        }
+      }
+      @include breakpoint(desktop) {
+        label:nth-of-type(5n+5) {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+}

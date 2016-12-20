@@ -1,0 +1,102 @@
+@import 'src/assets/sass/mixins';
+@import 'src/assets/sass/variables';
+
+#favorites {
+  .wrap {
+    padding: 0;
+  }
+  .scroller {
+		padding-top: 0;
+		height: calc(100% - 72px);
+		padding-bottom: 0;
+	}
+	&.overlay .wrap {
+		overflow-x: auto;
+		.scroller {
+			overflow-x: auto;
+		}
+	}
+  .top {
+    @include clearfix;
+    display: block;
+    padding: $padding-02 0 $padding-01 0;
+    position: relative;
+    text-transform: uppercase;
+    h3 {
+      @include inline-block;
+      width: calc(100% - 25px);
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    a {
+      color: $darkGray;
+      float: right;
+    }
+  }
+  .grid {
+    padding: 0 40px;
+    @include breakpoint(smallphone) {
+      padding: 0 20px;
+    }
+
+    .object {
+      @include breakpoint(desktop) {
+        width: 50%;
+      }
+
+      &.style {
+        .image {
+          height: auto;
+          width: 100%;
+
+          .large-image {
+            @include inline-block;
+            width: 65%;
+            position: relative;
+          }
+
+          .small-image {
+            @include box-sizing(border-box);
+            @include inline-block;
+            padding-left: 10px;
+            width: 35%;
+
+            img {
+              margin-top: 12px;
+
+              &:first-of-type {
+                margin-top: 0;
+              }
+            }
+          }
+
+          img {
+            display: block;
+            width: 100%;
+          }
+        }
+      }
+
+      .text {
+        text-align: left;
+        height: 42px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        .color {
+          color: #414A59;
+        }
+      }
+    }
+  }
+
+  hr {
+    margin: 0 20px 20px;
+  }
+
+  .foot {
+    padding-top: $padding-01;
+  }
+}

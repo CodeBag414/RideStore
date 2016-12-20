@@ -1,0 +1,21 @@
+<div class="custom-style-favorite-item favorite-item">
+  <a href="" ng-click="vm.removeCustomStyleFromFavorites()" class="button-delete">
+    <span class="icon icon-cross"></span>
+  </a>
+  <a ng-href="{{vm.product.url}}">
+    <!-- style image -->
+    <div class="image">
+      <div class="large-image placeholder">
+        <img ng-src="{{vm.product.images.front}}" alt="{{vm.product.shortname}}">
+        <div class="prod-img-padding-style"></div>
+      </div><div class="small-image">
+        <img ng-repeat="simpleProduct in vm.product.productsDetails | limitTo: 3" class="b-lazy" data-src="catalog/product/{{simpleProduct.image}}" alt="{{simpleProduct.shortname}}">
+      </div>
+    </div>
+
+    <div class="text">
+      <h5 translate>Custom Style</h5>
+    </div>
+  </a>
+
+</div>

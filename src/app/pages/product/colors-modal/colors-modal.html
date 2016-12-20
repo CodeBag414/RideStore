@@ -1,0 +1,19 @@
+<div class="modal-header">
+  <h3 class="modal-title" translate>Other colors</h3>
+  <button class="close" ng-click="vm.close()">
+    <span class="icon icon-cross"></span>
+  </button>
+</div>
+<div class="modal-body colors-modal">
+  <div class="grid grid-2">
+    <a ng-repeat="color in vm.colors" class="object" ng-click="vm.goToProduct({id: color.id, url: color.url_key})" href="/{{  color.url_key }}" on-finish-render="ngRepeatFinished">
+      <div class="image placeholder">
+        <img class="b-lazy" data-src="catalog/product/{{ color.image }}" alt="alt-text">
+        <div class="prod-img-padding-regular"></div>
+      </div>
+    </a>
+  </div>
+</div>
+<div class="modal-footer">
+  <button class="button bg-blue" type="button" ng-click="vm.close()" translate>Close</button>
+</div>

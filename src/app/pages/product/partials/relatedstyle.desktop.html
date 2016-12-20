@@ -1,0 +1,25 @@
+<div class="related-style-products">
+  <div class="top">
+    <h3 translate>Complete the look</h3>
+  </div>
+  <div class="grid grid-4 grid-scroll">
+    <a class="object" ui-sref="product-style({id: product.data.related_style[0].product_id, url:  product.data.related_style[0].url_key})" href="/{{  product.data.related_style[0].url_key }}">
+      <div class="image placeholder related-style-placeholder">
+        <img class="b-lazy related-style" data-src="catalog/product/{{ product.data.related_style[0].image }}" alt="alt-text">
+        <div class="prod-img-padding-style"></div>
+      </div>
+      <div class="text related-style-text">
+        <h4 translate>See complete outfit</h4>
+      </div>
+    </a>
+    <a ng-repeat="style_product in product.data.related_style[0].products" ng-if="style_product.id != product.data.id" class="object" ui-sref="product-configurable({id: style_product.id, url: style_product.url})" href="/{{  style_product.url }}" on-finish-render="ngRepeatFinished">
+      <div class="image placeholder">
+        <img class="b-lazy" data-src="catalog/product/{{ style_product.image }}" alt="alt-text">
+        <div class="prod-img-padding-regular"></div>
+      </div>
+      <div class="text">
+        <h4>{{style_product.shortname}}</h4>
+      </div>
+    </a>
+  </div>
+</div>

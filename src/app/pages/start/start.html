@@ -1,0 +1,22 @@
+<div id="start" ng-controller="startController as start">
+  <div ng-if="start.isDepartment && start.head.getDevice() == 'desktop'" ng-include="'app/pages/start/partials/start.header.html'"></div>
+  <div ng-if="!start.isDepartment || start.head.getDevice() == 'mobile'" class="topbreaker"></div>
+
+  <div ng-if="start.head.getDevice() == 'desktop'" ng-include="'app/pages/start/partials/start.brands.html'"></div>
+
+  <div class="post-filter grid grid-scroll" ng-if="start.head.getDevice() == 'mobile'">
+    <div ng-repeat="department in start.departments" class="object" ng-class="{'active': start.openSubCategory == department}">
+      <a href="" ng-click="start.changeDepartment(department)">#{{department | lowercase}}</a>
+    </div>
+  </div>
+
+  <div class="posts" ng-if="start.isDepartment || start.head.getDevice() == 'mobile'">
+    <rs-post class="post" ng-repeat="item in start.content" item="item" on-finish-render="ngRepeatFinished"></rs-post>
+  </div>
+
+  <div class="posts" ng-if="!start.isDepartment && start.head.getDevice() == 'desktop'" ng-repeat="section in start.department.sections">
+    <div class="section-header"><a ui-sref="{{section.fields.department == 'Moto' ? 'motocross' : section.fields.department | lowercase}}">#{{section.fields.department}}</a></div>
+    <rs-post class="post" ng-repeat="item in section.fields.posts track by item.sys.id" item="item" on-finish-render="ngRepeatFinished"></rs-post>
+  </div>
+
+</div>

@@ -1,0 +1,462 @@
+@import 'src/assets/sass/mixins';
+@import 'src/assets/sass/variables';
+
+$promise-icon-color: #8891a8;
+$panel-background-color: $lighterGray;
+$promises-desktop-max-width: 390px;
+$checkout-desktop-width: 100% - #{$promises-desktop-max-width};
+
+$klarna-button-color: #4bbe53;
+$klarna-input-focus-blue: #0072cc;
+
+#checkout {
+  background-color: $panel-background-color;
+
+  nav {
+    background-color: $panel-background-color;
+  }
+
+  .checkout-top {
+    padding-left: 65px;
+  }
+
+  .checkout-container {
+    @include breakpoint(desktop) {
+      background-color: $panel-background-color;
+      padding: 0 30px 30px;
+      text-align: center;
+    }
+
+    @include breakpoint(largedesktop) {
+      padding: 0 70px 30px;
+    }
+  }
+
+  .promise-cart-container {
+    @include breakpoint(desktop) {
+      display: inline-block;
+      vertical-align: top;
+      width: $promises-desktop-max-width;
+    }
+
+    h5 {
+      color: $black;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.71px;
+      line-height: 36px;
+      text-transform: uppercase;
+
+      @include breakpoint(desktop) {
+        padding-bottom: 20px;
+        padding-top: 27px;
+        text-align: left;
+      }
+
+      &.promise-title {
+        @include breakpoint(desktop) {
+          padding-top: 0;
+        }
+      }
+    }
+  }
+
+  .cart {
+    @include breakpoint(desktop) {
+      display: inline-block;
+      text-align: left;
+      vertical-align: top;
+      width: $promises-desktop-max-width;
+    }
+
+    li {
+      padding-bottom: 0;
+
+      @include breakpoint(desktop) {
+        margin-bottom: 13px;
+        margin-top: 13px;
+      }
+
+      &:first-child {
+        @include breakpoint(desktop) {
+          margin-top: 0;
+        }
+      }
+
+      &:last-child {
+        @include breakpoint(desktop) {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+  }
+
+  .block {
+    //padding: 10px 25px 35px 25px;
+
+    @include breakpoint(desktop) {
+      //padding:
+    }
+
+    &.align-left {
+      text-align: left;
+
+      .line {
+        margin-left: 10px;
+      }
+    }
+
+    &.align-right {
+      text-align: right;
+
+      .line {
+        margin-right: 10px;
+      }
+    }
+
+    &.align-center {
+      text-align: center;
+    }
+
+    &.promises {
+      padding: 10px 0;
+
+      @include breakpoint(desktop) {
+        display: inline-block;
+        max-width: $promises-desktop-max-width;
+        padding: 10px 0;
+        vertical-align: top;
+      }
+
+      ul {
+        li {
+          @include breakpoint(desktop) {
+            margin-bottom: 13px;
+            margin-top: 13px;
+          }
+
+          &:first-child {
+            @include breakpoint(desktop) {
+              margin-top: 0;
+            }
+          }
+
+          &:last-child {
+            @include breakpoint(desktop) {
+              margin-bottom: 0;
+            }
+          }
+
+          span {
+            display: block;
+            margin-top: 10px;
+
+            @include breakpoint(desktop) {
+              display: inline-block;
+              margin-top: 0;
+            }
+          }
+        }
+      }
+
+      .promise-list {
+        @include breakpoint(desktop) {
+          text-align: left;
+        }
+      }
+
+      .promise-item {
+        @include breakpoint(desktop) {
+          min-width: 300px;
+          text-align: left;
+        }
+
+        .promise-icon {
+          @include breakpoint(desktop) {
+            color: $promise-icon-color;
+            font-size: 38px;
+            width: 50px;
+            text-align: center;
+          }
+        }
+
+        .promise-text {
+          @include breakpoint(desktop) {
+            display: inline-block;
+            margin-left: 20px;
+            text-align: left;
+            width: 200px;
+          }
+
+          p,
+          h6 {
+            font-size: 11px;
+            @include breakpoint(desktop) {
+              font-size: 12px;
+              letter-spacing: 1px;
+            }
+          }
+
+          h6 {
+            @include breakpoint(desktop) {
+              color: $black;
+              font-weight: 600;
+              text-transform: capitalize;
+            }
+          }
+
+          p {
+            @include breakpoint(desktop) {
+              color: #5e5e5e;
+              font-weight: 400;
+            }
+          }
+        }
+
+      }
+
+    }
+
+    &.checkout {
+      background-color: $white;
+      min-height: calc(100vmin - 30px); //30px is the bottom padding
+      padding-top: 0;
+
+      @include breakpoint(desktop) {
+        display: inline-block;
+        margin-left: 15px;
+        min-height: calc(100vmin - 120px - 30px); //120 the topbreaker 30px the bottom padding
+        width: calc(#{$checkout-desktop-width} - 15px);
+      }
+
+      @include breakpoint(largedesktop) {
+        margin-left: 50px;
+        width: calc(#{$checkout-desktop-width} - 50px);
+      }
+
+      .tab-content {
+        min-height: calc(100vmin - 30px - 120px); //30px is the bottom padding 120px promises
+        @include breakpoint(desktop){
+          min-height: calc(100vmin - 120px - 30px - 100px); //120 the topbreaker 30px the bottom padding
+        }
+      }
+
+      .order-amount {
+        font-family: Helvetica Neue, Helvetica, Roboto, Arial, sans-serif; //we set the same font as klarna
+        text-align: center;
+        width: 100%;
+        margin: 20px 0;
+
+        .order-amount-total {
+          font-size: 32px;
+          color: #31393e;
+          line-height: 1;
+          margin-bottom: 0;
+          padding-bottom: 0;
+          text-shadow: 0 1px #fff;
+        }
+
+        .order-amount-text {
+          color: #31393e;
+          font-size: 14px;
+        }
+      }
+
+      .checkout-button {
+        width: 100%;
+        margin: 20px 0;
+        text-align: center;
+      }
+
+      .discount {
+        padding-left: 12px;
+        padding-right: 12px;
+        position: relative;
+
+
+        .discount-form {
+          font-size: 15px;
+          text-align: center;
+          max-width: 640px;
+          margin: 0 auto;
+
+          h4 {
+            color: #424242;
+            font-family: 'Arial', sans-serif;
+            font-weight: bold;
+            margin: 5px;
+            text-align: left;
+          }
+
+          input {
+            @include inline-block;
+            @include box-sizing(border-box);
+            border: 1px solid #cbcbcb;
+            border-radius: 5px;
+            font-family: 'Arial', sans-serif;
+            font-size: 15px;
+            font-weight: 400;
+            height: 45px;
+            line-height: 19px;
+            margin-bottom: 5px;
+            padding: 0 11px;
+            width: 100%;
+
+            @media(min-width: 1130px) { //hack to match klarna layout
+              margin: 5px 8px 5px 0;
+              max-width: 375px;
+              width: calc(100% - 220px - 2px);
+            }
+
+            &:focus {
+              border: 1px solid $klarna-input-focus-blue;
+              box-shadow: 0 0 3px 1px $klarna-input-focus-blue;
+              outline: none;
+              z-index: 3;
+            }
+          }
+
+          a {
+            @include inline-block;
+            font-family: 'Arial', sans-serif;
+            font-size: 15px;
+            font-weight: bold;
+            height: 43px;
+            line-height: 40px;
+            margin-top: 5px;
+            //padding: 0 13px;
+            text-transform: initial;
+            width: 100%;
+            @media(min-width: 1130px) { //hack to match klarna layout
+              box-sizing: content-box;
+              margin: 5px;
+              width: 215px;
+            }
+
+            &.toggle {
+              color: #186fb6;
+              font-size: 13px;
+              font-weight: 100;
+              max-width: 640px;
+              text-align: right;
+              width: 100%;
+
+              @include breakpoint(desktop) {
+                text-align: left;
+              }
+            }
+
+            &.bg-klarna {
+              background-color: #eaeaea;
+              border: 1px solid #eaeaea;
+              color: #878A90;
+            }
+          }
+
+          .message {
+            font-size: 13px;
+            font-weight: 600;
+            padding-left: 10px;
+
+            &.message-error {
+              color: $red;
+            }
+
+            &.message-success {
+              color: $klarna-button-color;
+            }
+          }
+        }
+
+        .discount-list {
+          margin: 0 auto;
+          max-width: 640px;
+          width: 100%;
+
+          .discount-item {
+            border: 1px solid #cbcbcb;
+            border-bottom: 0;
+            box-sizing: border-box;
+            color: #595959;
+            font-size: 15px;
+            font-weight: 600;
+            padding: 10px 15px;
+            text-align: left;
+            width: 100%;
+
+            @include breakpoint(desktop) {
+              max-width: 377px;
+              width: calc(100% - 220px - 2px);
+            }
+
+            &:first-child {
+              border-radius: 5px 5px 0 0;
+            }
+
+            &:last-child {
+              border: 1px solid #cbcbcb;
+              border-radius: 0 0 5px 5px;
+            }
+
+            &:only-child {
+              border: 1px solid #cbcbcb;
+              border-radius: 5px;
+            }
+
+            .discount-amount {
+              color: $klarna-button-color;
+              font-size: 18px;
+              padding-left: 10px;
+            }
+
+            .discount-remove {
+              float: right;
+              height: 20px;
+              line-height: 20px;
+              margin: 0;
+              padding: 0;
+              width: 20px;
+
+              &:link,
+              &:visited,
+              &:hover,
+              &:active {
+                color: #595959;
+              }
+
+              .icon {
+                font-size: 10px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .checkout-no-stock {
+    padding-top: 25px;
+
+    @include breakpoint('desktop') {
+      border: 1px solid;
+      border-radius: 5px;
+      margin: 100px;
+      padding: 50px;
+    }
+
+    h1 {
+      font-size: 24px;
+      margin: 20px;
+    }
+
+    div {
+      font-size: 16px;
+      margin: 20px;
+    }
+  }
+}
+
+#klarna-checkout-container {
+  overflow: initial !important;
+}

@@ -1,0 +1,10 @@
+.favorite-button {
+  transition: all .3s ease-in-out;
+
+  span {
+    &:hover {
+      font-size: 1.5em;
+      transform: rotate(5deg);
+    }
+  }
+}

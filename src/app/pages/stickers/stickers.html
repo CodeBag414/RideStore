@@ -1,0 +1,55 @@
+<div id="stickers" ng-controller="StickersThanksController as stickers">
+	<div id="header">
+		<div class="bg" style="background-image: url('https://ridestore.imgix.net/backgrounds/cabin.jpeg?auto=fm&q=60');"></div>
+		<div class="relative">
+			<h2 translate>Stickersheet</h2>
+			<p translate>Paste them where you want, you only pay for the postage</p>
+		</div>
+		<div class="hand">
+		</div>
+	</div>
+	<div id="content">
+		<div class="container">
+			<div class="image">
+				<img src="https://ridestore.imgix.net/upload/nabil/ark.png" alt="alt-text">
+			</div><!--
+			--><div class="info">
+			<h3 translate>Contains:</h3>
+			<ul>
+				<li translate>2 x large logos</li>
+				<li translate>2 x large logos</li>
+				<li translate>2 x large logos</li>
+				<li translate>2 x large logos</li>
+			</ul>
+			<a href="#" class="button button-full bg-green" ng-click="stickers.popup = true">
+				<span class="icon icon-cart-add"></span>5kr
+			</a>
+		</div>
+	</div>
+</div>
+<!-- UI OVERLAYS -->
+<div class="overlay animate-slideleft" ng-show="stickers.popup == true">
+	<div class="bg" ng-click="stickers.popup = false"></div>
+	<div class="wrap center no-padding">
+		<div class="top">
+			<h2 translate>Order</h2>
+			<p translate>Where would you like us to send your stickers?</p>
+		</div>
+		<form name="stickersForm">
+			<input type="text" name="firstName" ng-model="stickers.formInfo.firstName" required placeholder="{{'Firstname' | translate}}">
+			<p ng-show="stickersForm.firstName.$invalid && !stickersForm.firstName.$pristine" class="help-block" translate>First name is required.</p>
+			<input type="text" name="surname" ng-model="stickers.formInfo.surname" required placeholder="{{'Lastname' | translate}}">
+			<p ng-show="stickersForm.surname.$invalid && !stickersForm.surname.$pristine" class="help-block" translate>Last name is a must to fill in</p>
+			<input type="text" name="mobile" ng-model="stickers.formInfo.mobile" phonenumber ng-model-options="{ updateOn: 'blur' }" placeholder="{{'Mobile number' | translate}}">
+			<p ng-show="stickersForm.mobile.$invalid && !stickersForm.mobile.$pristine"  class="help-block" translate>Mobile number is not well formed</p>
+			<input type="text" name="street" id="autocomplete" required placeholder="{{'street' | translate}}">
+			<p ng-show="stickersForm.street.$invalid && !stickersForm.street.$pristine" class="help-block" translate>Street is a must to fill in</p>
+			<input type="text" name="city"  ng-disabled="!stickers.formInfo.googleHit"  ng-model="stickers.formInfo.city" required placeholder="{{'City' | translate}}">
+			<p ng-show="stickersForm.city.$invalid && !stickersForm.city.$pristine" class="help-block" translate >City is required</p>
+			<input type="text" name="postalNumber"  ng-disabled="!stickers.formInfo.googleHit"  ng-model="stickers.formInfo.postalNumber" required placeholder="{{'Postal number' | translate}}">
+			<p ng-show="stickersForm.postalNumber.$invalid && !stickersForm.postalNumber.$pristine" class="help-block">Postal number is required</p>
+		  <a href="" ui-sref="stickersThanks"  ng-click="stickers.send()" class="button button-full bg-green" translate>Buy Stickers</a>
+	</form>
+</div>
+</div>
+</div>

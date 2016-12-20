@@ -1,0 +1,103 @@
+@import "src/assets/sass/mixins";
+@import "src/assets/sass/variables";
+
+#latest {
+	.post {
+		border-top: 1px solid $lightGray;
+		padding-top: 10px;
+		position: relative;
+		margin-bottom: $padding-01;
+		.bold {
+			font-weight: 600;
+			color: $darkGray;
+		}
+
+		.topbar {
+			text-align:center;
+			margin-top: 20px;
+			margin-bottom: 20px;
+		}
+
+		.post {
+			border-top:1px solid $lightGray;
+			padding-top: 10px;
+			margin-bottom:20px;
+			position: relative;
+		}
+
+		.heading {
+			padding-left:10px;
+			padding-right:10px;
+			line-height: 30px;
+			height: 30px;
+			vertical-align: middle;
+			margin-bottom: 10px;
+		}
+		.time {
+			position: absolute;
+			top: 10px;
+			right: $padding-01;
+		}
+
+		.date {
+			color: #8f9296;
+			text-transform: uppercase;
+		}
+		.icon {
+			color: $darkGray;
+			font-size: 18px;
+			@include inline-block;
+			line-height: 29px;
+			margin-right: 7px;
+		}
+
+
+
+		.comment {
+			padding:10px;
+		}
+		.comment span {
+			line-height: 22px;
+		}
+		.comment span.icon {
+			margin-left: 5px;
+			@include inline-block;
+		}
+		.text {
+			line-height: 20px;
+		}
+		.hashtags {
+			color: $blue;
+		}
+	}
+
+	.content {
+			.grid {
+					text-align: left;
+					.object {
+							padding: 0 7px 0 7px;
+							@include breakpoint(desktop) {
+									width: 16.6666667%;
+									.text {
+											text-align: center;
+											margin-top: 10px;
+											margin-bottom: 8px;
+											line-height: 26px;
+											h5 {
+													max-height: 26px;
+											}
+											.price {
+													font-size: 14px;
+													font-weight: 600;
+											}
+									}
+							}
+					}
+			}
+	}
+
+}
+
+.align-center {
+	text-align: center;
+}
